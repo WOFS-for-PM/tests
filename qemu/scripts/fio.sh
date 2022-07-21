@@ -1,0 +1,1 @@
+fio -filename=/mnt/test -fallocate=none -direct=0 -iodepth 1 -rw=write -ioengine=sync -bs=4K -size=1G -name=write
