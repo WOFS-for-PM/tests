@@ -1,1 +1,3 @@
-traces/meta-traces
+tools/traces/meta-traces
+tools/ioproducer/build
+tools/ioproducer/.vscode
