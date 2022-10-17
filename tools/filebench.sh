@@ -1,0 +1,1 @@
+/usr/local/filebench/filebench -f ./fbscripts/fileserver.f
