@@ -1,0 +1,1 @@
+NOTE: DO NOT modify the files in this directory directly since they're served as templates. Instead, copy them to the corresponding directory and then modify them. See tests/dac/FIG-Filebench for example. 

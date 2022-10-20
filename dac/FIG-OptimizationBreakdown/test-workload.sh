@@ -5,7 +5,7 @@ ABS_PATH=$(where_is_script "$0")
 TOOLS_PATH=$ABS_PATH/../../tools
 FSCRIPT_PRE_FIX=$ABS_PATH/../../tools/fbscripts
 
-FILE_SYSTEMS=( "HUNTER" "WORKLD" )
+FILE_SYSTEMS=( "HUNTER" "NO-WORKLD" )
 FILE_BENCHES=( "varmail.f" )
 THREADS=( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
 
@@ -20,6 +20,7 @@ for file_system in "${FILE_SYSTEMS[@]}"; do
             if [[ "${file_system}" == "HUNTER" ]]; then
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "dev" "0"
             else
+                sudo umount /mnt/pmem0
                 sudo mount -t HUNTER -o init,meta_local,meta_async,history_w /dev/pmem0 /mnt/pmem0
             fi
 

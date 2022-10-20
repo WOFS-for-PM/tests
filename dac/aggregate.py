@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import csv
+import math
 import sys
 
 table_name = sys.argv[1]
@@ -22,6 +23,7 @@ def is_number(s):
 
 def agg_table(table:str, grp:int):
     content = []
+    content_copy = []
     with open(table, 'r') as i_f:
         cols = i_f.readline().strip().split(" ")
         rows = 0
@@ -32,6 +34,8 @@ def agg_table(table:str, grp:int):
         for row in reader:
             rows += 1
             content.append(row)
+        
+        content_copy = content.copy()
 
         rows_per_grp = rows // grp
         
@@ -56,6 +60,18 @@ def agg_table(table:str, grp:int):
                     else:
                         content[row][col] = float(content[row][col])
                         content[row][col] /= grp
+        # calculate the standard deviation
+        for row in range(rows):
+            line = content_copy[row]
+            for col in cols:
+                if is_number(line[col]):
+                    if str.isdigit(str(line[col])):
+                        average = int(content[row % rows_per_grp][col])
+                        content[row % rows_per_grp].append(math.sqrt((int(content_copy[row][col]) ** 2 - average ** 2)))
+                    else:
+                        average = float(content[row % rows_per_grp][col])
+                        content[row % rows_per_grp] = math.sqrt((float(content_copy[row][col]) ** 2 - average ** 2))
+
 
     with open(table + "_agg", 'w') as o_f:
         writer = csv.writer(o_f, delimiter=' ')

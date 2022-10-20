@@ -15,9 +15,11 @@ table_create "$TABLE_NAME" "file_system file_size bandwidth(MiB/s)"
 for file_system in "${FILE_SYSTEMS[@]}"; do
     for fsize in "${FILE_SIZES[@]}"; do
         if [[ "${file_system}" == "NO-ASYNC" ]]; then
+            sudo umount /mnt/pmem0
             sudo mount -t HUNTER -o init /dev/pmem0 /mnt/pmem0
         elif [[ "${file_system}" == "HUNTER" ]]; then
-            sudo mount -t HUNTER -o init,meta_async /dev/pmem0 /mnt/pmem0
+            sudo umount /mnt/pmem0
+            sudo mount -t HUNTER -o init,meta_async=5 /dev/pmem0 /mnt/pmem0
         fi
         BW=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
         table_add_row "$TABLE_NAME" "$file_system $fsize $BW"
