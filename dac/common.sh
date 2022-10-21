@@ -36,6 +36,23 @@ function table_add_row () {
 #!SECTION
 
 #SECTION: Parse Reseult from terminal
+function pmfs_attr_time_stats () {
+    ATTR=$1
+    TARGET_STATS=$2
+    sed -i "s/\[ //g" "$TARGET_STATS"
+    sed -i "s/\]//g" "$TARGET_STATS"
+
+    CMD="awk '\$2==\"ATTR:\" {print \$6}' $TARGET_STATS"
+    echo "$CMD" >/tmp/awk_nova_attr_time
+    sed -i "s/ATTR/${ATTR}/g" /tmp/awk_nova_attr_time
+    CMD=$(cat /tmp/awk_nova_attr_time)
+    
+    bash -c "$CMD" >/tmp/awk_nova_attr_time
+    sed -i "s/,//g" /tmp/awk_nova_attr_time
+    cat /tmp/awk_nova_attr_time
+    rm /tmp/awk_nova_attr_time
+}
+
 function nova_attr_time_stats () {
     ATTR=$1
     TARGET_STATS=$2
