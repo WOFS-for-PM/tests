@@ -8,7 +8,7 @@ mkdir -p "$ABS_PATH"/DATA
 TOOLS_PATH=$ABS_PATH/../../tools
 
 
-FILE_SYSTEMS=( "NOVA-RELAX" "NOVA" "PMFS" "HUNTER-FSYNC")
+FILE_SYSTEMS=( "NOVA-RELAX" "NOVA" "PMFS" "HUNTER")
 FILE_SIZES=( $((1 * 1024)) $((64 * 1024)))
 WORK_LOADS=( "seq" "rand" )
 
@@ -24,14 +24,13 @@ for file_system in "${FILE_SYSTEMS[@]}"; do
     for work_load in "${WORK_LOADS[@]}"; do
         for fsize in "${FILE_SIZES[@]}"; do
             output="$ABS_PATH"/DATA/"$file_system"-"$work_load"-"$fsize"
-            # ANCHOR - HUNTER-FSYNC 
-            if [[ "${file_system}" == "HUNTER-FSYNC" ]]; then
-                bash "$TOOLS_PATH"/setup.sh "$file_system" "dev" "1"
+            # ANCHOR - HUNTER 
+            if [[ "${file_system}" == "HUNTER" ]]; then
+                bash "$TOOLS_PATH"/setup.sh "HUNTER" "dev" "1"
                 if [[ "${work_load}" == "seq" ]]; then
-                    BW=$(bash "$TOOLS_PATH"/fio-fsync.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
+                    BW=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                 elif [[ "${work_load}" == "rand" ]]; then
-                    _=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
-                    BW=$(bash "$TOOLS_PATH"/fio-rand-fsync.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
+                    BW=$(bash "$TOOLS_PATH"/fio-rand.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                 fi
                 cat /proc/fs/HUNTER/pmem0/timing_stats > "$output"
                 whole_time=$(nova_attr_time_stats "write" "$output")   
@@ -41,8 +40,24 @@ for file_system in "${FILE_SYSTEMS[@]}"; do
                 data_write_time=$(nova_attr_time_stats "memcpy_write_nvmm" "$output")
             # ANCHOR - NOVA-RELAX
             elif [[ "${file_system}" == "NOVA-RELAX" ]]; then
-                sudo umount /mnt/pmem0
-                mount -t NOVA -o init /dev/pmem0 /mnt/pmem0
+                bash "$TOOLS_PATH"/setup.sh "$file_system" "main" "1"
+                if [[ "${work_load}" == "seq" ]]; then
+                    BW=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
+                elif [[ "${work_load}" == "rand" ]]; then
+                    _=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
+                    BW=$(bash "$TOOLS_PATH"/fio-rand.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
+                fi
+                cat /proc/fs/NOVA/pmem0/timing_stats > "$output"
+                whole_time=$(nova_attr_time_stats "inplace_write" "$output")   
+                alloc_time=$(nova_attr_time_stats "new_data_blocks" "$output")
+                append_fentry_time=$(nova_attr_time_stats "append_file_entry" "$output")
+                update_tail_time=$(nova_attr_time_stats "update_tail" "$output")
+                meta_update_time=$((append_fentry_time + update_tail_time))
+                dram_update_time=$(nova_attr_time_stats "assign_blocks" "$output")
+                data_write_time=$(nova_attr_time_stats "memcpy_write_nvmm" "$output")
+            # ANCHOR - NOVA 
+            elif [[ "${file_system}" == "NOVA" ]]; then
+                bash "$TOOLS_PATH"/setup.sh "$file_system" "main" "1"
                 if [[ "${work_load}" == "seq" ]]; then
                     BW=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                 elif [[ "${work_load}" == "rand" ]]; then
@@ -55,38 +70,26 @@ for file_system in "${FILE_SYSTEMS[@]}"; do
                 append_fentry_time=$(nova_attr_time_stats "append_file_entry" "$output")
                 update_tail_time=$(nova_attr_time_stats "update_tail" "$output")
                 meta_update_time=$((append_fentry_time + update_tail_time))
-                dram_update_time=$(nova_attr_time_stats "memcmp" "$output")
-                data_write_time=$(nova_attr_time_stats "cmp_user" "$output")
-            # ANCHOR - NOVA 
-            elif [[ "${file_system}" == "NOVA" ]]; then
-                bash "$TOOLS_PATH"/setup.sh "$file_system" "main" "0"
-                if [[ "${work_load}" == "seq" ]]; then
-                    BW=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
-                elif [[ "${work_load}" == "rand" ]]; then
-                    _=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
-                    BW=$(bash "$TOOLS_PATH"/fio-rand.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
-                fi
-                cat /proc/fs/NOVA/pmem0/timing_stats > "$output"
-                whole_time=$(nova_attr_time_stats "cow_write" "$output")   
-                alloc_time=$(nova_attr_time_stats "fp_calc" "$output")
-                meta_update_time=$(nova_attr_time_stats "mem_bucket_find" "$output")
-                dram_update_time=$(nova_attr_time_stats "memcmp" "$output")
-                data_write_time=$(nova_attr_time_stats "cmp_user" "$output")
+                dram_update_time=$(nova_attr_time_stats "assign_blocks" "$output")
+                data_write_time=$(nova_attr_time_stats "memcpy_write_nvmm" "$output")
             # ANCHOR - PMFS 
             elif [[ "${file_system}" == "PMFS" ]]; then
-                bash "$TOOLS_PATH"/setup.sh "$file_system" "main" "0"
+                bash "$TOOLS_PATH"/setup.sh "$file_system" "main" "1"
                 if [[ "${work_load}" == "seq" ]]; then
                     BW=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                 elif [[ "${work_load}" == "rand" ]]; then
                     _=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                     BW=$(bash "$TOOLS_PATH"/fio-rand.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                 fi
-                dmesg | tail -n 10 > "$output"
-                whole_time=$(nova_attr_time_stats "cow_write" "$output")   
-                alloc_time=$(nova_attr_time_stats "fp_calc" "$output")
-                meta_update_time=$(nova_attr_time_stats "mem_bucket_find" "$output")
-                dram_update_time=$(nova_attr_time_stats "memcmp" "$output")
-                data_write_time=$(nova_attr_time_stats "cmp_user" "$output")
+                umount /mnt/pmem0
+                dmesg | tail -n 24 > "$output"
+                whole_time=$(pmfs_attr_time_stats "xip_write" "$output")   
+                alloc_time=$(pmfs_attr_time_stats "alloc_blocks" "$output")
+                new_trans_time=$(pmfs_attr_time_stats "add_logentry" "$output")
+                commit_trans_time=$(pmfs_attr_time_stats "add_logentry" "$output")
+                meta_update_time=$((new_trans_time+commit_trans_time))
+                dram_update_time=$(pmfs_attr_time_stats "new_trans" "$output")
+                data_write_time=$(pmfs_attr_time_stats "memcpy_write" "$output")
             fi
             other_time=$((whole_time - alloc_time - meta_update_time - dram_update_time - data_write_time))
             table_add_row "$TABLE_NAME" "$file_system $work_load $fsize $alloc_time $meta_update_time $dram_update_time $data_write_time $other_time $whole_time $BW"
