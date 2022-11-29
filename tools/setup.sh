@@ -58,22 +58,32 @@ case "${fs}" in
         git checkout "$branch"
         bash setup.sh /dev/pmem0 /mnt/pmem0 -j32 "$measure_timing" 
     ;;
-    "HUNTER-SYNC")
-        cd "$HUNTER_PATH" || exit
-        git checkout "$branch"
-        if (( measure_timing == 1 )); then
-            bash setup.sh "$CONFIGS_PATH"/hunter/config.sync.mt.nowprotect.json
-        else
-            bash setup.sh "$CONFIGS_PATH"/hunter/config.sync.nowprotect.json
-        fi
-    ;;
+    # Different configurations of HUNTER.
     "HUNTER-NOHISTORY")
         cd "$HUNTER_PATH" || exit
         git checkout "$branch"
         if (( measure_timing == 1 )); then
-            bash setup.sh "$CONFIGS_PATH"/hunter/config.mt.nohistory.nowprotect.json
+            bash setup.sh "$CONFIGS_PATH"/hunter/nohistory/config.mt.nowprotect.json
         else
-            bash setup.sh "$CONFIGS_PATH"/hunter/config.nohistory.nowprotect.json
+            bash setup.sh "$CONFIGS_PATH"/hunter/nohistory/config.nowprotect.json
+        fi
+    ;;
+    "HUNTER-LOSELAYOUT")
+        cd "$HUNTER_PATH" || exit
+        git checkout "$branch"
+        if (( measure_timing == 1 )); then
+            bash setup.sh "$CONFIGS_PATH"/hunter/loselayout/config.mt.nowprotect.json
+        else
+            bash setup.sh "$CONFIGS_PATH"/hunter/loselayout/config.nowprotect.json
+        fi
+    ;;
+    "HUNTER-LOSELAYOUT-SYNC")
+        cd "$HUNTER_PATH" || exit
+        git checkout "$branch"
+        if (( measure_timing == 1 )); then
+            bash setup.sh "$CONFIGS_PATH"/hunter/loselayout/sync/config.mt.nowprotect.json
+        else
+            bash setup.sh "$CONFIGS_PATH"/hunter/loselayout/sync/config.nowprotect.json
         fi
     ;;
     "HUNTER")
@@ -84,6 +94,35 @@ case "${fs}" in
         else
             bash setup.sh "$CONFIGS_PATH"/hunter/config.nowprotect.json
         fi
+    ;;
+    "HUNTER-SYNC")
+        cd "$HUNTER_PATH" || exit
+        git checkout "$branch"
+        if (( measure_timing == 1 )); then
+            bash setup.sh "$CONFIGS_PATH"/hunter/sync/config.mt.nowprotect.json
+        else
+            bash setup.sh "$CONFIGS_PATH"/hunter/sync/config.nowprotect.json
+        fi
+    ;;
+    "HUNTER-ASYNC-1s")
+        cd "$HUNTER_PATH" || exit
+        git checkout "$branch"
+        bash setup.sh "$CONFIGS_PATH"/hunter/async/config.1s.nowprotect.json
+    ;;
+    "HUNTER-ASYNC-2s")
+        cd "$HUNTER_PATH" || exit
+        git checkout "$branch"
+        bash setup.sh "$CONFIGS_PATH"/hunter/async/config.2s.nowprotect.json
+    ;;
+    "HUNTER-ASYNC-3s")
+        cd "$HUNTER_PATH" || exit
+        git checkout "$branch"
+        bash setup.sh "$CONFIGS_PATH"/hunter/async/config.3s.nowprotect.json
+    ;;
+    "HUNTER-ASYNC-INFTY")
+        cd "$HUNTER_PATH" || exit
+        git checkout "$branch"
+        bash setup.sh "$CONFIGS_PATH"/hunter/async/config.infty.nowprotect.json
     ;;
     *)
         echo "Unknown file system: $fs"

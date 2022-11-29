@@ -22,7 +22,7 @@
 # Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
-# Prevent creation/deletion overheads by simply opening one created file. Although the file is large since many appends result to it, we refer to varmail.f and change readwholefile to read meanappendsize
+# Prevent creation/deletion overheads by simply opening one created file. Although the file is large since many appends result to it, we refer to varmail.f and change readwholefile to read meanappendsize.
 
 set $dir=/mnt/pmem0
 set $nfiles=10000
