@@ -13,5 +13,5 @@ fi
 if (( "$THREADS" == 1 )); then
     sudo fio -filename="$TARGET_PATH" -fallocate=none -direct=0 -iodepth 1 -rw=randwrite -ioengine=sync -bs="$BS" -size="$SIZE"M -name=test
 else
-    sudo fio -directory="$TARGET_PATH" -fallocate=none -direct=0 -iodepth 1 -rw=randwrite -ioengine=sync -bs="$BS" -size="$SIZE"M -threads -numjobs="$THREADS" -name=test
+    sudo fio -directory="$TARGET_PATH" -fallocate=none -direct=0 -iodepth 1 -rw=randwrite -ioengine=sync -bs="$BS" -size="$SIZE"M -thread -numjobs="$THREADS" -name=test
 fi

@@ -5,7 +5,7 @@ import os
 
 MNT_PATH = "/mnt/pmem0/"
 output = 1      #output
-
+pid = 0
 
 OPEN_FILE = {}
 BUF = []
@@ -17,20 +17,30 @@ def replay(syscall):
     name = syscall[3]
 
     if op == "OPEN":
-        fd = posix.open(MNT_PATH + name, posix.O_CREAT | posix.O_RDWR)
+        try:
+            fd = posix.open(MNT_PATH + name, posix.O_CREAT | posix.O_RDWR)
+        except:
+            print("OPEN: " + str(len(OPEN_FILE)))
+            raise
         OPEN_FILE[name] = fd
-        return;
+        return
     
     elif op == "CLOSE":
         if name in OPEN_FILE:
             posix.close(OPEN_FILE[name])
             del OPEN_FILE[name]
-        return;
+        return
     
     elif op == "READ":
         if name not in OPEN_FILE:
-            fd = posix.open(MNT_PATH + name, posix.O_CREAT | posix.O_RDWR)
+            try:
+                fd = posix.open(MNT_PATH + name, posix.O_CREAT | posix.O_RDWR)
+            except:
+                print("READ: " + str(len(OPEN_FILE)))
+                raise
             OPEN_FILE[name] = fd
+        if syscall[6] == "18446744073709551615":
+            return
         offset = int(syscall[5])
         length = int(syscall[6])
         if length == 0x10000000000000000:       #ignore
@@ -49,7 +59,7 @@ def replay(syscall):
             raise Exception("len: ", len, "ret: ", ret)
 
     elif op == "FDATASYNC" or op == "FSYNC":
-        return;                                 #ignore
+        return                                 #ignore
 
     else:
         raise Exception('Unknown op: ', op)
@@ -71,6 +81,25 @@ if __name__ == '__main__':
     
     if MNT_PATH[-1] != '/':
         MNT_PATH = MNT_PATH + '/'
+    
+    pid = os.getpid()
+    print("Get PID: " + str(pid))
+
+    import time
+    time_start = time.perf_counter()
+    print(trace_dir)
 
     for file in os.listdir(trace_dir):
         replay_file(trace_dir + '/' + file)
+
+    time_end = time.perf_counter()
+    print('time: %s us' % str(time_end - time_start))
+    print('OPS: %s ops/s' % str(i / ((time_end - time_start) / 1000 / 1000)))
+
+    # close all file
+    for name in OPEN_FILE:
+        posix.close(OPEN_FILE[name])
+    
+    OPEN_FILE.clear()
+    OPEN_FILE = {}
+    
