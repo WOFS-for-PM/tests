@@ -117,6 +117,13 @@ function filebench_attr_iops() {
     FILE_BENCH_OUT=$1
     awk '$7=="ops/s" {print $6}' "$FILE_BENCH_OUT"
 }
+
+function filebench_attr_breakdown() {
+    FILE_BENCH_OUT=$1
+    ATTR_BD=$2
+    a=$(cat "$FILE_BENCH_OUT" | grep -w "$ATTR_BD" | awk '{print $5}' | sed 's#ms/op##g')
+    echo "$a"
+}
 #!SECTION
 
 #SECTION: Arithmethic

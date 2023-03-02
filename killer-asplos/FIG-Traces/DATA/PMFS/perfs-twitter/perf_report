@@ -1,0 +1,154 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 63  of event 'cpu/mem-loads,ldlat=30/P'
+# Total weight : 43688
+# Sort order   : local_weight,mem,sym,dso,symbol_daddr,dso_daddr,snoop,tlb,locked,blocked,local_ins_lat,p_stage_cyc
+#
+# Data Symbol           
+# ......................
+#
+  [k] 0xffff9878db12c7f8
+  [k] 0xffff9878db340118
+  [k] 0xffff987a0e37caa0
+  [k] 0xffff987bffe2ef60
+  [k] 0xffff987c6c75e050
+  [k] 0xffff987ca3539ad0
+  [k] 0xffff987cb3ed87d8
+  [k] 0xffff987dc63f8838
+  [k] 0xffff987dffc94f40
+  [k] 0xffff987dfffe2788
+  [k] 0xffff987f7c20008c
+  [k] 0xffff987f7c26134f
+  [k] 0xffff987f7c800503
+  [k] 0xffff987f7c801082
+  [k] 0xffff987f7c802503
+  [k] 0xffff987f7c809303
+  [k] 0xffff987f7c809c83
+  [k] 0xffff987f7caf10a0
+  [k] 0xffff987f7caf1f10
+  [k] 0xffff987f7caf2050
+  [k] 0xffff987f7cb7a510
+  [k] 0xffff987f7cb8aed0
+  [k] 0xffff987f7cbdac90
+  [k] 0xffff987f7cc1f010
+  [k] 0xffff987f7cc1f650
+  [k] 0xffff987f7cc2f010
+  [k] 0xffff987f7cc49b10
+  [k] 0xffff987f7cca6310
+  [k] 0xffff987f7ccb5000
+  [k] 0xffff987f7cccce90
+  [k] 0xffff987f7ccfc9d0
+  [k] 0xffff987f7cd09060
+  [k] 0xffff987f7cd20510
+  [k] 0xffff987f7cd35e10
+  [k] 0xffff987f7cd77b50
+  [k] 0xffff987f7cddec50
+  [k] 0xffff987f7e37c4ae
+  [k] 0xffff987f873ad8d0
+  [k] 0xffff987f878ee070
+  [k] 0xffffa98948bdbc90
+  [k] 0xffffa9894bc03b98
+  [k] 0xffffa9894ca1bae8
+  [k] 0xffffd7fff252c0c0
+  [k] 0xffffd7fffa8a6e00
+  [k] 0xffffd7ffff809cc0
+  [k] 0xffffd7ffff9a1e70
+  [k] 0xffffffffff577c48
+  [k] 0x000000000133a174
+  [.] 0x00007f33444802f6
+  [.] 0x00007f5eb1bb3878
+  [.] 0x00007f5eb1c81450
+  [.] 0x00007f5eb1ce51f8
+  [.] 0x00007f5eb1d74789
+  [.] 0x00007ffe84572e08
+  [.] 0x00007ffe8457406c
+
+
+# Samples: 127  of event 'cpu/mem-stores/P'
+# Total weight : 127
+# Sort order   : local_weight,mem,sym,dso,symbol_daddr,dso_daddr,snoop,tlb,locked,blocked,local_ins_lat,p_stage_cyc
+#
+# Data Symbol           
+# ......................
+#
+  [k] 0xffff985f00ed3cb8
+  [k] 0xffff985f01268038
+  [k] 0xffff987c0c814bb8
+  [k] 0xffff987ca353c598
+  [k] 0xffff987dc636cea8
+  [k] 0xffff987dc636ceb8
+  [k] 0xffff987dff869a00
+  [k] 0xffff987dfffe1f20
+  [k] 0xffffa9894bc03730
+  [k] 0xffffa9894bc03c3c
+  [k] 0xffffa9894bc03cb8
+  [k] 0xffffa9894bc03d34
+  [k] 0xffffa9894bc03dc0
+  [k] 0xffffa9894bc03dd8
+  [k] 0xffffa9894bc03de0
+  [k] 0xffffa9894bc03e48
+  [k] 0xffffa9894bc03e98
+  [k] 0xffffa9894bc03ec0
+  [k] 0xffffa9894bc03ec8
+  [k] 0xffffa9894bc03ed0
+  [k] 0xffffa9894bc03f00
+  [k] 0xffffa9894bc03f38
+  [k] 0xffffa9894bc03f50
+  [k] 0xffffa9894ca1bd10
+  [k] 0xffffa9894ca1bd70
+  [k] 0xffffa9894ca1bde0
+  [k] 0xffffc9893fa8f924
+  [k] 0xffffd7fff9232000
+  [k] 0xffffd7ffffa63cf0
+  [k] 0xfffffe0000007e48
+  [k] 0xfffffe0000032d78
+  [k] 0xfffffe0000032e48
+  [k] 0xfffffe000030de48
+  [k] 0xfffffe000030de60
+  [k] 0xfffffe000030dfc8
+  [.] 0x0000000001337380
+  [.] 0x0000000001337384
+  [.] 0x00007f3343e888a0
+  [.] 0x00007f5eb1bfa108
+  [.] 0x00007ffe845721d0
+  [.] 0x00007ffe84572250
+  [.] 0x00007ffe84572278
+  [.] 0x00007ffe84572300
+  [.] 0x00007ffe845726b2
+  [.] 0x00007ffe845726d0
+  [.] 0x00007ffe845726e0
+  [.] 0x00007ffe845726f8
+  [.] 0x00007ffe84572770
+  [.] 0x00007ffe845727a8
+  [.] 0x00007ffe845727b0
+  [.] 0x00007ffe845727b8
+  [.] 0x00007ffe845727d0
+  [.] 0x00007ffe845727e0
+  [.] 0x00007ffe845727f0
+  [.] 0x00007ffe84572808
+  [.] 0x00007ffe84572980
+  [.] 0x00007ffe845729a3
+  [.] 0x00007ffe845729a6
+  [.] 0x00007ffe84572db8
+  [.] 0x00007ffe84572dc8
+  [.] 0x00007ffe84572de0
+  [.] 0x00007ffe84572df8
+  [.] 0x00007ffe84572e08
+  [.] 0x00007ffe84572e10
+  [.] 0x00007ffe84572e18
+  [.] 0x00007ffe84572e20
+  [.] 0x00007ffe84572ec0
+  [.] 0x00007ffe84572fb8
+  [.] 0x00007ffe84573000
+  [.] 0x00007ffe84573e38
+  [.] 0x00007ffe84574048
+  [.] 0x00007ffe8457407d
+  [.] 0x00007fffa3bf14b0
+
+
+#
+# (Tip: Sample related events with: perf record -e '{cycles,instructions}:S')
+#

@@ -1,0 +1,201 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 79  of event 'cpu/mem-loads,ldlat=30/P'
+# Total weight : 27611
+# Sort order   : local_weight,mem,sym,dso,symbol_daddr,dso_daddr,snoop,tlb,locked,blocked,local_ins_lat,p_stage_cyc
+#
+# Data Symbol                               
+# ..........................................
+#
+  [k] 0xffff9878db32df18
+  [k] 0xffff9878e7b46040
+  [k] 0xffff98790655e4e0
+  [k] 0xffff98796d4a9ccc
+  [k] 0xffff98796d4af4b8
+  [k] 0xffff98799aa34700
+  [k] 0xffff987b1787f0e0
+  [k] 0xffff987dc6fe7288
+  [k] 0xffff987dce2b6230
+  [k] 0xffff987ddd36d544
+  [k] 0xffff987dffbd4f40
+  [k] 0xffff987f7c4f8fa0
+  [k] 0xffff987f7c4f9ff8
+  [k] 0xffff987f7c4fbd48
+  [k] 0xffff987f7c4ff7f8
+  [k] 0xffff987f7c500870
+  [k] 0xffff987f7c504398
+  [k] 0xffff987f7c55f9c8
+  [k] 0xffff987f7c560a90
+  [k] 0xffff987f7c561060
+  [k] 0xffff987f7c5703a0
+  [k] 0xffff987f7c57df20
+  [k] 0xffff987f7c591b40
+  [k] 0xffff987f7c5a2488
+  [k] 0xffff987f7c5dcd90
+  [k] 0xffff987f7c608b58
+  [k] 0xffff987f7c60b4a8
+  [k] 0xffff987f7c62e4b8
+  [k] 0xffff987f7c63c680
+  [k] 0xffff987f7c649518
+  [k] 0xffff987f7c665db8
+  [k] 0xffff987f7c6ae548
+  [k] 0xffff987f7c6c6870
+  [k] 0xffff987f7c6ca030
+  [k] 0xffff987f7c6ca7e0
+  [k] 0xffff987f7c6d1638
+  [k] 0xffff987f7c6dbbc8
+  [k] 0xffff987f7c6e1698
+  [k] 0xffff987f7c6e4ca8
+  [k] 0xffff987f7c6e8600
+  [k] 0xffff987f7c712300
+  [k] 0xffff987f7c7185e8
+  [k] 0xffff987f7c71c458
+  [k] 0xffff987f7c721670
+  [k] 0xffff987f7c725890
+  [k] 0xffff987f7c7319d8
+  [k] 0xffff987f7c774be0
+  [k] 0xffff987f86ce1740
+  [k] 0xffff987f86d11a20
+  [k] 0xffff987f86d402e8
+  [k] 0xffff987f87b57978
+  [k] 0xffff987f87b648c0
+  [k] 0xffffa9894c373c3c
+  [k] 0xffffa9894c373c48
+  [k] 0xffffa9894c373c8c
+  [k] 0xffffa9894c373ca4
+  [k] 0xffffa9894c373dc0
+  [k] 0xffffa9894c373e98
+  [k] 0xffffa9894c98bae8
+  [k] 0xffffa9894c98bc3c
+  [k] 0xffffc9893f1ffbb8
+  [k] 0xffffd7ffee788580
+  [k] 0xffffd7ffefc338c0
+  [k] 0xffffd7fff0320ed0
+  [k] 0xffffd7fff2586600
+  [k] 0xffffd7fff88b8148
+  [k] 0xffffd7fffc18bdc0
+  [k] 0xffffd7ffff7c58b0
+  [k] 0xffffd7ffffa6d4f0
+  [k] __supported_pte_mask+0x0
+  [k] 0x00005631520e1d28
+  [.] 0x00007f4fc0e8d7f8
+  [.] 0x00007f4fc0ea0440
+  [.] 0x00007f4fc1458b70
+  [.] 0x00007f9c8de49390
+  [.] 0x00007f9c8e9e7014
+  [.] 0x00007ffe3be3ffd8
+
+
+# Samples: 137  of event 'cpu/mem-stores/P'
+# Total weight : 137
+# Sort order   : local_weight,mem,sym,dso,symbol_daddr,dso_daddr,snoop,tlb,locked,blocked,local_ins_lat,p_stage_cyc
+#
+# Data Symbol           
+# ......................
+#
+  [k] 0xffff985f00ebbcb8
+  [k] 0xffff9878db35d0f8
+  [k] 0xffff987c0c814bb8
+  [k] 0xffff987cbb37b4ec
+  [k] 0xffff987d0f700bd8
+  [k] 0xffff987d0f700be0
+  [k] 0xffff987d226ce6c0
+  [k] 0xffff987dffbdeca8
+  [k] 0xffff987dfff54320
+  [k] 0xffff987f7c7481c0
+  [k] 0xffffa9894c373bd0
+  [k] 0xffffa9894c373c10
+  [k] 0xffffa9894c373c50
+  [k] 0xffffa9894c373c58
+  [k] 0xffffa9894c373c60
+  [k] 0xffffa9894c373c70
+  [k] 0xffffa9894c373ce4
+  [k] 0xffffa9894c373d00
+  [k] 0xffffa9894c373d10
+  [k] 0xffffa9894c373d1e
+  [k] 0xffffa9894c373d38
+  [k] 0xffffa9894c373db8
+  [k] 0xffffa9894c373df8
+  [k] 0xffffa9894c373e48
+  [k] 0xffffa9894c373e68
+  [k] 0xffffa9894c373e70
+  [k] 0xffffa9894c373e90
+  [k] 0xffffa9894c373ea0
+  [k] 0xffffa9894c373eae
+  [k] 0xffffa9894c373ec0
+  [k] 0xffffa9894c373ec8
+  [k] 0xffffa9894c373ed0
+  [k] 0xffffa9894c373ee0
+  [k] 0xffffa9894c373ee8
+  [k] 0xffffa9894c373f10
+  [k] 0xffffa9894c373f28
+  [k] 0xffffa9894c98bbc8
+  [k] 0xffffa9894c98bd10
+  [k] 0xffffa9894c98bdb0
+  [k] 0xffffc9893f9d4a88
+  [k] 0xffffc9893f9d4cc8
+  [k] 0xffffd7fffdb22830
+  [k] 0xffffd7ffff9a28b0
+  [k] 0xfffffe000028ce48
+  [k] 0xfffffe000028ce60
+  [k] 0xfffffe000028cfc8
+  [k] 0xfffffe00004e6e48
+  [.] 0x0000000001656388
+  [k] 0x00000000016587e0
+  [k] 0x0000000001658860
+  [k] 0x0000000001658950
+  [k] 0x0000000001658b58
+  [k] 0x0000000001658c18
+  [k] 0x0000000001658ce8
+  [k] 0x0000000001658f70
+  [k] 0x0000000001658f90
+  [.] 0x00007f9c8e9e46c0
+  [.] 0x00007ffdcce6cf14
+  [.] 0x00007ffe3be3f3d8
+  [.] 0x00007ffe3be3f420
+  [.] 0x00007ffe3be3f448
+  [.] 0x00007ffe3be3f470
+  [.] 0x00007ffe3be3f4c8
+  [.] 0x00007ffe3be3f6b0
+  [.] 0x00007ffe3be3f882
+  [.] 0x00007ffe3be3f8c8
+  [.] 0x00007ffe3be3f934
+  [.] 0x00007ffe3be3f970
+  [.] 0x00007ffe3be3f978
+  [.] 0x00007ffe3be3f988
+  [.] 0x00007ffe3be3f990
+  [.] 0x00007ffe3be3f9a0
+  [.] 0x00007ffe3be3f9b0
+  [.] 0x00007ffe3be3f9c0
+  [.] 0x00007ffe3be3f9d0
+  [.] 0x00007ffe3be3f9d8
+  [.] 0x00007ffe3be3f9e0
+  [.] 0x00007ffe3be3fa18
+  [.] 0x00007ffe3be3fb50
+  [.] 0x00007ffe3be3fb73
+  [.] 0x00007ffe3be3fb78
+  [.] 0x00007ffe3be3ff98
+  [.] 0x00007ffe3be3ffd8
+  [.] 0x00007ffe3be3fff0
+  [.] 0x00007ffe3be40008
+  [.] 0x00007ffe3be40010
+  [.] 0x00007ffe3be40030
+  [.] 0x00007ffe3be40070
+  [.] 0x00007ffe3be400e8
+  [.] 0x00007ffe3be40108
+  [.] 0x00007ffe3be40178
+  [.] 0x00007ffe3be40188
+  [.] 0x00007ffe3be401f0
+  [.] 0x00007ffe3be40220
+  [.] 0x00007ffe3be40235
+  [.] 0x00007ffe3be4036e
+  [.] 0x00007ffe3be40aac
+  [.] 0x00007ffe3be41218
+
+
+#
+# (Tip: Profiling branch (mis)predictions with: perf record -b / perf report)
+#
