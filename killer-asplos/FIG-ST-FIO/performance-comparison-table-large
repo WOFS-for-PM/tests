@@ -1,29 +1,29 @@
-ops file_system file_size bandwidth(MiB/s)
-seq-write NOVA 32768 1101
-rnd-write NOVA 32768 903
-seq-read NOVA 32768 2153
-rnd-read NOVA 32768 1320
-seq-write PMFS 32768 980
-rnd-write PMFS 32768 908
-seq-read PMFS 32768 2370
-rnd-read PMFS 32768 1769
-seq-write KILLER 32768 1970
-rnd-write KILLER 32768 1533
-seq-read KILLER 32768 2372
-rnd-read KILLER 32768 1597
-seq-write SplitFS-FIO 32768 878
-rnd-write SplitFS-FIO 32768 801
-seq-read SplitFS-FIO 32768 2570
-rnd-read SplitFS-FIO 32768 1991
-seq-write EXT4-DAX 32768 460
-rnd-write EXT4-DAX 32768 163
-seq-read EXT4-DAX 32768 2443
-rnd-read EXT4-DAX 32768 1545
-seq-write XFS-DAX 32768 447
-rnd-write XFS-DAX 32768 243
-seq-read XFS-DAX 32768 2418
-rnd-read XFS-DAX 32768 1523
-seq-write PMM 32768 2259.2
-rnd-write PMM 32768 2259.2
-seq-read PMM 32768 2483.2
-rnd-read PMM 32768 2483.2
+ops file_system file_size bandwidth(MiB/s) std-file_size std-bandwidth(MiB/s)
+seq-write NOVA 32768 682 0.0 8.48528137423857
+rnd-write NOVA 32768 622 0.0 16.492422502470642
+seq-read NOVA 32768 1466 0.0 2.0
+rnd-read NOVA 32768 1147 0.0 8.48528137423857
+seq-write PMFS 32768 926 0.0 6.48074069840786
+rnd-write PMFS 32768 868 0.0 1.4142135623730951
+seq-read PMFS 32768 1631 0.0 1.4142135623730951
+rnd-read PMFS 32768 1404 0.0 1.0
+seq-write KILLER 32768 1730 0.0 69.49820141557622
+rnd-write KILLER 32768 1621 0.0 77.0
+seq-read KILLER 32768 2010 0.0 2.0
+rnd-read KILLER 32768 1637 0.0 2.0
+seq-write SplitFS-FIO 32768 868 0.0 2.449489742783178
+rnd-write SplitFS-FIO 32768 796 0.0 0.0
+seq-read SplitFS-FIO 32768 1925 0.0 1.4142135623730951
+rnd-read SplitFS-FIO 32768 1580 0.0 3.4641016151377544
+seq-write EXT4-DAX 32768 443 0.0 2.0
+rnd-write EXT4-DAX 32768 146 0.0 7.0
+seq-read EXT4-DAX 32768 1051 0.0 0.0
+rnd-read EXT4-DAX 32768 892 0.0 1.0
+seq-write XFS-DAX 32768 437 0.0 4.0
+rnd-write XFS-DAX 32768 236 0.0 0.0
+seq-read XFS-DAX 32768 1045 0.0 0.0
+rnd-read XFS-DAX 32768 894 0.0 2.449489742783178
+seq-write PMM 32768 2259.2 0.0 0.0
+rnd-write PMM 32768 2259.2 0.0 0.0
+seq-read PMM 32768 2483.2 0.0 0.0
+rnd-read PMM 32768 2483.2 0.0 0.0
