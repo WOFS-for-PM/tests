@@ -1,53 +1,45 @@
 #!/usr/bin/env bash
+#!/usr/bin/bash
+# shellcheck source=/dev/null
 source "../common.sh"
 ABS_PATH=$(where_is_script "$0")
 TOOLS_PATH=$ABS_PATH/../../tools
-BOOST_DIR=$ABS_PATH/../../../splitfs/splitfs
+FSCRIPT_PRE_FIX=$ABS_PATH/../../tools/fbscripts
 
-TRACE_DIR="/usr/local/trace"
-# TODO: KILLER and SplitFS-FIO is under developed, so we don't test it.
-# FILE_SYSTEMS=( "NOVA" "PMFS" "KILLER" "SplitFS-FIO" "EXT4-DAX" "XFS-DAX")
-FILE_SYSTEMS=( "NOVA" "PMFS" "EXT4-DAX" "XFS-DAX" )
-TRACES_NAME=( "twitter" )
+mkdir -p "$ABS_PATH"/DATA
+mkdir -p "$ABS_PATH"/MEM_DATA
 
-loop=1
-if [ "$1" ]; then
-    loop=$1
-fi
+FILE_SYSTEMS=( "NOVA" "PMFS" "KILLER" "SplitFS-FILEBENCH" "EXT4-DAX" "XFS-DAX" )
+FILE_BENCHES=( "fileserver.f" "varmail.f" "webserver.f" "webproxy.f" )
+THREADS=( 1 8 )
 
-for ((i=1; i <= loop; i++))
-do
-    for file_system in "${FILE_SYSTEMS[@]}"; do
-        for trace_name in "${TRACES_NAME[@]}"; do
-            echo "Memory(KiB)" > "$ABS_PATH"/"mem-table-$trace_name-$file_system"
-
-            bash "$ABS_PATH"/listen-mem.sh "$ABS_PATH"/"mem-table-$trace_name-$file_system" &
+for file_system in "${FILE_SYSTEMS[@]}"; do
+    for fbench in "${FILE_BENCHES[@]}"; do
+        mkdir -p "$ABS_PATH"/DATA/"$fbench"
+        for thread in "${THREADS[@]}"; do
+            cp -f "$FSCRIPT_PRE_FIX"/"$fbench" "$ABS_PATH"/DATA/"$fbench"/"$thread" 
+            sed_cmd='s/set $nthreads=.*$/set $nthreads='$thread'/g' 
+            sed -i "$sed_cmd" "$ABS_PATH"/DATA/"$fbench"/"$thread"
+            
+            echo "Memory(KiB)" > "$ABS_PATH"/"MEM_DATA/mem-table-$fbench-$thread-$file_system"
+            bash "$ABS_PATH"/listen-mem.sh "$ABS_PATH"/"MEM_DATA/mem-table-$fbench-$thread-$file_system" &
             process_id=$(ps -aux | grep "listen-mem.sh" | grep -v "grep" | awk '{print $2}')
             echo "$process_id"
             sleep 1
-            
-            if [[ "${file_system}" == "SplitFS-FIO" ]]; then
+
+            if [[ "${file_system}" == "SplitFS-FILEBENCh" ]]; then
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
                 export LD_LIBRARY_PATH="$BOOST_DIR"
                 export NVP_TREE_FILE="$BOOST_DIR"/bin/nvp_nvp.tree
-                
-                echo "Populating $trace_name for replaying"
-                LD_PRELOAD=$BOOST_DIR/libnvp.so python3 "$TOOLS_PATH"/traces/fiu-trace/populate_files.py "$TRACE_DIR"/"$trace_name"/trace.syscalltrace /mnt/pmem0/ 1
-
-                echo "Replaying $trace_name on $file_system"
-                _=$(LD_PRELOAD=$BOOST_DIR/libnvp.so "$TOOLS_PATH"/traces/fiu-trace/replay -f "$TRACE_DIR"/"$trace_name"/trace.syscalltrace -o syscall -m fiu-no-content -d /mnt/pmem0/ | grep "OPS: " | awk '{print $9}')
+                LD_PRELOAD=$BOOST_DIR/libnvp.so /usr/local/filebench/filebench -f "$ABS_PATH"/DATA/"$fbench"/"$thread" | tee "$ABS_PATH"/DATA/"$fbench"/"$file_system"-"$thread"
             else
                 if [[ "${file_system}" == "KILLER" ]]; then
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "dev" "0"
                 else
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "main" "0"
                 fi
-
-                echo "Populating $trace_name for replaying"
-                python3 "$TOOLS_PATH"/traces/fiu-trace/populate_files.py "$TRACE_DIR"/"$trace_name"/trace.syscalltrace /mnt/pmem0/ 1
                 
-                echo "Replaying $trace_name on $file_system"
-                _=$("$TOOLS_PATH"/traces/fiu-trace/replay -f "$TRACE_DIR"/"$trace_name"/trace.syscalltrace -o syscall -m fiu-no-content -d /mnt/pmem0/ | grep "OPS: " | awk '{print $9}')
+                sudo /usr/local/filebench/filebench -f "$ABS_PATH"/DATA/"$fbench"/"$thread" | tee "$ABS_PATH"/DATA/"$fbench"/"$file_system"-"$thread"
             fi
             
             sleep 1

@@ -5,10 +5,11 @@ ABS_PATH=$(where_is_script "$0")
 TOOLS_PATH=$ABS_PATH/../../tools
 BOOST_DIR=$ABS_PATH/../../../splitfs/splitfs
 
-FILE_SYSTEMS=( "NOVA" "PMFS" "KILLER" "SplitFS-FIO" "EXT4-DAX" "XFS-DAX" )
+# FILE_SYSTEMS=( "NOVA" "PMFS" "KILLER" "SplitFS-FIO" "EXT4-DAX" "XFS-DAX" )
+FILE_SYSTEMS=( "KILLER" )
 FILE_SIZES=( $((1 * 1024)) )
 NUM_JOBS=( 1 2 3 4 5 6 7 8 )
-TABLE_NAME="$ABS_PATH/performance-comparison-table"
+TABLE_NAME="$ABS_PATH/performance-comparison-table-HUNTER"
 table_create "$TABLE_NAME" "file_system ops job file_size bandwidth(MiB/s)"
 
 loop=1

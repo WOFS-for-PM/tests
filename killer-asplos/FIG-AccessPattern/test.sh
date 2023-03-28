@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-echo "See ../FIG-Traces/DATA for the data used in the paper."
+
+bash test-filebench.sh 
+bash test-fio.sh 

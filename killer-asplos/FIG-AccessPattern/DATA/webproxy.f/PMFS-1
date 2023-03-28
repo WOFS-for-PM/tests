@@ -1,0 +1,38 @@
+Perfing: /usr/local/filebench/filebench -f /home/deadpool/HUNTER-REPO/tests/killer-asplos/FIG-AccessPattern/DATA/webproxy.f/1
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.010: Web proxy-server Version 3.0 personality successfully loaded
+0.010: Populating and pre-allocating filesets
+0.013: bigfileset populated: 10000 files, avg. dir. width = 1000000, avg. dir. depth = 0.7, 0 leafdirs, 156.250MB total size
+0.013: Removing bigfileset tree (if exists)
+0.015: Pre-allocating directories in bigfileset tree
+0.015: Pre-allocating files in bigfileset tree
+0.474: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+0.474: Population and pre-allocation of filesets completed
+0.475: Starting 1 proxycache instances
+1.476: Running...
+11.478: Run took 10 seconds...
+11.478: Per-Operation Breakdown
+limit                0ops        0ops/s   0.0mb/s    0.000ms/op [0.000ms - 0.000ms]
+closefile6           92743ops     9273ops/s   0.0mb/s    0.000ms/op [0.000ms - 0.017ms]
+readfile6            92743ops     9273ops/s  77.6mb/s    0.006ms/op [0.001ms - 0.200ms]
+openfile6            92743ops     9273ops/s   0.0mb/s    0.002ms/op [0.001ms - 0.125ms]
+closefile5           92743ops     9273ops/s   0.0mb/s    0.000ms/op [0.000ms - 0.026ms]
+readfile5            92743ops     9273ops/s  79.1mb/s    0.006ms/op [0.001ms - 0.274ms]
+openfile5            92743ops     9273ops/s   0.0mb/s    0.002ms/op [0.001ms - 0.360ms]
+closefile4           92743ops     9273ops/s   0.0mb/s    0.000ms/op [0.001ms - 0.022ms]
+readfile4            92743ops     9273ops/s  77.5mb/s    0.006ms/op [0.001ms - 0.260ms]
+openfile4            92743ops     9273ops/s   0.0mb/s    0.002ms/op [0.001ms - 0.099ms]
+closefile3           92743ops     9273ops/s   0.0mb/s    0.000ms/op [0.001ms - 0.017ms]
+readfile3            92743ops     9273ops/s  77.5mb/s    0.006ms/op [0.001ms - 0.257ms]
+openfile3            92743ops     9273ops/s   0.0mb/s    0.002ms/op [0.001ms - 0.100ms]
+closefile2           92743ops     9273ops/s   0.0mb/s    0.000ms/op [0.000ms - 0.017ms]
+readfile2            92743ops     9273ops/s  79.2mb/s    0.006ms/op [0.001ms - 0.137ms]
+openfile2            92743ops     9273ops/s   0.0mb/s    0.002ms/op [0.001ms - 0.126ms]
+closefile1           92743ops     9273ops/s   0.0mb/s    0.000ms/op [0.001ms - 0.123ms]
+appendfilerand1      92743ops     9273ops/s  72.7mb/s    0.010ms/op [0.002ms - 0.398ms]
+createfile1          92744ops     9273ops/s   0.0mb/s    0.021ms/op [0.006ms - 0.406ms]
+deletefile1          92744ops     9273ops/s   0.0mb/s    0.033ms/op [0.004ms - 0.583ms]
+11.478: IO Summary: 1762119 ops 176190.229 ops/s 46366/9273 rd/wr 463.7mb/s 0.005ms/op
+11.478: Shutting down processes
+Perf directoy generated @ /home/deadpool/HUNTER-REPO/tests/killer-asplos/FIG-AccessPattern/perfs
