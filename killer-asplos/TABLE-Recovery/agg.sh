@@ -11,6 +11,7 @@ sed 's/0m//g' -i "$table_name"
 sed 's/s//g' -i "$table_name"
 sed 's/file_ytem/file_system/g' -i "$table_name"
 sed 's/file_ize/file_size/g' -i "$table_name"
+sed 's/fileever/fileserver/g' -i "$table_name"
  
 python3 ../aggregate.py "$table_name" "$loop"
 mv "$table_name" "$table_name"-orig
