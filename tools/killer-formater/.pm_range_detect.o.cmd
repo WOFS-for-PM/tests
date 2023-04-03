@@ -1,0 +1,1 @@
+cmd_/home/deadpool/HUNTER-REPO/tests/tools/killer-formater/pm_range_detect.o := ld -m elf_x86_64  -z max-page-size=0x200000    -r -o /home/deadpool/HUNTER-REPO/tests/tools/killer-formater/pm_range_detect.o /home/deadpool/HUNTER-REPO/tests/tools/killer-formater/main.o ; scripts/mod/modpost /home/deadpool/HUNTER-REPO/tests/tools/killer-formater/pm_range_detect.o
