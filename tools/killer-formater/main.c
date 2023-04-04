@@ -1,24 +1,12 @@
-#include <linux/bitops.h>
-#include <linux/cred.h>
-#include <linux/ctype.h>
-#include <linux/dax.h>
-#include <linux/exportfs.h>
-#include <linux/init.h>
-#include <linux/io.h>
-#include <linux/kernel.h> /* Needed for KERN_INFO */
-#include <linux/kthread.h>
-#include <linux/list.h>
-#include <linux/magic.h>
-#include <linux/mm.h>
-#include <linux/module.h>
-#include <linux/parser.h>
-#include <linux/pfn_t.h>
-#include <linux/slab.h>
-#include <linux/string.h>
-#include <linux/time.h>
-#include <linux/uaccess.h>
+#include "formater.h"
 
 #define FORMATER_NUM 4
+
+#ifdef pr_fmt
+#undef pr_fmt
+#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+#endif
+#define killer_info(s, args...) pr_info("cpu-%d: "s, smp_processor_id(), ##args)
 
 static char *disk_name = "pmem0";
 module_param(disk_name, charp, S_IRUGO | S_IWUSR);
@@ -34,6 +22,7 @@ int cpus;
 typedef struct formater_param {
     u32 formater_id;
     u32 total_formaters;
+    char *formater_buf;
 } formater_param_t;
 
 wait_queue_head_t finish_wq;
@@ -49,6 +38,49 @@ static void wait_to_finish(int cpus)
                                              msecs_to_jiffies(1));
         }
     }
+}
+
+static inline u32 killer_crc32c(u32 crc, const u8 *data, size_t len)
+{
+    u8 *ptr = (u8 *)data;
+    u64 acc = crc; /* accumulator, crc32c value in lower 32b */
+    u32 csum;
+
+    /* x86 instruction crc32 is part of SSE-4.2 */
+    if (static_cpu_has(X86_FEATURE_XMM4_2)) {
+        /* This inline assembly implementation should be equivalent
+         * to the kernel's crc32c_intel_le_hw() function used by
+         * crc32c(), but this performs better on test machines.
+         */
+        while (len > 8) {
+            asm volatile(/* 64b quad words */
+                         "crc32q (%1), %0"
+                         : "=r"(acc)
+                         : "r"(ptr), "0"(acc));
+            ptr += 8;
+            len -= 8;
+        }
+
+        while (len > 0) {
+            asm volatile(/* trailing bytes */
+                         "crc32b (%1), %0"
+                         : "=r"(acc)
+                         : "r"(ptr), "0"(acc));
+            ptr++;
+            len--;
+        }
+
+        csum = (u32)acc;
+    } else {
+        /* The kernel's crc32c() function should also detect and use the
+         * crc32 instruction of SSE-4.2. But calling in to this function
+         * is about 3x to 5x slower than the inline assembly version on
+         * some test machines.
+         */
+        csum = crc32c(crc, data, len);
+    }
+
+    return csum;
 }
 
 /* assumes the length to be 4-byte aligned */
@@ -122,21 +154,31 @@ void *killer_formater(void *args)
     formater_work_t work;
     u32 cur_blk;
     u64 addr;
+    struct killer_bhint_hdr *bhint_hdr;
 
     __assign_formater_work(formater_id, total_formaters, &work);
-    pr_info(KBUILD_MODNAME ": formater %d start blk %d, end blk %d, probe blks %d\n", formater_id, work.start_blk, work.start_blk + work.blks - 1, work.blks);
+    killer_info("formater %d start blk %d, end blk %d, probe blks %d\n", formater_id, work.start_blk, work.start_blk + work.blks - 1, work.blks);
 
     /* start clean */
     for (cur_blk = work.start_blk; cur_blk < work.start_blk + work.blks; cur_blk++) {
         addr = (u64)virt_addr + (u64)cur_blk * PAGE_SIZE;
-        memset_nt((void *)addr, 0, PAGE_SIZE);
+        
+        bhint_hdr = (struct killer_bhint_hdr *)param->formater_buf;
+        bhint_hdr->hint = KILLER_HINT_EMPTY_BLK;
+        bhint_hdr->hcrc32 = 0;
+        bhint_hdr->bcrc32 = 0;
+        bhint_hdr->bcrc32 = killer_crc32c(~0, param->formater_buf, PAGE_SIZE);
+        bhint_hdr->hcrc32 = killer_crc32c(~0, (u8 *)bhint_hdr, sizeof(struct killer_bhint_hdr));
+        
+        __copy_from_user_inatomic_nocache((void *)addr, param->formater_buf, PAGE_SIZE);
         /* be nice */
         schedule();
     }
 
     finished[formater_id] = 1;
     wake_up_interruptible(&finish_wq);
-    pr_info(KBUILD_MODNAME ": formater %d finish\n", formater_id);
+    killer_info("formater %d finish\n", formater_id);
+    kfree(param->formater_buf);
     kfree(args);
     do_exit(0);
 
@@ -153,19 +195,19 @@ static int killer_format(void)
     cpus = FORMATER_NUM;
 
     getrawmonotonic(&timer);
-    pr_info(KBUILD_MODNAME ": format killer using %d threads\n", cpus);
+    killer_info("format killer using %d threads\n", cpus);
 
     init_waitqueue_head(&finish_wq);
     formater_threads = (struct task_struct **)kzalloc(sizeof(struct task_struct) * cpus, GFP_KERNEL);
     if (!formater_threads) {
-        pr_info(KBUILD_MODNAME ": Allocate formater threads failed\n");
+        killer_info("Allocate formater threads failed\n");
         ret = -ENOMEM;
         goto out;
     }
 
     finished = kcalloc(cpus, sizeof(int), GFP_KERNEL);
     if (!finished) {
-        pr_info(KBUILD_MODNAME ": Allocate finished array failed\n");
+        killer_info("Allocate finished array failed\n");
         ret = -ENOMEM;
         goto out;
     }
@@ -174,7 +216,13 @@ static int killer_format(void)
     for (i = 0; i < cpus; i++) {
         formater_param_t *param = (formater_param_t *)kzalloc(sizeof(formater_param_t), GFP_KERNEL);
         if (!param) {
-            pr_info(KBUILD_MODNAME ": Allocate formater param failed\n");
+            killer_info("Allocate formater param failed\n");
+            ret = -ENOMEM;
+            goto out;
+        }
+        param->formater_buf = kzalloc(PAGE_SIZE, GFP_KERNEL);
+        if (!param->formater_buf) {
+            killer_info("Allocate formater buf failed\n");
             ret = -ENOMEM;
             goto out;
         }
@@ -183,14 +231,14 @@ static int killer_format(void)
 
         formater_threads[i] = kthread_create((void *)killer_formater, (void *)param, "killer_formater%d", i);
         if (IS_ERR(formater_threads[i])) {
-            pr_info(KBUILD_MODNAME ": Create formater thread %d failed\n", i);
+            killer_info("Create formater thread %d failed\n", i);
             ret = PTR_ERR(formater_threads[i]);
             goto out;
         }
         wake_up_process(formater_threads[i]);
 
         if (ret) {
-            pr_info(KBUILD_MODNAME ": Create formater thread %d failed\n", i);
+            killer_info("Create formater thread %d failed\n", i);
             goto out;
         }
     }
@@ -202,7 +250,7 @@ static int killer_format(void)
     getrawmonotonic(&timer_end);
 
     u64 time = (timer_end.tv_sec - timer.tv_sec) * 1000000000 + (timer_end.tv_nsec - timer.tv_nsec);
-    pr_info(KBUILD_MODNAME ": format killer using %d threads, time %llu ns (%llu s)\n", cpus, time, time / 1000000000);
+    killer_info("format killer using %d threads, time %llu ns (%llu s)\n", cpus, time, time / 1000000000);
 
 out:
     return 0;
@@ -230,10 +278,10 @@ static int get_nvmm_info(void)
 
     phys_addr = pfn_t_to_pfn(__pfn_t) << PAGE_SHIFT;
 
-    pr_info(KBUILD_MODNAME ": "
-                           "%s: dev %s, phys_addr 0x%llx, virt_addr 0x%lx - 0x%lx, size %ld\n",
-            __func__, disk_name, phys_addr, (unsigned long)virt_addr, (unsigned long)(virt_addr + size),
-            size);
+    killer_info(""
+                "%s: dev %s, phys_addr 0x%llx, virt_addr 0x%lx - 0x%lx, size %ld\n",
+                __func__, disk_name, phys_addr, (unsigned long)virt_addr, (unsigned long)(virt_addr + size),
+                size);
     return 0;
 }
 

@@ -28,6 +28,10 @@ __attribute__((section("__versions"))) = {
 	{ 0xd2d6ffbd, "module_layout" },
 	{ 0x3186837a, "kmalloc_caches" },
 	{ 0xeb233a45, "__kmalloc" },
+	{ 0x1db7706b, "__copy_user_nocache" },
+	{ 0x84f15016, "boot_cpu_data" },
+	{ 0x7a2af7b4, "cpu_number" },
+	{ 0xb15b4109, "crc32c" },
 	{ 0x2cf868f0, "kthread_create_on_node" },
 	{ 0xd9a5ea54, "__init_waitqueue_head" },
 	{ 0x7fedd702, "param_ops_charp" },
@@ -38,8 +42,8 @@ __attribute__((section("__versions"))) = {
 	{ 0xfe487975, "init_wait_entry" },
 	{ 0x6958ae23, "dax_get_by_host" },
 	{ 0xdecd0b29, "__stack_chk_fail" },
-	{ 0x1000e51, "schedule" },
 	{ 0x8ddd8aad, "schedule_timeout" },
+	{ 0x1000e51, "schedule" },
 	{ 0x3efd1889, "dax_direct_access" },
 	{ 0x90abd77a, "wake_up_process" },
 	{ 0xbdfb6dbb, "__fentry__" },
@@ -53,7 +57,7 @@ __attribute__((section("__versions"))) = {
 static const char __module_depends[]
 __used
 __attribute__((section(".modinfo"))) =
-"depends=";
+"depends=libcrc32c";
 
 
-MODULE_INFO(srcversion, "A7B1AD635411F05D19518C4");
+MODULE_INFO(srcversion, "D460EE8A8C4E998B54B994A");

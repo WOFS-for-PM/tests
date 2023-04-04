@@ -16,6 +16,7 @@ deps_/home/deadpool/HUNTER-REPO/tests/tools/killer-formater/main.o := \
   include/linux/compiler-gcc.h \
     $(wildcard include/config/retpoline.h) \
     $(wildcard include/config/arch/use/builtin/bswap.h) \
+  /home/deadpool/HUNTER-REPO/tests/tools/killer-formater/formater.h \
   include/linux/bitops.h \
   arch/x86/include/uapi/asm/types.h \
   include/uapi/asm-generic/types.h \
@@ -91,6 +92,7 @@ deps_/home/deadpool/HUNTER-REPO/tests/tools/killer-formater/main.o := \
   arch/x86/include/uapi/asm/swab.h \
   include/linux/byteorder/generic.h \
   include/asm-generic/bitops/ext2-atomic-setbit.h \
+  include/linux/crc32c.h \
   include/linux/cred.h \
     $(wildcard include/config/multiuser.h) \
     $(wildcard include/config/debug/credentials.h) \
