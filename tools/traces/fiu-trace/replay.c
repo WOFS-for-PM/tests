@@ -34,6 +34,7 @@
 #define REPLAY_FIU            0
 #define REPLAY_HITSZ          1
 #define REPLAY_FIU_NO_CONTENT 2
+#define REPLAY_SINA           3
 
 #define DEBUG_INFO(verbose, code) \
     if (verbose) {                \
@@ -49,7 +50,7 @@ char dstpath[MAX_NAME_LEN] = {0};
 /* replay type */
 int rand_gener_type = RANDOM_NULL;
 int mode = REPLAY_WRITEONLY;
-int trace_format_type = REPLAY_FIU;
+int trace_format_type = REPLAY_FIU_NO_CONTENT;
 /* dump read related */
 char dump_read_path[MAX_NAME_LEN] = {0};
 int is_dump_read = 0;
@@ -768,6 +769,7 @@ unsigned long parse_trace_info(FILE *src_fp, struct trace_info **infos, int mode
         /* Strip '\n' */
         line[strlen(line) - 1] = '\0';
 
+
         switch (trace_format_type) {
         case REPLAY_FIU:
             if (sscanf(line, "%lu %lu %s %lu %lu %c %d %d %s", &info->ts, &info->pid, pname, &info->lba, &info->blks, &info->rw, &info->major, &info->minor, info->md5) == 9) {
@@ -824,6 +826,8 @@ unsigned long parse_trace_info(FILE *src_fp, struct trace_info **infos, int mode
             break;
         }
     }
+
+    printf("valid_lines = %ld\n", valid_lines);
     return valid_lines;
 }
 
@@ -998,6 +1002,7 @@ int main(int argc, char **argv)
 
         size_in_total = valid_lines * BLK_SIZE;
         time_usage = get_ns_diff(start, end);
+        
     end:
         free(tids);
         free(infos);

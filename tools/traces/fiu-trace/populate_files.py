@@ -2,9 +2,9 @@
 import math
 import sys
 
-syscall_trace = sys.argv[1]
-dst_dir = sys.argv[2]
-do_create = sys.argv[3]
+syscall_trace = sys.argv[1]     # /usr/local/trace/facebook/trace.syscalltrace
+dst_dir = sys.argv[2]           # /mnt/pmem0
+do_create = sys.argv[3]         # 1
 files_size = {}
 
 with open(syscall_trace, 'r') as trace_file:
