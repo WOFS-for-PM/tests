@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/replay_static",
+            "args": ["-f", "/usr/local/trace/facebook/trace.syscalltrace", "-d", "/home/zyf/test_dir", "-o", "rw", "-g", "null", "-t", "1", "-c", "1"],
+            "cwd": "${workspaceFolder}",
+        }
+    ]
+  }
