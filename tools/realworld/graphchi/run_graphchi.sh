@@ -20,7 +20,7 @@ GRAPHCHI="/usr/local/graphchi"
 GRAPHCHI_PATH="$GRAPHCHI"/graphchi-cpp
 GRAPH_PATH="$GRAPHCHI"/graph/"$graph_name"
 NEW_GRAPH_PATH=/mnt/pmem0/"$graph_name"
-BOOST_DIR=$ABS_PATH/../../../splitfs/splitfs
+BOOST_DIR=$ABS_PATH/../../../../splitfs/splitfs
 
 FILE_SYSTEMS=("NOVA" "PMFS" "SplitFS")
 
@@ -30,7 +30,7 @@ for file_system in "${FILE_SYSTEMS[@]}"; do
     if [[ "${file_system}" == "SplitFS" ]]; then
         #1, setup fs
         sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
-        export LD_LIBRARY_PATH="$BOOST_DIR"
+        export LD_LIBRARY_PATH="$BOOST_DIR"/
         export NVP_TREE_FILE="$BOOST_DIR"/bin/nvp_nvp.tree
 
         #2, copy graph to /mnt/pmem0
@@ -50,7 +50,7 @@ for file_system in "${FILE_SYSTEMS[@]}"; do
         cd $GRAPHCHI_PATH && echo edgelist | sudo bin/example_apps/pagerank file \
         $NEW_GRAPH_PATH niters $iter > $OUTPUT/${file_system}
     fi
-done
 
-# echo run "$GRAPHCHI_PATH"/bin/example_apps/pagerank 
-# cd $GRAPHCHI_PATH && echo edgelist | sudo bin/example_apps/pagerank file $NEW_GRAPH_PATH niters $iter
+    echo Sleeping for 2 seconds . .
+    sleep 2
+done

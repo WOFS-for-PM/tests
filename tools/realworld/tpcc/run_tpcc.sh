@@ -22,7 +22,7 @@ for file_system in "${FILE_SYSTEMS[@]}"; do
     if [[ "${file_system}" == "SplitFS" ]]; then
         #1, setup fs
         sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0" 
-        export LD_LIBRARY_PATH="$BOOST_DIR"
+        export LD_LIBRARY_PATH="$BOOST_DIR"/
         export NVP_TREE_FILE="$BOOST_DIR"/bin/nvp_nvp.tree
 
         #2 copy

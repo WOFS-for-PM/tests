@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
-fss=( "NOVA" "PMFS" "SIMFS")
-folders=( "../../nova" "../../pmfs" "../../simfs" )
+fss=( "NOVA" "PMFS")
+folders=( "../../nova" "../../pmfs")
 cur_path=$(pwd)
 
 STEP=0
