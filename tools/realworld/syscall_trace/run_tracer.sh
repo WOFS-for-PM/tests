@@ -21,9 +21,13 @@ if [ ! -e "$workload_path/$workload_name/trace.syscalltrace" ]; then
     bash $tools_path/traces/fiu-trace/aggregate_traces.sh $workload_path/$workload_name
 fi
 
+if [ "${workload_name}" ]; then
+    rm -rf $output/$workload_name
+fi
+
 mkdir -p $output/$workload_name
 
-FILE_SYSTEMS=("NOVA" "NOVA-RELAX" "PMFS")
+FILE_SYSTEMS=("NOVA" "NOVA-RELAX" "PMFS" "SplitFS")
 
 for file_system in "${FILE_SYSTEMS[@]}"; do
     if [[ "${file_system}" == "SplitFS" ]]; then
