@@ -1,0 +1,84 @@
+memtable_read: timing = 0 nanoseconds
+imm_memtable_read: timing = 0 nanoseconds
+file_read: timing = 17117876 nanoseconds
+file_open_during_read: timing = 129125 nanoseconds
+file_close_during_read: timing = 130083 nanoseconds
+get_files: timing = 0 nanoseconds
+after_get_files: timing = 0 nanoseconds
+find_table: timing = 0 nanoseconds
+block_reader: timing = 0 nanoseconds
+read_block: timing = 18227059 nanoseconds
+insert_block_cache: timing = 144759 nanoseconds
+new_iterator: timing = 254880 nanoseconds
+
+                               Compactions
+Level  Files Size(MB) Time(sec) Read(MB) Write(MB)
+--------------------------------------------------
+  0        6       24         0        0        40
+  1        1       20         0       20        24
+  2        1        4         0        0         4
+
+ycsb         :       4.723 micros/op;
+memtable_read: timing = 0 nanoseconds
+imm_memtable_read: timing = 0 nanoseconds
+file_read: timing = 17117876 nanoseconds
+file_open_during_read: timing = 129125 nanoseconds
+file_close_during_read: timing = 130083 nanoseconds
+get_files: timing = 0 nanoseconds
+after_get_files: timing = 0 nanoseconds
+find_table: timing = 0 nanoseconds
+block_reader: timing = 0 nanoseconds
+read_block: timing = 18227059 nanoseconds
+insert_block_cache: timing = 144759 nanoseconds
+new_iterator: timing = 254880 nanoseconds
+
+                               Compactions
+Level  Files Size(MB) Time(sec) Read(MB) Write(MB)
+--------------------------------------------------
+  0        6       24         0        0        40
+  1        1       20         0       20        24
+  2        1        4         0        0         4
+
+printdb      :      16.000 micros/op;
+memtable_read: timing = 10079601 nanoseconds
+imm_memtable_read: timing = 655851 nanoseconds
+file_read: timing = 111220978 nanoseconds
+file_open_during_read: timing = 643349 nanoseconds
+file_close_during_read: timing = 645966 nanoseconds
+get_files: timing = 1508041 nanoseconds
+after_get_files: timing = 70068804 nanoseconds
+find_table: timing = 0 nanoseconds
+block_reader: timing = 51226978 nanoseconds
+read_block: timing = 122702747 nanoseconds
+insert_block_cache: timing = 3444225 nanoseconds
+new_iterator: timing = 1711638 nanoseconds
+
+                               Compactions
+Level  Files Size(MB) Time(sec) Read(MB) Write(MB)
+--------------------------------------------------
+  0        2        8         0        0        29
+  1        1       10         0       65        59
+  2        1       53         0       53        53
+
+ycsb         :       6.493 micros/op;
+memtable_read: timing = 10079601 nanoseconds
+imm_memtable_read: timing = 655851 nanoseconds
+file_read: timing = 111259570 nanoseconds
+file_open_during_read: timing = 643671 nanoseconds
+file_close_during_read: timing = 646298 nanoseconds
+get_files: timing = 1508041 nanoseconds
+after_get_files: timing = 70068804 nanoseconds
+find_table: timing = 0 nanoseconds
+block_reader: timing = 51226978 nanoseconds
+read_block: timing = 122745165 nanoseconds
+insert_block_cache: timing = 3444558 nanoseconds
+new_iterator: timing = 1712342 nanoseconds
+
+                               Compactions
+Level  Files Size(MB) Time(sec) Read(MB) Write(MB)
+--------------------------------------------------
+  0        2        8         0        0        29
+  1        1       10         0       65        59
+  2        1       53         0       53        53
+
+printdb      :      22.000 micros/op;

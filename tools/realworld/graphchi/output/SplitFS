@@ -1,0 +1,63 @@
+Please enter value for command-line argument [filetype]
+  (Options are: edgelist, adjlist, binedgelist, metis)
+
+ === REPORT FOR sharder() ===
+[Timings]
+edata_flush:		0.068705s	 (count: 64, min: 0.000508s, max: 0.001993, avg: 0.00107352s)
+execute_sharding:		1.36501 s
+finish_shard.sort:		0.486668s	 (count: 2, min: 0.242539s, max: 0.244129, avg: 0.243334s)
+preprocessing:		1.90944 s
+shard_final:		0.94826s	 (count: 2, min: 0.440857s, max: 0.507403, avg: 0.47413s)
+[Other]
+app:	sharder
+Print top 20 vertices:
+1. 4237224	93.9549
+2. 3813316	81.3354
+3. 3932805	48.4806
+4. 4395486	42.1334
+5. 4298685	38.7907
+6. 4683195	38.7556
+7. 3778614	36.6548
+8. 4683202	35.3327
+9. 3950357	32.8877
+10. 4358535	32.8718
+11. 3789832	31.6971
+12. 4196265	28.2697
+13. 4064521	28.2621
+14. 3988545	28.1263
+15. 3763480	27.2583
+16. 4021726	26.707
+17. 3856513	26.074
+18. 3747120	25.6147
+19. 3702886	25.2731
+20. 2768114	24.4421
+
+ === REPORT FOR pagerank() ===
+[Numeric]
+cachesize_mb:		0
+compression:		0
+execthreads:		32
+loadthreads:		4
+membudget_mb:		800
+niothreads:		2
+niters:		10
+nshards:		2
+nvertices:		6.00956e+06
+scheduler:		0
+serialized-updates:		2.85205e+07	(count: 20, min: 1.1183e+06, max: 1.73375e+06, avg: 1.42602e+06)
+stripesize:		1.07374e+09
+updates:		6.00956e+07
+work:		1.65189e+08
+[Timings]
+execute-updates:		1.90164s	 (count: 20, min: 0.048498s, max: 0.113922, avg: 0.0950822s)
+iomgr_init:		8.7e-05 s
+memoryshard_create_edges:		2.30652s	 (count: 20, min: 0.113249s, max: 0.117406, avg: 0.115326s)
+preada_now:		1.07124s	 (count: 100, min: 0.000847s, max: 0.029887, avg: 0.0107124s)
+pwritea_now:		0.022882s	 (count: 2, min: 0.00687s, max: 0.016012, avg: 0.011441s)
+runtime:		7.47964 s
+stripedio_wait_for_reads:		1.7e-05s	 (count: 20, min: 0s, max: 2e-06, avg: 8.5e-07s)
+stripedio_wait_for_writes:		2.3e-05s	 (count: 31, min: 0s, max: 2e-06, avg: 7.41935e-07s)
+[Other]
+app:	pagerank
+engine:	default
+file:	/mnt/pmem0/cit-Patents.txt

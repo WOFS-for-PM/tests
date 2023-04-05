@@ -192,6 +192,19 @@ case "${fs}" in
         export LEDGER_YCSB=1
         compile_splitfs
     ;;
+    "SplitFS-TPCC")
+        cd "$SPLITFS_PATH" || exit
+        export LEDGER_DATAJ=0
+        export LEDGER_POSIX=1
+        export LEDGER_TPCC=1
+        compile_splitfs
+    ;;
+    "SplitFS")
+        cd "$SPLITFS_PATH" || exit
+        export LEDGER_DATAJ=0
+        export LEDGER_POSIX=1
+        compile_splitfs
+    ;;
     *)
         echo "Unknown file system: $fs"
         exit 1

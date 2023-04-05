@@ -1,0 +1,19 @@
+CHECKING IF SQLITE IS THREADSAFE: RETURN VALUE = 1
+***************************************
+*** ###easy### TPC-C Load Generator ***
+***************************************
+option w with value '4'
+option c with value '1'
+option t (number of transactions) with value '200000'
+<Parameters>
+  [warehouse]: 4
+ [connection]: 1
+     [rampup]: 10 (sec.)
+    [measure]: 20 (sec.)
+
+RAMP-UP TIME.(10 sec.)
+thread_main: opening db, thread id = 140690340808448
+thread_main: opened db, thread id = 140690340808448
+
+MEASURING START.
+
