@@ -1,0 +1,7 @@
+Obtained 6 stack frames.
+/home/zyf/tests/tools/realworld/syscall_trace/../../../../splitfs/splitfs/libnvp.so(print_trace+0x18) [0x7f43f04ae6c8]
+/home/zyf/tests/tools/realworld/syscall_trace/../../../../splitfs/splitfs/libnvp.so(_hub_add_and_resolve_fileops_tree_from_file+0xc4b) [0x7f43f049b52b]
+/home/zyf/tests/tools/realworld/syscall_trace/../../../../splitfs/splitfs/libnvp.so(_hub_init2+0x90e) [0x7f43f04a10ae]
+/lib64/ld-linux-x86-64.so.2(+0xf8ba) [0x7f43f06c88ba]
+/lib64/ld-linux-x86-64.so.2(+0xf9ba) [0x7f43f06c89ba]
+/lib64/ld-linux-x86-64.so.2(+0xfda) [0x7f43f06b9fda]

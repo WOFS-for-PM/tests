@@ -1,0 +1,20 @@
+[18878.412209] nova: =========== NOVA allocation stats ===========
+[18878.412210] nova: Alloc 8388608, alloc steps 8389204, average 1
+[18878.412210] nova: Free 0
+[18878.412211] nova: Fast GC 528, check pages 34677487, free pages 0, average 0
+[18878.412211] nova: Thorough GC 0, checked pages 0, free pages 0, average 0
+[18878.412213] nova: alloc log count 596, allocated log pages 149795, alloc data count 8388608, allocated data pages 8388608, free log count 0, freed log pages 0, free data count 0, freed data pages 0
+[18878.412213] nova: =========== NOVA I/O stats ===========
+[18878.412213] nova: Read 0, bytes 0, average 0
+[18878.412214] nova: COW write 8388608, bytes 34359738368, average 4096, write breaks 8388608, average 1
+[18878.412215] nova: Inplace write 0, bytes 0, average 0, write breaks 0, average 0
+[18878.412215] nova: =========== NOVA meta_trace stats ============
+[18878.412215] nova: meta_read: 3947752932
+[18878.412216] nova: meta_write: 1548490105
+[18878.412216] nova: data_read: 0
+[18878.412216] nova: data_write: 34359738368
+[18878.412217] nova: meta_time: 22541893714
+[18878.412217] nova: meta_times: 111964786
+[18878.412217] nova: data_write_time: 13230955671
+[18878.412218] nova: data_read_time: 0
+[18878.412218] nova: COW_time: 53261686699

@@ -1,0 +1,20 @@
+[18322.581999] read_journal_head: count 227, timing 47135, average 207
+[18322.581999] write_journal_head: count 227, timing 11600, average 51
+[18322.582000] read_journal_tail: count 227, timing 4618, average 20
+[18322.582000] read_genid: count 227, timing 4659, average 20
+[18322.582001] read_dentry: count 35171, timing 848474, average 24
+[18322.582001] add_truncate_item: count 2188, timing 67653, average 30
+[18322.582002] write_dentry: count 0, timing 0, average 0
+[18322.582003] write_data: count 1269349, timing 1382972041, average 1089
+[18322.582003] prefetch: count 0, timing 0, average 0
+[18322.582004] zero: count 2077, timing 1980972, average 953
+[18322.582006] pmfs: =========== PMFS meta_trace stats ============
+[18322.582007] pmfs: meta_read: 581279282
+[18322.582007] pmfs: meta_write: 68675739
+[18322.582008] pmfs: data_read: 68870963200
+[18322.582008] pmfs: data_write: 3460699515
+[18322.582009] pmfs: meta_time: 2256255092
+[18322.582009] pmfs: meta_times: 77607921
+[18322.582009] pmfs: data_write_time: 1382972041
+[18322.582010] pmfs: data_read_time: 9885763120
+[18322.582010] pmfs: COW_time: 13270765584

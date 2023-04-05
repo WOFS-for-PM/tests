@@ -27,14 +27,13 @@ fi
 
 mkdir -p $output/$workload_name
 
-FILE_SYSTEMS=("NOVA" "NOVA-RELAX" "PMFS" "SplitFS")
+FILE_SYSTEMS=("SplitFS")
 
 for file_system in "${FILE_SYSTEMS[@]}"; do
     if [[ "${file_system}" == "SplitFS" ]]; then
         sudo bash "$tools_path"/setup.sh "$file_system" "null" "0"
         export LD_LIBRARY_PATH="$boost_dir"/
         export NVP_TREE_FILE="$boost_dir"/bin/nvp_nvp.tree
-
         sudo python3 $tools_path/traces/fiu-trace/populate_files.py \
         $workload_path/$workload_name/trace.syscalltrace /mnt/pmem0 1 \
 
