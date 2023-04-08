@@ -8,7 +8,7 @@ FILE_SYSTEMS=( "NOVA" "PMFS" "HUNTER")
 PATTERNS=("write" "randwrite")
 FILE_SIZE="32G"
 TABLE_NAME="$ABS_PATH/metadata-trace-fio-results"
-table_create "$TABLE_NAME" "file_system meta_read(bytes) meta_write(bytes) meta_total(bytes) meta_time(ns) meta_times data_write(bytes) data_time(ns) COW_time(ns) bandwidth(MiB/s)"
+table_create "$TABLE_NAME" "file_system workload meta_read(bytes) meta_write(bytes) meta_total(bytes) meta_time(ns) meta_times data_write(bytes) data_time(ns) COW_time(ns) bandwidth(MiB/s)"
 STEP=0
 
 mkdir -p "$ABS_PATH"/M_DATA/fio

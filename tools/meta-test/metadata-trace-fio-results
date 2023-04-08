@@ -1,4 +1,4 @@
-file_system meta_read(bytes) meta_write(bytes) meta_total(bytes) meta_time(ns) meta_times data_write(bytes) data_time(ns) COW_time(ns) bandwidth(MiB/s)
+file_system workload meta_read(bytes) meta_write(bytes) meta_total(bytes) meta_time(ns) meta_times data_write(bytes) data_time(ns) COW_time(ns) bandwidth(MiB/s)
 NOVA write 3947752932 1548490105 5496243037 22614305507 111964786 34359738368 10971044355 49743986757 611MiB/s
 NOVA randwrite 3947752932 1548490105 5496243037 22541893714 111964786 34359738368 13230955671 53261686699 558MiB/s
 PMFS write 1604004594 1478783674 3082788268 17749280913 468733854 34359738368 5946329344 48732545745 622MiB/s
