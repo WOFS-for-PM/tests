@@ -59,6 +59,8 @@ unsigned long max_size;
 unsigned long max_continuous_4K_blks = 1; // 4KiB as default
 int threads = 1;
 int verbose = 0;
+int do_write = 1;
+int do_read = 0;
 
 void usage()
 {
@@ -371,6 +373,7 @@ void *syscall_replay_worker(void *arg)
     hashmap *map = hashmap_create();
     char file_path[MAX_NAME_LEN];
 
+
     for (line = 0; line < valid_lines; line++) {
         info = &infos[line];
         switch (info->rw) {
@@ -389,7 +392,8 @@ void *syscall_replay_worker(void *arg)
                 /* read whole file */
                 continue;
             } else {
-                ret = pread(fd, max_buf, info->blks, info->ofs);
+                if (do_read) 
+                    ret = pread(fd, max_buf, info->blks, info->ofs);
             }
 
             break;
@@ -404,8 +408,10 @@ void *syscall_replay_worker(void *arg)
                 hashmap_set(map, &info->fid, sizeof(unsigned long *), fd);
             }
             assert(info->blks != (unsigned long)-1);
-            ret = pwrite(fd, max_buf, info->blks, info->ofs);
-            check_ret(ret, info->blks, "pread");
+            if (do_write) {
+                ret = pwrite(fd, max_buf, info->blks, info->ofs);
+                check_ret(ret, info->blks, "pread");
+            }
             break;
         case 'O':
             if (!hashmap_get(map, &info->fid, sizeof(unsigned long *), (uintptr_t *)&fd)) {
@@ -831,6 +837,14 @@ unsigned long parse_trace_info(FILE *src_fp, struct trace_info **infos, int mode
     return valid_lines;
 }
 
+int prefault(void *start, unsigned long len)
+{
+    unsigned long i;
+    for (i = 0; i < len; i += 4096) {
+        ((char*)start)[len] = 1;
+    }
+}
+
 int main(int argc, char **argv)
 {
     char *optstring = "f:d:o:g:t:c:vhm:r:";
@@ -844,6 +858,7 @@ int main(int argc, char **argv)
     unsigned long blks_start;
     unsigned long blks_end;
     uint64_t time_usage = 0;
+
 
     while ((opt = getopt(argc, argv, optstring)) != -1) {
         switch (opt) {
@@ -952,6 +967,10 @@ int main(int argc, char **argv)
         param.infos = infos;
         param.valid_lines = valid_lines;
         param.max_buf = (char *)malloc(max_size);
+
+        printf("max buf_size = %lu\n", max_size);
+        
+        prefault(param.max_buf, max_size);
 
         printf("Start replaying %lu syscall\n", valid_lines);
 

@@ -4,15 +4,13 @@ import os
 import psutil
 
 
-mnt_path = "/mnt/pmem0/"
+MNT_PATH = "/mnt/pmem0/"
 output = 1      #output
 pid = 0
 
 OPEN_FILE = {}
 BUF = []
 i = 0
-
-
 
 #[seq num] [ts in ns] [operation] [inode num] [inode size in Bytes] [offset in Bytes] [size in Bytes] 
 def replay(syscall):
@@ -21,14 +19,12 @@ def replay(syscall):
 
     if op == "OPEN":
         try:
-            fd = posix.open(mnt_path + name, posix.O_CREAT | posix.O_RDWR)
+            fd = posix.open(MNT_PATH + name, posix.O_CREAT | posix.O_RDWR)
         except:
             print("OPEN: " + str(len(OPEN_FILE)))
             raise
-        
         if name in OPEN_FILE:
             posix.close(OPEN_FILE[name])
-        
         OPEN_FILE[name] = fd
         return
     
@@ -41,7 +37,7 @@ def replay(syscall):
     elif op == "READ":
         if name not in OPEN_FILE:
             try:
-                fd = posix.open(mnt_path + name, posix.O_CREAT | posix.O_RDWR)
+                fd = posix.open(MNT_PATH + name, posix.O_CREAT | posix.O_RDWR)
             except:
                 print("READ: " + str(len(OPEN_FILE)))
                 raise
@@ -60,7 +56,7 @@ def replay(syscall):
     
     elif op == "WRITE":
         if name not in OPEN_FILE:
-            fd = posix.open(mnt_path + name, posix.O_CREAT | posix.O_RDWR)
+            fd = posix.open(MNT_PATH + name, posix.O_CREAT | posix.O_RDWR)
             OPEN_FILE[name] = fd
         try:
             offset = int(syscall[5])
@@ -92,9 +88,16 @@ def replay_file(trace_file):
 #python3 replay.py /usr/local/trace/facebook /mnt/pmem0/
 if __name__ == '__main__':
     trace_dir = sys.argv[1]
-    mnt_path = sys.argv[2]
-    if mnt_path[-1] != '/':
-        mnt_path = mnt_path + '/'
+    MNT_PATH = sys.argv[2]
+    
+    if MNT_PATH[-1] != '/':
+        MNT_PATH = MNT_PATH + '/'
+    
+    pid = os.getpid()
+    print("Get PID: " + str(pid))
+
+    process = psutil.Process()
+    print(process.num_fds())
 
     import time
     time_start = time.perf_counter()
