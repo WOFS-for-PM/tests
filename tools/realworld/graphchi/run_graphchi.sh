@@ -22,7 +22,7 @@ GRAPH_PATH="$GRAPHCHI"/graph/"$graph_name"
 NEW_GRAPH_PATH=/mnt/pmem0/"$graph_name"
 BOOST_DIR=$ABS_PATH/../../../../splitfs/splitfs
 
-FILE_SYSTEMS=("NOVA" "PMFS" "SplitFS")
+FILE_SYSTEMS=("SplitFS")
 
 mkdir -p $OUTPUT
 
@@ -41,7 +41,11 @@ for file_system in "${FILE_SYSTEMS[@]}"; do
         bin/example_apps/pagerank file $NEW_GRAPH_PATH niters $iter > $OUTPUT/${file_system}
     else
         #1, setup fs   
-        sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "main" "0"
+        if [[ "${file_system}" == "KILLER" ]]; then 
+            sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "dev" "0" 
+        else
+            sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "main" "0"         
+        fi
 
         #2, copy graph to /mnt/pmem0
         sudo cp $GRAPH_PATH /mnt/pmem0
