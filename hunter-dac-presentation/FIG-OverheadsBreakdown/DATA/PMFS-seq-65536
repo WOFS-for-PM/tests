@@ -1,0 +1,24 @@
+6635.724459 pmfs: arch does not have PCOMMIT support
+6635.724460 pmfs: arch has CLWB support
+6635.724464 pmfs: creating an empty pmfs of size 266352984064
+6710.822830 ======== PMFS kernel timing stats ========
+6710.822832 create: count 1, timing 39276, average 39276
+6710.822833 unlink: count 0, timing 0, average 0
+6710.822833 readdir: count 0, timing 0, average 0
+6710.822834 xip_read: count 0, timing 0, average 0
+6710.822834 xip_write: count 16777216, timing 67032839337, average 3995
+6710.822835 xip_write_fast: count 0, timing 0, average 0
+6710.822835 internal_write: count 16777216, timing 16634816254, average 991
+6710.822836 memcpy_read: count 0, timing 0, average 0
+6710.822836 memcpy_write: count 16777216, timing 12098200667, average 721
+6710.822837 alloc_blocks: count 16777217, timing 2122015805, average 126
+6710.822838 new_trans: count 16777217, timing 8603015123, average 512
+6710.822838 add_logentry: count 50331651, timing 7105826511, average 141
+6710.822839 commit_trans: count 16777217, timing 407361718, average 24
+6710.822839 mmap_fault: count 0, timing 0, average 0
+6710.822839 fsync: count 0, timing 0, average 0
+6710.822840 free_tree: count 0, timing 0, average 0
+6710.822841 evict_inode: count 2, timing 366, average 183
+6710.822841 recovery: count 0, timing 0, average 0
+6710.822842 =========== PMFS I/O stats ===========
+6710.822842 Fsync 0 pages
