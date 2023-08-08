@@ -1,0 +1,42 @@
+NVP_MSG (46399): Initializing hub_init
+NVP_MSG (46399): _hub_init2: START
+NVP_MSG (46399): Initializing nvp_init
+NVP_MSG (46399): CLFLUSHOPT is supported!
+NVP_MSG (46399): init_append_log: Initializing append log
+NVP_MSG (46399): _nvp_init2: dr fd = 4, start addr = 0x7F3252200000
+NVP_MSG (46399): _nvp_init2: dr fd = 5, start addr = 0x7F3242000000
+NVP_MSG (46399): _nvp_init2: dr fd = 6, start addr = 0x7F3231E00000
+NVP_MSG (46399): _nvp_init2: dr fd = 7, start addr = 0x7F3221C00000
+NVP_MSG (46399): _nvp_init2: dr fd = 8, start addr = 0x7F3211A00000
+NVP_MSG (46399): _nvp_init2: dr fd = 9, start addr = 0x7F3201800000
+NVP_MSG (46399): _nvp_init2: dr fd = 10, start addr = 0x7F31F1600000
+NVP_MSG (46399): _nvp_init2: dr fd = 11, start addr = 0x7F31E1400000
+NVP_MSG (46399): _nvp_init2: dr fd = 12, start addr = 0x7F31D1200000
+NVP_MSG (46399): _nvp_init2: dr fd = 13, start addr = 0x7F31C1000000
+NVP_MSG (46399): _nvp_init2: Tbl mmaps set
+NVP_MSG (46399): _nvp_init2: Global locks created
+NVP_MSG (46399): _nvp_init2: initialized environment, OPEN_MAX = 1024
+NVP_MSG (46399): _hub_init2: END
+LevelDB:    version 1.20
+Date:       Mon Jul 24 01:46:41 2023
+CPU:        32 * Intel(R) Xeon(R) Gold 5218 CPU @ 2.30GHz
+CPUCache:   22528 KB
+Keys:       16 bytes each
+Values:     1024 bytes each (1024 bytes after compression)
+Entries:    10000000
+RawSize:    9918.2 MB (estimated)
+FileSize:   9918.2 MB (estimated)
+WARNING: Snappy compression is not enabled
+------------------------------------------------
+NVP_MSG (46399): len_to_swap = 41, app_start_off = 0, dr_offset_end = 41, valid_offset = 0, file_start_off = 0, true_length = 0 
+NVP_MSG (46399): len_to_swap = 16, app_start_off = 0, dr_offset_end = 16, valid_offset = 0, file_start_off = 0, true_length = 0 
+NVP_MSG (46399): len_to_swap = 50, app_start_off = 0, dr_offset_end = 50, valid_offset = 0, file_start_off = 0, true_length = 0 
+NVP_MSG (46399): len_to_swap = 16, app_start_off = 0, dr_offset_end = 16, valid_offset = 0, file_start_off = 0, true_length = 0 
+Thread 0: Parsing trace ...
+Thread 0: Done parsing, 50000 operations.
+Thread 0: Replaying trace ...
+
+Completed 0 ops... finished 100 ops                              ... finished 200 ops                              ... finished 300 ops                              ... finished 400 ops                              ... finished 500 ops                              ... finished 600 ops                              ... finished 700 ops                              ... finished 800 ops                              ... finished 900 ops                              ... finished 1000 ops                              ... finished 1500 ops                              ... finished 2000 ops                              ... finished 2500 ops                              ... finished 3000 ops                              ... finished 3500 ops                              NVP_MSG (46399): len_to_swap = 4141274, app_start_off = 0, dr_offset_end = 4141274, valid_offset = 0, file_start_off = 0, true_length = 0 
+... finished 4000 ops                              ... finished 4500 ops                              NVP_MSG (46399): len_to_swap = 4140494, app_start_off = 0, dr_offset_end = 4140494, valid_offset = 0, file_start_off = 0, true_length = 0 
+NVP_MSG (46399): len_to_swap = 86, app_start_off = 50, dr_offset_end = 136, valid_offset = 50, file_start_off = 50, true_length = 50 
+... finished 5000 ops                              ... finished 6000 ops                              ... finished 7000 ops                              

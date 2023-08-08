@@ -3,11 +3,11 @@ Please enter value for command-line argument [filetype]
 
  === REPORT FOR sharder() ===
 [Timings]
-edata_flush:		0.03171s	 (count: 64, min: 0.000265s, max: 0.000551, avg: 0.000495469s)
-execute_sharding:		1.19498 s
-finish_shard.sort:		0.47993s	 (count: 2, min: 0.238528s, max: 0.241402, avg: 0.239965s)
-preprocessing:		1.76972 s
-shard_final:		0.862976s	 (count: 2, min: 0.399551s, max: 0.463425, avg: 0.431488s)
+edata_flush:		0.031323s	 (count: 64, min: 0.000258s, max: 0.000604, avg: 0.000489422s)
+execute_sharding:		1.41614 s
+finish_shard.sort:		0.541417s	 (count: 2, min: 0.269442s, max: 0.271975, avg: 0.270709s)
+preprocessing:		1.8412 s
+shard_final:		1.03364s	 (count: 2, min: 0.46711s, max: 0.566526, avg: 0.516818s)
 [Other]
 app:	sharder
 Print top 20 vertices:
@@ -49,14 +49,14 @@ stripesize:		1.07374e+09
 updates:		6.00956e+07
 work:		1.65189e+08
 [Timings]
-execute-updates:		1.90631s	 (count: 20, min: 0.050253s, max: 0.11705, avg: 0.0953155s)
-iomgr_init:		8.5e-05 s
-memoryshard_create_edges:		2.30861s	 (count: 20, min: 0.112326s, max: 0.118045, avg: 0.11543s)
-preada_now:		0.760337s	 (count: 100, min: 0.00083s, max: 0.019871, avg: 0.00760337s)
-pwritea_now:		0.012325s	 (count: 2, min: 0.003793s, max: 0.008532, avg: 0.0061625s)
-runtime:		7.24812 s
-stripedio_wait_for_reads:		1.1e-05s	 (count: 20, min: 0s, max: 1e-06, avg: 5.5e-07s)
-stripedio_wait_for_writes:		1.8e-05s	 (count: 31, min: 0s, max: 2e-06, avg: 5.80645e-07s)
+execute-updates:		2.06778s	 (count: 20, min: 0.052794s, max: 0.122996, avg: 0.103389s)
+iomgr_init:		0.000105 s
+memoryshard_create_edges:		5.97695s	 (count: 20, min: 0.269785s, max: 0.330903, avg: 0.298848s)
+preada_now:		0.986273s	 (count: 100, min: 0.000882s, max: 0.026746, avg: 0.00986273s)
+pwritea_now:		0.01327s	 (count: 2, min: 0.004803s, max: 0.008467, avg: 0.006635s)
+runtime:		11.9792 s
+stripedio_wait_for_reads:		1.3e-05s	 (count: 20, min: 0s, max: 1e-06, avg: 6.5e-07s)
+stripedio_wait_for_writes:		3.1e-05s	 (count: 31, min: 0s, max: 2e-06, avg: 1e-06s)
 [Other]
 app:	pagerank
 engine:	default

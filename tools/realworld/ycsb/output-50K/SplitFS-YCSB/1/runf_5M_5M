@@ -1,0 +1,15 @@
+NVP_MSG (44179): Initializing hub_init
+NVP_MSG (44179): _hub_init2: START
+[01;33mNVP_ERROR[m (pid 44179): Couldn't locate "nvp" at supplied path "libfileops_nvp.so"
+ROHAN HERE
+[01;33mNVP_ERROR[m (pid 44179): libfileops_nvp.so: cannot open shared object file: No such file or directory
+ROHAN HERE
+Obtained 6 stack frames.
+/home/deadpool/HUNTER-REPO/tests/tools/realworld/ycsb/../../../../splitfs/splitfs/libnvp.so(print_trace+0x18) [0x7f9c6da478c8]
+/home/deadpool/HUNTER-REPO/tests/tools/realworld/ycsb/../../../../splitfs/splitfs/libnvp.so(_hub_add_and_resolve_fileops_tree_from_file+0x5b3e) [0x7f9c6da392fe]
+/home/deadpool/HUNTER-REPO/tests/tools/realworld/ycsb/../../../../splitfs/splitfs/libnvp.so(_hub_init2+0x90e) [0x7f9c6da3a2ae]
+/lib64/ld-linux-x86-64.so.2(+0x8f4a) [0x7f9c6dc5af4a]
+/lib64/ld-linux-x86-64.so.2(+0x904a) [0x7f9c6dc5b04a]
+/lib64/ld-linux-x86-64.so.2(+0x1dcba) [0x7f9c6dc6fcba]
+[01;33mNVP_ERROR[m (pid 44179): NVP_ASSERT(0) failed!
+ROHAN HERE

@@ -1,0 +1,292 @@
+LevelDB:    version 1.20
+Date:       Sat Jul 22 00:07:59 2023
+CPU:        32 * Intel(R) Xeon(R) Gold 5218 CPU @ 2.30GHz
+CPUCache:   22528 KB
+Keys:       16 bytes each
+Values:     1024 bytes each (1024 bytes after compression)
+Entries:    10000000
+RawSize:    9918.2 MB (estimated)
+FileSize:   9918.2 MB (estimated)
+WARNING: Snappy compression is not enabled
+------------------------------------------------
+Thread 6: Parsing trace ...
+Thread 5: Parsing trace ...
+Thread 2: Parsing trace ...
+Thread 3: Parsing trace ...
+Thread 0: Parsing trace ...
+Thread 4: Parsing trace ...
+Thread 1: Parsing trace ...
+Thread 6: Done parsing, 50000 operations.
+Thread 6: Replaying trace ...
+
+Completed 0 opsThread 3: Done parsing, 50000 operations.
+Thread 0: Done parsing, 50000 operations.
+Thread 3: Replaying trace ...
+Thread 2: Done parsing, 50000 operations.
+Thread 4: Done parsing, 50000 operations.
+Thread 1: Done parsing, 50000 operations.
+
+Completed 0 opsThread 1: Replaying trace ...
+
+Completed 0 opsThread 0: Replaying trace ...
+
+Completed 0 opsThread 2: Replaying trace ...
+Thread 4: Replaying trace ...
+
+Completed 0 ops
+Completed 0 opsThread 5: Done parsing, 50000 operations.
+Thread 5: Replaying trace ...
+
+Completed 0 ops... finished 100 ops                              ... finished 100 ops                              ... finished 100 ops                              ... finished 100 ops                              ... finished 100 ops                              ... finished 100 ops                              ... finished 100 ops                              ... finished 200 ops                              ... finished 200 ops                              ... finished 200 ops                              ... finished 200 ops                              ... finished 200 ops                              ... finished 200 ops                              ... finished 200 ops                              ... finished 300 ops                              ... finished 300 ops                              ... finished 300 ops                              ... finished 300 ops                              ... finished 300 ops                              ... finished 300 ops                              ... finished 300 ops                              ... finished 400 ops                              ... finished 400 ops                              ... finished 400 ops                              ... finished 400 ops                              ... finished 400 ops                              ... finished 400 ops                              ... finished 400 ops                              ... finished 500 ops                              ... finished 500 ops                              ... finished 500 ops                              ... finished 500 ops                              ... finished 500 ops                              ... finished 500 ops                              ... finished 500 ops                              ... finished 600 ops                              ... finished 600 ops                              ... finished 600 ops                              ... finished 600 ops                              ... finished 600 ops                              ... finished 600 ops                              ... finished 600 ops                              ... finished 700 ops                              ... finished 700 ops                              ... finished 700 ops                              ... finished 700 ops                              ... finished 700 ops                              ... finished 700 ops                              ... finished 700 ops                              ... finished 800 ops                              ... finished 800 ops                              ... finished 800 ops                              ... finished 800 ops                              ... finished 800 ops                              ... finished 800 ops                              ... finished 800 ops                              ... finished 900 ops                              ... finished 900 ops                              ... finished 900 ops                              ... finished 900 ops                              ... finished 900 ops                              ... finished 900 ops                              ... finished 900 ops                              ... finished 1000 ops                              ... finished 1000 ops                              ... finished 1000 ops                              ... finished 1000 ops                              ... finished 1000 ops                              ... finished 1000 ops                              ... finished 1000 ops                              ... finished 1500 ops                              ... finished 1500 ops                              ... finished 1500 ops                              ... finished 1500 ops                              ... finished 1500 ops                              ... finished 1500 ops                              ... finished 1500 ops                              ... finished 2000 ops                              ... finished 2000 ops                              ... finished 2000 ops                              ... finished 2000 ops                              ... finished 2000 ops                              ... finished 2000 ops                              ... finished 2000 ops                              ... finished 2500 ops                              ... finished 2500 ops                              ... finished 2500 ops                              ... finished 2500 ops                              ... finished 2500 ops                              ... finished 2500 ops                              ... finished 2500 ops                              ... finished 3000 ops                              ... finished 3000 ops                              ... finished 3000 ops                              ... finished 3000 ops                              ... finished 3000 ops                              ... finished 3000 ops                              ... finished 3000 ops                              ... finished 3500 ops                              ... finished 3500 ops                              ... finished 3500 ops                              ... finished 3500 ops                              ... finished 3500 ops                              ... finished 3500 ops                              ... finished 3500 ops                              ... finished 4000 ops                              ... finished 4000 ops                              ... finished 4000 ops                              ... finished 4000 ops                              ... finished 4000 ops                              ... finished 4000 ops                              ... finished 4000 ops                              ... finished 4500 ops                              ... finished 4500 ops                              ... finished 4500 ops                              ... finished 4500 ops                              ... finished 4500 ops                              ... finished 4500 ops                              ... finished 4500 ops                              ... finished 5000 ops                              ... finished 5000 ops                              ... finished 5000 ops                              ... finished 5000 ops                              ... finished 5000 ops                              ... finished 5000 ops                              ... finished 5000 ops                              ... finished 6000 ops                              ... finished 6000 ops                              ... finished 6000 ops                              ... finished 6000 ops                              ... finished 6000 ops                              ... finished 6000 ops                              ... finished 6000 ops                              ... finished 7000 ops                              ... finished 7000 ops                              ... finished 7000 ops                              ... finished 7000 ops                              ... finished 7000 ops                              ... finished 7000 ops                              ... finished 7000 ops                              ... finished 8000 ops                              ... finished 8000 ops                              ... finished 8000 ops                              ... finished 8000 ops                              ... finished 8000 ops                              ... finished 8000 ops                              ... finished 8000 ops                              ... finished 9000 ops                              ... finished 9000 ops                              ... finished 9000 ops                              ... finished 9000 ops                              ... finished 9000 ops                              ... finished 9000 ops                              ... finished 9000 ops                              ... finished 10000 ops                              ... finished 10000 ops                              ... finished 10000 ops                              ... finished 10000 ops                              ... finished 10000 ops                              ... finished 10000 ops                              ... finished 10000 ops                              ... finished 15000 ops                              ... finished 15000 ops                              ... finished 15000 ops                              ... finished 15000 ops                              ... finished 15000 ops                              ... finished 15000 ops                              ... finished 15000 ops                              ... finished 20000 ops                              ... finished 20000 ops                              ... finished 20000 ops                              ... finished 20000 ops                              ... finished 20000 ops                              ... finished 20000 ops                              ... finished 20000 ops                              ... finished 25000 ops                              ... finished 25000 ops                              ... finished 25000 ops                              ... finished 25000 ops                              ... finished 25000 ops                              ... finished 25000 ops                              ... finished 25000 ops                              ... finished 30000 ops                              ... finished 30000 ops                              ... finished 30000 ops                              ... finished 30000 ops                              ... finished 30000 ops                              ... finished 30000 ops                              ... finished 30000 ops                              ... finished 35000 ops                              ... finished 35000 ops                              ... finished 35000 ops                              ... finished 35000 ops                              ... finished 35000 ops                              ... finished 35000 ops                              ... finished 35000 ops                              ... finished 40000 ops                              ... finished 40000 ops                              ... finished 40000 ops                              ... finished 40000 ops                              ... finished 40000 ops                              ... finished 40000 ops                              ... finished 40000 ops                              ... finished 45000 ops                              ... finished 45000 ops                              ... finished 45000 ops                              ... finished 45000 ops                              ... finished 45000 ops                              ... finished 45000 ops                              ... finished 45000 ops                              ... finished 50000 ops                              ... finished 50000 ops                              ... finished 50000 ops                              ... finished 50000 ops                              ... finished 50000 ops                              
+
+Thread 6: Done replaying 50000 operations.
+YCSB splitup: R = 47471, D = 0, I = 0, U = 2529, S = 0
+LevelDB/WiscKey splitup: P = 2529, G = 50000, D = 0, ItSeek = 0, ItNext = 0
+
+
+Thread 2: Done replaying 50000 operations.
+YCSB splitup: R = 47471, D = 0, I = 0, U = 2529, S = 0
+Thread 6: Time taken = 0.497 seconds
+Thread 6: Total data: YCSB = 0.041721 GB, HyperLevelDB = 0.043883 GB
+... finished 50000 ops                              Thread 6: Ops/s = 98.213 Kops/s
+LevelDB/WiscKey splitup: P = 2529, G = 50000, D = 0, ItSeek = 0, ItNext = 0
+Thread 6: YCSB throughput = 85.932144 MB/s
+Thread 6: HyperLevelDB throughput = 90.385546 MB/s
+... finished 50000 ops                              Thread 2: Time taken = 0.497 seconds
+Thread 2: Total data: YCSB = 0.041817 GB, HyperLevelDB = 0.043979 GB
+Thread 2: Ops/s = 98.215 Kops/s
+
+
+Thread 0: Done replaying 50000 operations.
+Thread 2: YCSB throughput = 86.130961 MB/s
+Thread 2: HyperLevelDB throughput = 90.584435 MB/s
+YCSB splitup: R = 47471, D = 0, I = 0, U = 2529, S = 0
+LevelDB/WiscKey splitup: P = 2529, G = 50000, D = 0, ItSeek = 0, ItNext = 0
+Thread 0: Time taken = 0.497 seconds
+Thread 0: Total data: YCSB = 0.041670 GB, HyperLevelDB = 0.043833 GB
+Thread 0: Ops/s = 98.210 Kops/s
+
+
+Thread 1: Done replaying 50000 operations.
+Thread 0: YCSB throughput = 85.825099 MB/s
+YCSB splitup: R = 47471, D = 0, I = 0, U = 2529, S = 0
+Thread 0: HyperLevelDB throughput = 90.278358 MB/s
+LevelDB/WiscKey splitup: P = 2529, G = 50000, D = 0, ItSeek = 0, ItNext = 0
+memtable_read: timing = 141303439 nanoseconds
+imm_memtable_read: timing = 3443033 nanoseconds
+file_read: timing = 284595969 nanoseconds
+file_open_during_read: timing = 1885274 nanoseconds
+file_close_during_read: timing = 1895548 nanoseconds
+get_files: timing = 44677043 nanoseconds
+after_get_files: timing = 1793825914 nanoseconds
+find_table: timing = 0 nanoseconds
+block_reader: timing = 879397217 nanoseconds
+read_block: timing = 332871403 nanoseconds
+insert_block_cache: timing = 203298004 nanoseconds
+new_iterator: timing = 21133626 nanoseconds
+
+                               Compactions
+Level  Files Size(MB) Time(sec) Read(MB) Write(MB)
+--------------------------------------------------
+  0        2        8         0        0        20
+  1        1        1         0       31         6
+  2        1       52         0       58        52
+
+memtable_read: timing = 141303439 nanoseconds
+imm_memtable_read: timing = 3443033 nanoseconds
+file_read: timing = 284599087 nanoseconds
+file_open_during_read: timing = 1885293 nanoseconds
+file_close_during_read: timing = 1895568 nanoseconds
+get_files: timing = 44677043 nanoseconds
+after_get_files: timing = 1793825914 nanoseconds
+find_table: timing = 0 nanoseconds
+block_reader: timing = 879397217 nanoseconds
+read_block: timing = 332874751 nanoseconds
+insert_block_cache: timing = 203298024 nanoseconds
+new_iterator: timing = 21133666 nanoseconds
+
+                               Compactions
+Level  Files Size(MB) Time(sec) Read(MB) Write(MB)
+--------------------------------------------------
+  0        2        8         0        0        20
+  1        1        1         0       31         6
+  2        1       52         0       58        52
+
+memtable_read: timing = 141304546 nanoseconds
+imm_memtable_read: timing = 3443033 nanoseconds
+file_read: timing = 284604787 nanoseconds
+file_open_during_read: timing = 1885331 nanoseconds
+file_close_during_read: timing = 1895609 nanoseconds
+get_files: timing = 44677043 nanoseconds
+after_get_files: timing = 1793825914 nanoseconds
+find_table: timing = 0 nanoseconds
+block_reader: timing = 879397217 nanoseconds
+read_block: timing = 332881007 nanoseconds
+insert_block_cache: timing = 203298064 nanoseconds
+new_iterator: timing = 21133756 nanoseconds
+
+                               Compactions
+Level  Files Size(MB) Time(sec) Read(MB) Write(MB)
+--------------------------------------------------
+  0        2        8         0        0        20
+  1        1        1         0       31         6
+  2        1       52         0       58        52
+
+memtable_read: timing = 141304546 nanoseconds
+imm_memtable_read: timing = 3443033 nanoseconds
+file_read: timing = 284606747 nanoseconds
+file_open_during_read: timing = 1885351 nanoseconds
+file_close_during_read: timing = 1895629 nanoseconds
+get_files: timing = 44677043 nanoseconds
+after_get_files: timing = 1793825914 nanoseconds
+find_table: timing = 0 nanoseconds
+block_reader: timing = 879397217 nanoseconds
+read_block: timing = 332883330 nanoseconds
+insert_block_cache: timing = 203298083 nanoseconds
+new_iterator: timing = 21133804 nanoseconds
+
+                               Compactions
+Level  Files Size(MB) Time(sec) Read(MB) Write(MB)
+--------------------------------------------------
+  0        2        8         0        0        20
+  1        1        1         0       31         6
+  2        1       52         0       58        52
+
+memtable_read: timing = 141304546 nanoseconds
+imm_memtable_read: timing = 3443033 nanoseconds
+file_read: timing = 284606747 nanoseconds
+file_open_during_read: timing = 1885371 nanoseconds
+file_close_during_read: timing = 1895649 nanoseconds
+get_files: timing = 44677043 nanoseconds
+after_get_files: timing = 1793825914 nanoseconds
+find_table: timing = 0 nanoseconds
+block_reader: timing = 879397217 nanoseconds
+read_block: timing = 332885710 nanoseconds
+insert_block_cache: timing = 203298103 nanoseconds
+new_iterator: timing = 21133858 nanoseconds
+
+                               Compactions
+Level  Files Size(MB) Time(sec) Read(MB) Write(MB)
+--------------------------------------------------
+  0  Thread 1: Time taken = 0.497 seconds
+Thread 1: Total data: YCSB = 0.041714 GB, HyperLevelDB = 0.043876 GB
+Thread 1: Ops/s = 98.206 Kops/s
+Thread 1: YCSB throughput = 85.910895 MB/s
+
+
+Thread 4: Done replaying 50000 operations.
+Thread 1: HyperLevelDB throughput = 90.363948 MB/s
+YCSB splitup: R = 47471, D = 0, I = 0, U = 2529, S = 0
+
+
+Thread 5: Done replaying 50000 operations.
+YCSB splitup: R = 47471, D = 0, I = 0, U = 2529, S = 0
+LevelDB/WiscKey splitup: P = 2529, G = 50000, D = 0, ItSeek = 0, ItNext = 0
+LevelDB/WiscKey splitup: P = 2529, G = 50000, D = 0, ItSeek = 0, ItNext = 0
+
+
+Thread 3: Done replaying 50000 operations.
+Thread 4: Time taken = 0.497 seconds
+Thread 5: Time taken = 0.497 seconds
+Thread 4: Total data: YCSB = 0.041723 GB, HyperLevelDB = 0.043885 GB
+YCSB splitup: R = 47471, D = 0, I = 0, U = 2529, S = 0
+LevelDB/WiscKey splitup: P = 2529, G = 50000, D = 0, ItSeek = 0, ItNext = 0
+Thread 4: Ops/s = 98.202 Kops/s
+Thread 5: Total data: YCSB = 0.041682 GB, HyperLevelDB = 0.043844 GB
+Thread 4: YCSB throughput = 85.926014 MB/s
+Thread 5: Ops/s = 98.204 Kops/s
+Thread 3: Time taken = 0.497 seconds
+Thread 3: Total data: YCSB = 0.041660 GB, HyperLevelDB = 0.043822 GB
+Thread 3: Ops/s = 98.192 Kops/s
+Thread 5: YCSB throughput = 85.843697 MB/s
+Thread 5: HyperLevelDB throughput = 90.296669 MB/s
+Thread 3: YCSB throughput = 85.787308 MB/s
+Thread 4: HyperLevelDB throughput = 90.378905 MB/s
+Thread 3: HyperLevelDB throughput = 90.239734 MB/s
+      2        8         0        0        20
+  1        1        1         0       31         6
+  2        1       52         0       58        52
+
+memtable_read: timing = 141304546 nanoseconds
+imm_memtable_read: timing = 3443033 nanoseconds
+file_read: timing = 284612049 nanoseconds
+file_open_during_read: timing = 1885395 nanoseconds
+file_close_during_read: timing = 1895667 nanoseconds
+get_files: timing = 44677043 nanoseconds
+after_get_files: timing = 1793825914 nanoseconds
+find_table: timing = 0 nanoseconds
+block_reader: timing = 879397217 nanoseconds
+read_block: timing = 332889760 nanoseconds
+insert_block_cache: timing = 203298123 nanoseconds
+new_iterator: timing = 21133901 nanoseconds
+
+                               Compactions
+Level  Files Size(MB) Time(sec) Read(MB) Write(MB)
+--------------------------------------------------
+  0        2        8         0        0        20
+  1        1        1         0       31         6
+  2        1       52         0       58        52
+
+memtable_read: timing = 141304546 nanoseconds
+imm_memtable_read: timing = 3443033 nanoseconds
+file_read: timing = 284615639 nanoseconds
+file_open_during_read: timing = 1885415 nanoseconds
+file_close_during_read: timing = 1895689 nanoseconds
+get_files: timing = 44677043 nanoseconds
+after_get_files: timing = 1793825914 nanoseconds
+find_table: timing = 0 nanoseconds
+block_reader: timing = 879397217 nanoseconds
+read_block: timing = 332893836 nanoseconds
+insert_block_cache: timing = 203298145 nanoseconds
+new_iterator: timing = 21133952 nanoseconds
+
+                               Compactions
+Level  Files Size(MB) Time(sec) Read(MB) Write(MB)
+--------------------------------------------------
+  0        2        8         0        0        20
+  1        1        1         0       31         6
+  2        1       52         0       58        52
+
+ycsb         :      10.351 micros/op;
+----------------------Current DB state-----------------------
+----------------------Current DB state-----------------------
+----------------------Current DB state-----------------------
+----------------------Current DB state-----------------------
+
+----------------------Current DB state-----------------------
+----------------------Current DB state-----------------------
+
+
+-------------------------------------------------------------
+
+----------------------Current DB state-----------------------
+-------------------------------------------------------------
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+
+
+-------------------------------------------------------------
+-------------------------------------------------------------
+-------------------------------------------------------------
+memtable_read: timing = 141304546 nanoseconds
+imm_memtable_read: timing = 3443033 nanoseconds
+file_read: timing = 284623079 nanoseconds
+file_open_during_read: timing = 1885490 nanoseconds
+file_close_during_read: timing = 1895753 nanoseconds
+get_files: timing = 44677043 nanoseconds
+after_get_files: timing = 1793825914 nanoseconds
+find_table: timing = 0 nanoseconds
+block_reader: timing = 879397217 nanoseconds
+read_block: timing = 332902581 nanoseconds
+insert_block_cache: timing = 203298208 nanoseconds
+new_iterator: timing = 21134103 nanoseconds
+
+                               Compactions
+Level  Files Size(MB) Time(sec) Read(MB) Write(MB)
+--------------------------------------------------
+  0        2        8         0        0        20
+  1        1        1         0       31         6
+  2        1       52         0       58        52
+
+printdb      :     195.000 micros/op;

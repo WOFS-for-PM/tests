@@ -1,0 +1,5 @@
+file_system num_job loada(micros/op) runa(micros/op) runb(micros/op) runc(micros/op) rund(micros/op) loade(micros/op) rune(micros/op) runf(micros/op)
+KILLER 1 26.505 14.253 6.567 5.397 3.867 25.463 56.971 7.480
+PMFS 1 27.822 15.521 7.464 5.932 4.256 27.644 62.360 7.853
+KILLER 8 71.435 42.515 12.977 9.414 11.593 72.364 110.243 29.666
+PMFS 8 84.687 48.288 12.896 9.862 18.947 77.459 120.776 32.216

@@ -1,0 +1,116 @@
+NVP_MSG (8137): Initializing hub_init
+NVP_MSG (8137): _hub_init2: START
+NVP_MSG (8137): Initializing nvp_init
+NVP_MSG (8137): CLFLUSHOPT is supported!
+NVP_MSG (8137): init_append_log: Initializing append log
+NVP_MSG (8137): _nvp_init2: dr fd = 4, start addr = 0x7F952DA00000
+NVP_MSG (8137): _nvp_init2: dr fd = 5, start addr = 0x7F951D800000
+NVP_MSG (8137): _nvp_init2: dr fd = 6, start addr = 0x7F950D600000
+NVP_MSG (8137): _nvp_init2: dr fd = 7, start addr = 0x7F94FD400000
+NVP_MSG (8137): _nvp_init2: dr fd = 8, start addr = 0x7F94ED200000
+NVP_MSG (8137): _nvp_init2: dr fd = 9, start addr = 0x7F94DD000000
+NVP_MSG (8137): _nvp_init2: dr fd = 10, start addr = 0x7F94CCE00000
+NVP_MSG (8137): _nvp_init2: dr fd = 11, start addr = 0x7F94BCC00000
+NVP_MSG (8137): _nvp_init2: dr fd = 12, start addr = 0x7F94ACA00000
+NVP_MSG (8137): _nvp_init2: dr fd = 13, start addr = 0x7F949C800000
+NVP_MSG (8137): _nvp_init2: Tbl mmaps set
+NVP_MSG (8137): _nvp_init2: Global locks created
+NVP_MSG (8137): _nvp_init2: initialized environment, OPEN_MAX = 1024
+NVP_MSG (8137): _hub_init2: END
+LevelDB:    version 1.20
+Date:       Fri Aug  4 06:42:36 2023
+CPU:        32 * Intel(R) Xeon(R) Gold 5218 CPU @ 2.30GHz
+CPUCache:   22528 KB
+Keys:       16 bytes each
+Values:     1024 bytes each (1024 bytes after compression)
+Entries:    10000000
+RawSize:    9918.2 MB (estimated)
+FileSize:   9918.2 MB (estimated)
+WARNING: Snappy compression is not enabled
+------------------------------------------------
+Thread 0: Parsing trace ...
+Thread 0: Done parsing, 1000000 operations.
+Thread 0: Replaying trace ...
+
+Completed 0 ops... finished 100 ops                              ... finished 200 ops                              ... finished 300 ops                              ... finished 400 ops                              ... finished 500 ops                              ... finished 600 ops                              ... finished 700 ops                              ... finished 800 ops                              ... finished 900 ops                              ... finished 1000 ops                              ... finished 1500 ops                              ... finished 2000 ops                              ... finished 2500 ops                              ... finished 3000 ops                              ... finished 3500 ops                              ... finished 4000 ops                              ... finished 4500 ops                              ... finished 5000 ops                              ... finished 6000 ops                              ... finished 7000 ops                              ... finished 8000 ops                              ... finished 9000 ops                              ... finished 10000 ops                              ... finished 15000 ops                              ... finished 20000 ops                              ... finished 25000 ops                              ... finished 30000 ops                              ... finished 35000 ops                              ... finished 40000 ops                              ... finished 45000 ops                              ... finished 50000 ops                              ... finished 60000 ops                              ... finished 70000 ops                              ... finished 80000 ops                              ... finished 90000 ops                              ... finished 100000 ops                              ... finished 150000 ops                              ... finished 200000 ops                              ... finished 250000 ops                              ... finished 300000 ops                              ... finished 350000 ops                              ... finished 400000 ops                              ... finished 450000 ops                              ... finished 500000 ops                              ... finished 600000 ops                              ... finished 700000 ops                              ... finished 800000 ops                              ... finished 900000 ops                              ... finished 1000000 ops                              
+
+Thread 0: Done replaying 1000000 operations.
+YCSB splitup: R = 0, D = 0, I = 50489, U = 0, S = 949511
+LevelDB/WiscKey splitup: P = 50489, G = 0, D = 0, ItSeek = 949511, ItNext = 47931167
+Thread 0: Time taken = 56.204 seconds
+Thread 0: Total data: YCSB = 48.390170 GB, HyperLevelDB = 48.390170 GB
+Thread 0: Ops/s = 17.375 Kops/s
+Thread 0: YCSB throughput = 881.643016 MB/s
+Thread 0: HyperLevelDB throughput = 881.643016 MB/s
+memtable_read: timing = 0 nanoseconds
+imm_memtable_read: timing = 0 nanoseconds
+file_read: timing = 38320919776 nanoseconds
+file_open_during_read: timing = 234179260 nanoseconds
+file_close_during_read: timing = 235715566 nanoseconds
+get_files: timing = 0 nanoseconds
+after_get_files: timing = 0 nanoseconds
+find_table: timing = 0 nanoseconds
+block_reader: timing = 0 nanoseconds
+read_block: timing = 41214820982 nanoseconds
+insert_block_cache: timing = 2806517739 nanoseconds
+new_iterator: timing = 604240948 nanoseconds
+
+                               Compactions
+Level  Files Size(MB) Time(sec) Read(MB) Write(MB)
+--------------------------------------------------
+  0        0        0         0        0         4
+  1        0        0         0       20        71
+  2        3       71         3     1402      1401
+  3       19      970        24     8871      8871
+  4        1       65         0        0         0
+
+ycsb         :      56.600 micros/op;
+----------------------Current DB state-----------------------
+
+-------------------------------------------------------------
+memtable_read: timing = 0 nanoseconds
+imm_memtable_read: timing = 0 nanoseconds
+file_read: timing = 38320957318 nanoseconds
+file_open_during_read: timing = 234179380 nanoseconds
+file_close_during_read: timing = 235715700 nanoseconds
+get_files: timing = 0 nanoseconds
+after_get_files: timing = 0 nanoseconds
+find_table: timing = 0 nanoseconds
+block_reader: timing = 0 nanoseconds
+read_block: timing = 41214862562 nanoseconds
+insert_block_cache: timing = 2806517872 nanoseconds
+new_iterator: timing = 604241234 nanoseconds
+
+                               Compactions
+Level  Files Size(MB) Time(sec) Read(MB) Write(MB)
+--------------------------------------------------
+  0        0        0         0        0         4
+  1        0        0         0       20        71
+  2        3       71         3     1402      1401
+  3       19      970        24     8871      8871
+  4        1       65         0        0         0
+
+printdb      :      14.000 micros/op;
+NVP_MSG (8137): exit handler
+NVP_MSG (8137): Exit: print stats
+NVP_MSG (8137): ====================== NVP IO stats: ======================
+NVP_MSG (8137): open 477, close 471, async close 0
+NVP_MSG (8137): mmap 118, unlink 221, stat 221
+NVP_MSG (8137): dr mmap 56, dr mmap critical path 0
+NVP_MSG (8137): fsync 262, appendfsync: count 315 size 0 average 0
+NVP_MSG (8137): READ: count 14665307, size 64125705705, average 4372
+NVP_MSG (8137): WRITE: count 2644900, size 11509435912, average 4351
+NVP_MSG (8137): memcpy READ: count 14573294, size 63730933390, average 4373
+NVP_MSG (8137): anon READ: count 0, size 0, average 0
+NVP_MSG (8137): memcpy WRITE: count 2644906, size 11510860675, average 4352
+NVP_MSG (8137): anon WRITE: count 2644895, size 11510778344, average 4352
+NVP_MSG (8137): posix READ: count 55763, size 260403848, average 4669
+NVP_MSG (8137): posix WRITE: count 0, size 0, average 0
+NVP_MSG (8137): write extends 2644923, total 2644998
+NVP_MSG (8137): MFENCE: count 0
+NVP_MSG (8137): CLFLUSHOPT: count 0
+NVP_MSG (8137): NON_TEMPORAL_WRITES: count 2638039, size 11491436549, average 4356
+NVP_MSG (8137): TEMPORAL WRITES: count 0, size 0, average 0
+NVP_MSG (8137): TOTAL SYSCALLS (open + close + read + write + fsync): count 56711
+NVP_MSG (8137): calling cleanup
+NVP_MSG (8137): nvp_cleanup: Done Cleaning up

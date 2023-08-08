@@ -21,7 +21,7 @@ for file_system in "${FILE_SYSTEMS[@]}"; do
             sed_cmd='s/set $nthreads=.*$/set $nthreads='$thread'/g' 
             sed -i "$sed_cmd" "$ABS_PATH"/DATA/"$fbench"/"$thread"
 
-            if [[ "${file_system}" == "SplitFS-FILEBENCh" ]]; then
+            if [[ "${file_system}" == "SplitFS-FILEBENCH" ]]; then
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
                 export LD_LIBRARY_PATH="$BOOST_DIR"
                 export NVP_TREE_FILE="$BOOST_DIR"/bin/nvp_nvp.tree

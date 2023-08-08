@@ -1,7 +1,0 @@
-Obtained 6 stack frames.
-/home/zyf/tests/tools/realworld/tpcc/../../../../splitfs/splitfs/libnvp.so(print_trace+0x18) [0x7f81e3305a68]
-/home/zyf/tests/tools/realworld/tpcc/../../../../splitfs/splitfs/libnvp.so(_hub_add_and_resolve_fileops_tree_from_file+0x12f) [0x7f81e330061f]
-/home/zyf/tests/tools/realworld/tpcc/../../../../splitfs/splitfs/libnvp.so(_hub_init2+0x8cf) [0x7f81e33019ef]
-/lib64/ld-linux-x86-64.so.2(+0xf8ba) [0x7f81e351b8ba]
-/lib64/ld-linux-x86-64.so.2(+0xf9ba) [0x7f81e351b9ba]
-/lib64/ld-linux-x86-64.so.2(+0xfda) [0x7f81e350cfda]

@@ -22,7 +22,7 @@ do
                 bash "$TOOLS_PATH"/setup.sh "KILLER" "dev" "0"
             elif [[ "${file_system}" == "KILLER-FAIL" ]]; then
                 # format the disk first, or garbage occurs. 
-                bash "$TOOLS_PATH"/killer-formater/mkfs.killer.sh pmem0
+                # bash "$TOOLS_PATH"/killer-formater/mkfs.killer.sh pmem0
                 bash "$TOOLS_PATH"/setup.sh "KILLER" "killer-failure" "0"
             elif [[ "${file_system}" == "NOVA-FAIL" ]]; then
                 bash "$TOOLS_PATH"/setup.sh "NOVA" "failure-recovery" "0"

@@ -20,15 +20,15 @@ function compile_splitfs () {
     make -e -j"$(nproc)"
 
     sudo umount /mnt/pmem0
-    sudo rmmod ext4relink
+    # sudo rmmod ext4relink
 
-    cd "$EXT4RELINK_PATH" || exit
-    make -j32
-    sudo insmod ext4relink.ko
-    cd - || exit
+    # cd "$EXT4RELINK_PATH" || exit
+    # make -j32
+    # sudo insmod ext4relink.ko
+    # cd - || exit
 
     sudo mkfs.ext4 -F -b 4096 /dev/pmem0
-    sudo mount -t ext4relink -o dax /dev/pmem0 /mnt/pmem0
+    sudo mount -o dax /dev/pmem0 /mnt/pmem0
 }
 
 if [ ! $1 ] || [ ! $2 ]; then

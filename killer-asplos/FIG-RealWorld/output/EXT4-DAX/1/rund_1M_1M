@@ -1,0 +1,74 @@
+LevelDB:    version 1.20
+Date:       Tue Aug  8 09:56:33 2023
+CPU:        32 * Intel(R) Xeon(R) Gold 5218 CPU @ 2.30GHz
+CPUCache:   22528 KB
+Keys:       16 bytes each
+Values:     1024 bytes each (1024 bytes after compression)
+Entries:    10000000
+RawSize:    9918.2 MB (estimated)
+FileSize:   9918.2 MB (estimated)
+WARNING: Snappy compression is not enabled
+------------------------------------------------
+Thread 0: Parsing trace ...
+Thread 0: Done parsing, 1000000 operations.
+Thread 0: Replaying trace ...
+
+Completed 0 ops... finished 100 ops                              ... finished 200 ops                              ... finished 300 ops                              ... finished 400 ops                              ... finished 500 ops                              ... finished 600 ops                              ... finished 700 ops                              ... finished 800 ops                              ... finished 900 ops                              ... finished 1000 ops                              ... finished 1500 ops                              ... finished 2000 ops                              ... finished 2500 ops                              ... finished 3000 ops                              ... finished 3500 ops                              ... finished 4000 ops                              ... finished 4500 ops                              ... finished 5000 ops                              ... finished 6000 ops                              ... finished 7000 ops                              ... finished 8000 ops                              ... finished 9000 ops                              ... finished 10000 ops                              ... finished 15000 ops                              ... finished 20000 ops                              ... finished 25000 ops                              ... finished 30000 ops                              ... finished 35000 ops                              ... finished 40000 ops                              ... finished 45000 ops                              ... finished 50000 ops                              ... finished 60000 ops                              ... finished 70000 ops                              ... finished 80000 ops                              ... finished 90000 ops                              ... finished 100000 ops                              ... finished 150000 ops                              ... finished 200000 ops                              ... finished 250000 ops                              ... finished 300000 ops                              ... finished 350000 ops                              ... finished 400000 ops                              ... finished 450000 ops                              ... finished 500000 ops                              ... finished 600000 ops                              ... finished 700000 ops                              ... finished 800000 ops                              ... finished 900000 ops                              ... finished 1000000 ops                              
+
+Thread 0: Done replaying 1000000 operations.
+YCSB splitup: R = 950093, D = 0, I = 49907, U = 0, S = 0
+LevelDB/WiscKey splitup: P = 49907, G = 950093, D = 0, ItSeek = 0, ItNext = 0
+Thread 0: Time taken = 4.638 seconds
+Thread 0: Total data: YCSB = 0.938771 GB, HyperLevelDB = 0.938771 GB
+Thread 0: Ops/s = 210.569 Kops/s
+Thread 0: YCSB throughput = 207.278723 MB/s
+Thread 0: HyperLevelDB throughput = 207.278723 MB/s
+memtable_read: timing = 389783491 nanoseconds
+imm_memtable_read: timing = 16833016 nanoseconds
+file_read: timing = 2474848776 nanoseconds
+file_open_during_read: timing = 8481324 nanoseconds
+file_close_during_read: timing = 8472860 nanoseconds
+get_files: timing = 74601680 nanoseconds
+after_get_files: timing = 2926352705 nanoseconds
+find_table: timing = 0 nanoseconds
+block_reader: timing = 2137365455 nanoseconds
+read_block: timing = 2602152820 nanoseconds
+insert_block_cache: timing = 85281861 nanoseconds
+new_iterator: timing = 21354354 nanoseconds
+
+                               Compactions
+Level  Files Size(MB) Time(sec) Read(MB) Write(MB)
+--------------------------------------------------
+  0        2        8         0        0        40
+  1        1        4         0       36        47
+  2        2       37         0       40        40
+  3       16      920         3      653       653
+  4        2      127         0        0         0
+
+ycsb         :       4.951 micros/op;
+----------------------Current DB state-----------------------
+
+-------------------------------------------------------------
+memtable_read: timing = 389783491 nanoseconds
+imm_memtable_read: timing = 16833016 nanoseconds
+file_read: timing = 2474877032 nanoseconds
+file_open_during_read: timing = 8481373 nanoseconds
+file_close_during_read: timing = 8472911 nanoseconds
+get_files: timing = 74601680 nanoseconds
+after_get_files: timing = 2926352705 nanoseconds
+find_table: timing = 0 nanoseconds
+block_reader: timing = 2137365455 nanoseconds
+read_block: timing = 2602181803 nanoseconds
+insert_block_cache: timing = 85281911 nanoseconds
+new_iterator: timing = 21354497 nanoseconds
+
+                               Compactions
+Level  Files Size(MB) Time(sec) Read(MB) Write(MB)
+--------------------------------------------------
+  0        2        8         0        0        40
+  1        1        4         0       36        47
+  2        2       37         0       40        40
+  3       16      920         3      653       653
+  4        2      127         0        0         0
+
+printdb      :      12.000 micros/op;

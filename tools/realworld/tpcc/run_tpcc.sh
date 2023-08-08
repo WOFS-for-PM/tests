@@ -4,13 +4,14 @@ source "../../common.sh"
 ABS_PATH=$(where_is_script "$0")
 TOOLS_PATH=$ABS_PATH/../../../tools
 OUTPUT="$ABS_PATH/output"
-TCPP="/usr/local/tpcc-sqlite"
-WORKLOAD=$TCPP/database
+TPCC="/usr/local/tpcc-sqlite"
+WORKLOAD=$TPCC/database
 SRC_DIR=$ABS_PATH/../../../../splitfs
 BOOST_DIR=$SRC_DIR/splitfs
 
 
-FILE_SYSTEMS=("NOVA" "NOVA-RELAX" "PMFS" "KILLER")
+# FILE_SYSTEMS=("NOVA" "NOVA-RELAX" "PMFS" "KILLER")
+FILE_SYSTEMS=("PMFS" "KILLER")
 
 tac_num=20000
 
@@ -32,7 +33,7 @@ for file_system in "${FILE_SYSTEMS[@]}"; do
 
         #3 run tpcc
         #-w|WAREHOUSES| -c|CONNECTIONS| -t|TRANSACTION_NUM|
-        LD_PRELOAD=$BOOST_DIR/libnvp.so $TCPP/tpcc_start -w 4 -c 1 -t $tac_num  > $OUTPUT/$file_system
+        LD_PRELOAD=$BOOST_DIR/libnvp.so $TPCC/tpcc_start -w 4 -c 1 -t $tac_num  > $OUTPUT/$file_system
     else
         #1, setup fs   
         if [[ "${file_system}" == "KILLER" ]]; then 
@@ -45,7 +46,7 @@ for file_system in "${FILE_SYSTEMS[@]}"; do
         cp $WORKLOAD/tpcc.db /mnt/pmem0 && sync
 
         #3 run tpcc
-        $TCPP/tpcc_start -w 4 -c 1 -t $tac_num > $OUTPUT/$file_system
+        $TPCC/tpcc_start -w 4 -c 1 -t $tac_num > $OUTPUT/$file_system
     fi
 
     echo Sleeping for 2 seconds . .
