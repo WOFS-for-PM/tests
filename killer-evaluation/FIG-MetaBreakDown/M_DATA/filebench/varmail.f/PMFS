@@ -1,0 +1,69 @@
+MediaReads 28159302912
+MediaWrites 12646393344
+[69688.412781] ======== PMFS kernel timing stats ========
+[69688.412783] create: count 937704, timing 12961850911, average 13822
+[69688.412783] lookup: count 10004, timing 162862237, average 16279
+[69688.412784] unlink: count 929725, timing 13031820097, average 14016
+[69688.412784] readdir: count 0, timing 0, average 0
+[69688.412786] xip_read: count 3718699, timing 5855368342, average 1574
+[69688.412786] xip_write: count 1867014, timing 11363799518, average 6086
+[69688.412787] xip_write_fast: count 461995, timing 422651186, average 914
+[69688.412787] internal_write: count 1405019, timing 3358838629, average 2390
+[69688.412788] memcpy_read: count 2398609, timing 3619556118, average 1509
+[69688.412788] memcpy_write: count 2386585, timing 1883145771, average 789
+[69688.412789] alloc_blocks: count 1405072, timing 1853585811, average 1319
+[69688.412789] new_trans: count 4202178, timing 6183413842, average 1471
+[69688.412790] add_logentry: count 12606540, timing 3722347920, average 295
+[69688.412790] commit_trans: count 4202178, timing 2749193088, average 654
+[69688.412791] mmap_fault: count 0, timing 0, average 0
+[69688.412791] fsync: count 1859450, timing 39224104, average 21
+[69688.412791] free_tree: count 929723, timing 1735286653, average 1866
+[69688.412792] evict_inode: count 937709, timing 5112186283, average 5451
+[69688.412792] recovery: count 0, timing 0, average 0
+[69688.412793] find_block: count 65250847, timing 6070033367, average 93
+[69688.412794] read_meta_block: count 20115572, timing 900494949, average 44
+[69688.412794] write_meta_block: count 1002473, timing 27287203, average 27
+[69688.412795] read_pi_i_blk_type: count 3803282, timing 244586276, average 64
+[69688.412795] read_pi_height: count 133327080, timing 2108302122, average 15
+[69688.412795] read_pi_i_blocks: count 1405070, timing 21256615, average 15
+[69688.412796] read_pi_i_flags: count 0, timing 0, average 0
+[69688.412796] read_pi_attr: count 937709, timing 14351010, average 15
+[69688.412797] read_pi: count 1, timing 312, average 312
+[69688.412797] check_pi_free: count 0, timing 0, average 0
+[69688.412798] write_pi_time_and_size: count 461995, timing 94766375, average 205
+[69688.412798] write_pi_time: count 3272452, timing 136893777, average 41
+[69688.412799] write_pi_size: count 4, timing 64, average 16
+[69688.412799] write_pi_root: count 1401006, timing 25720800, average 18
+[69688.412800] write_pi_height: count 1401006, timing 710674211, average 507
+[69688.412800] write_pi_i_blocks: count 1460925, timing 22924822, average 15
+[69688.412801] write_pi_links: count 8, timing 147, average 18
+[69688.412801] write_pi: count 1867433, timing 247450049, average 132
+[69688.412802] pmfs_clean_journal: count 2790, timing 4088799291, average 1465519
+[69688.412802] new_trans_alloc_tail: count 4202178, timing 68702670, average 16
+[69688.412803] read_trans_tail: count 4202178, timing 895350941, average 213
+[69688.412803] read_trans_head: count 4202178, timing 63706012, average 15
+[69688.412804] read_trans_base: count 4202527, timing 63419841, average 15
+[69688.412804] read_trans_genid: count 44844460, timing 1742611473, average 38
+[69688.412804] read_trans_type: count 27088496, timing 409348467, average 15
+[69688.412805] write_trans_genid: count 0, timing 0, average 0
+[69688.412805] write_log_entry: count 8404362, timing 988424589, average 117
+[69688.412806] read_journal_head: count 2790, timing 651671, average 233
+[69688.412806] write_journal_head: count 2790, timing 205447, average 73
+[69688.412807] read_journal_tail: count 2790, timing 76957, average 27
+[69688.412807] read_genid: count 2790, timing 95652, average 34
+[69688.412808] read_dentry: count 24949259, timing 15511052633, average 621
+[69688.412808] write_dentry: count 2800709, timing 117623373, average 41
+[69688.412809] add_truncate_item: count 0, timing 0, average 0
+[69688.412809] write_data: count 2386585, timing 1883145771, average 789
+[69688.412810] read_data: count 3718699, timing 5718296698, average 1537
+[69688.412812] pmfs: =========== PMFS meta_trace stats ============
+[69688.412813] pmfs: meta_read: 30409765929
+[69688.412813] pmfs: meta_write: 2764687460
+[69688.412813] pmfs: data_read: 6032056992
+[69688.412814] pmfs: data_write: 4071113458
+[69688.412814] pmfs: meta_time: 24415978458
+[69688.412814] pmfs: meta_times: 295363523
+[69688.412815] pmfs: data_write_time: 1883145771
+[69688.412815] pmfs: data_read_time: 3619556118
+[69688.412815] pmfs: COW_time: 11363799518
+[69688.412816] pmfs: read_time: 5718296698

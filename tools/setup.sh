@@ -178,6 +178,13 @@ case "${fs}" in
         export LEDGER_FIO=1
         compile_splitfs 
     ;;
+    "SplitFS-FIO-STRICT")
+        cd "$SPLITFS_PATH" || exit
+        export LEDGER_DATAJ=1
+        export LEDGER_POSIX=0
+        export LEDGER_FIO=1
+        compile_splitfs 
+    ;;
     "SplitFS-FILEBENCH")
         cd "$SPLITFS_PATH" || exit
         export LEDGER_DATAJ=0
@@ -185,10 +192,24 @@ case "${fs}" in
         export LEDGER_FILEBENCH=1 
         compile_splitfs
     ;;
+    "SplitFS-FILEBENCH-STRICT")
+        cd "$SPLITFS_PATH" || exit
+        export LEDGER_DATAJ=1
+        export LEDGER_POSIX=0
+        export LEDGER_FILEBENCH=1 
+        compile_splitfs
+    ;;
     "SplitFS-YCSB")
         cd "$SPLITFS_PATH" || exit
         export LEDGER_DATAJ=0
         export LEDGER_POSIX=1
+        export LEDGER_YCSB=1
+        compile_splitfs
+    ;;
+    "SplitFS-YCSB-STRICT")
+        cd "$SPLITFS_PATH" || exit
+        export LEDGER_DATAJ=1
+        export LEDGER_POSIX=0
         export LEDGER_YCSB=1
         compile_splitfs
     ;;

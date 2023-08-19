@@ -1,0 +1,9 @@
+file_system num_job fill_seq(MB/s) fillrandom(MB/s) appendrandom(MB/s) updaterandom(MB/s)
+NOVA 1 242.2 199.4 271.9 228.4
+NOVA-RELAX 1 322.7 255.2 324.7 282.9
+PMFS 1 451.7 288.6 366.3 358.3
+KILLER 1 569.2 393.8 462.0 430.3
+SplitFS-FIO 1 0 0 0 0
+EXT4-DAX 1 84.6 75.6 117.6 96.5
+XFS-DAX 1 124.6 105.3 158.4 129.3
+
