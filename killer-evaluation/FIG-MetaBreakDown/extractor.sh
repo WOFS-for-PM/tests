@@ -124,11 +124,11 @@ function extract_killer_IO_time_from_output() {
 
 function extract_killer_update_package_time_from_output() {
     local output="$1"
-    create_inode_package=$(killer_attr_time "create_inode_package" "$output")
-    create_data_package=$(killer_attr_time "create_data_package" "$output")
+    create_inode_package=$(killer_attr_time "transaction_new_inode" "$output")
+    create_data_package=$(killer_attr_time "transaction_new_data" "$output")
     update_data_package=$(killer_attr_time "update_data_package" "$output")
-    create_unlink_package=$(killer_attr_time "create_unlink_package" "$output")
-    create_attr_package=$(killer_attr_time "create_attr_package" "$output")
+    create_unlink_package=$(killer_attr_time "transaction_new_unlink" "$output")
+    create_attr_package=$(killer_attr_time "transaction_new_attr" "$output")
     
     echo $((create_inode_package+create_data_package+update_data_package+create_unlink_package+create_attr_package))
 }

@@ -7,7 +7,8 @@ source "./extractor.sh"
 ABS_PATH=$(where_is_script "$0")
 TOOLS_PATH=$ABS_PATH/../../tools
 
-FILE_SYSTEMS=( "NOVA" "PMFS" "KILLER")
+# FILE_SYSTEMS=( "NOVA" "PMFS" "KILLER")
+FILE_SYSTEMS=( "KILLER" )
 WORKLOADS=("write" "read" "randwrite")
 FILE_SIZE="32G"
 

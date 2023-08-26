@@ -16,7 +16,8 @@ TABLE_NAME_PMFS="$ABS_PATH/performance-comparison-table-PMFS"
 
 TABLE_NAME_KILLER="$ABS_PATH/performance-comparison-table-KILLER"
 
-FILE_SYSTEMS=("NOVA" "PMFS" "KILLER")
+# FILE_SYSTEMS=("NOVA" "PMFS" "KILLER")
+FILE_SYSTEMS=( "KILLER" )
 WORKLOADS=("fileserver.f" "varmail.f" "webserver.f" "webproxy.f")
 THREAD=1
 mkdir -p "$ABS_PATH"/M_DATA/filebench
