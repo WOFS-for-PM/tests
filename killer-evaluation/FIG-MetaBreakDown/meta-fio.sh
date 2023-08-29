@@ -7,8 +7,7 @@ source "./extractor.sh"
 ABS_PATH=$(where_is_script "$0")
 TOOLS_PATH=$ABS_PATH/../../tools
 
-# FILE_SYSTEMS=( "NOVA" "PMFS" "KILLER")
-FILE_SYSTEMS=( "KILLER" )
+FILE_SYSTEMS=( "NOVA" "PMFS" "KILLER")
 WORKLOADS=("write" "read" "randwrite")
 FILE_SIZE="32G"
 
@@ -29,35 +28,35 @@ PMEM_ID=$(get_pmem_id_by_name "pmem0")
 
 for file_system in "${FILE_SYSTEMS[@]}"; do
     for workload in "${WORKLOADS[@]}"; do
-        if [[ "${file_system}" == "NOVA" ]]; then
-            bash "$TOOLS_PATH"/setup.sh "$file_system" "meta-trace" "1"
-        elif [[ "${file_system}" == "PMFS" ]]; then
-            bash "$TOOLS_PATH"/setup.sh "$file_system" "meta-trace" "1"
-        elif [[ "${file_system}" == "KILLER" ]]; then
-            bash "$TOOLS_PATH"/setup.sh "$file_system" "meta-trace" "1"
-        else
-            echo  file_system_type: $file_system
-            continue
-        fi
+        # if [[ "${file_system}" == "NOVA" ]]; then
+        #     bash "$TOOLS_PATH"/setup.sh "$file_system" "meta-trace" "1"
+        # elif [[ "${file_system}" == "PMFS" ]]; then
+        #     bash "$TOOLS_PATH"/setup.sh "$file_system" "meta-trace" "1"
+        # elif [[ "${file_system}" == "KILLER" ]]; then
+        #     bash "$TOOLS_PATH"/setup.sh "$file_system" "meta-trace" "1"
+        # else
+        #     echo  file_system_type: $file_system
+        #     continue
+        # fi
 
-        measure_start ${PMEM_ID}
+        # measure_start ${PMEM_ID}
 
-        BW=$(sudo fio -filename=/mnt/pmem0/test -fallocate=none -direct=0 -iodepth 1 -rw=$workload \
-        -ioengine=sync -bs="4k" -thread -numjobs=1 -size=$FILE_SIZE -name=test \
-        | grep WRITE: | awk '{print $2}' | sed 's/bw=//g')
+        # BW=$(sudo fio -filename=/mnt/pmem0/test -fallocate=none -direct=0 -iodepth 1 -rw=$workload \
+        # -ioengine=sync -bs="4k" -thread -numjobs=1 -size=$FILE_SIZE -name=test \
+        # | grep WRITE: | awk '{print $2}' | sed 's/bw=//g')
 
-        mkdir -p "$ABS_PATH"/M_DATA/fio/${workload}
+        # mkdir -p "$ABS_PATH"/M_DATA/fio/${workload}
 
-        measure_end ${PMEM_ID} > "$ABS_PATH"/M_DATA/fio/${workload}/${file_system}
+        # measure_end ${PMEM_ID} > "$ABS_PATH"/M_DATA/fio/${workload}/${file_system}
 
-        dmesg -c
+        # dmesg -c
 
-        sudo umount /mnt/pmem0
+        # sudo umount /mnt/pmem0
 
-        echo sleep for 1 sec
-        sleep 1
+        # echo sleep for 1 sec
+        # sleep 1
 
-        sudo dmesg >> "$ABS_PATH"/M_DATA/fio/${workload}/${file_system}
+        # sudo dmesg >> "$ABS_PATH"/M_DATA/fio/${workload}/${file_system}
         sed -i 's/\[\s*\([0-9]\)/[\1/g' "$ABS_PATH"/M_DATA/fio/${workload}/${file_system} 
 
         meta_read=$(extract_software_IO_from_output "$ABS_PATH"/M_DATA/fio/${workload}/${file_system} "meta_read")

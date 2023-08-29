@@ -73,10 +73,9 @@ function extract_pmfs_IO_time_from_output() {
 
 function extract_pmfs_update_index_time_from_output() {
     local output="$1"
-    find=$(pmfs_attr_time "find_block" "$output")
     read=$(pmfs_attr_time "read_meta_block" "$output")
     write=$(pmfs_attr_time "write_meta_block" "$output")
-    echo $(( find + read + write ))    
+    echo $(( read + write ))    
 }
 
 function extract_pmfs_update_inode_time_from_output() {
@@ -101,10 +100,22 @@ function extract_pmfs_update_inode_time_from_output() {
 
 function extract_pmfs_journal_time_from_output() {
     local output="$1"
-    new_trans=$(pmfs_attr_time "new_trans" "$output")
-    add_logentry=$(pmfs_attr_time "add_logentry" "$output")
-    commit_trans=$(pmfs_attr_time "commit_trans" "$output")
-    echo $((new_trans + add_logentry + commit_trans)) 
+    
+    new_trans_alloc_tail=$(pmfs_attr_time "new_trans_alloc_tail" "$output")
+	read_trans=$(pmfs_attr_time "read_trans" "$output")
+	read_trans_tail=$(pmfs_attr_time "read_trans_tail" "$output")
+	read_trans_head=$(pmfs_attr_time "read_trans_head" "$output")
+	read_trans_base=$(pmfs_attr_time "read_trans_base" "$output")
+	read_trans_genid=$(pmfs_attr_time "read_trans_genid" "$output")
+	read_trans_type=$(pmfs_attr_time "read_trans_type" "$output")
+	write_trans_genid=$(pmfs_attr_time "write_trans_genid" "$output")
+	write_log_entry=$(pmfs_attr_time "write_log_entry" "$output")
+	read_journal_head=$(pmfs_attr_time "read_journal_head" "$output")
+	write_journal_head=$(pmfs_attr_time "write_journal_head" "$output")
+	read_journal_tail=$(pmfs_attr_time "read_journal_tail" "$output")
+	read_genid=$(pmfs_attr_time "read_genid" "$output")
+    
+    echo $((new_trans_alloc_tail+read_trans+read_trans_tail+read_trans_head+read_trans_base+read_trans_genid+read_trans_type+write_trans_genid+write_log_entry+read_journal_head+write_journal_head+read_journal_tail+read_genid)) 
 }
 
 function extract_pmfs_update_dentry_time_from_output() {
