@@ -1,0 +1,97 @@
+=========== HUNTER kernel timing stats ===========
+
+================ Initialization ================
+
+init: count 1, timing 138087, average 138087
+mount: count 1, timing 5828768651, average 5828768651
+ioremap: count 0, timing 0, average 0
+new_init: count 1, timing 5828088999, average 5828088999
+recovery: count 0, timing 0, average 0
+
+============= Directory operations =============
+
+create: count 1, timing 33263, average 33263
+lookup: count 1, timing 517, average 517
+link: count 0, timing 0, average 0
+unlink: count 0, timing 0, average 0
+symlink: count 0, timing 0, average 0
+mkdir: count 0, timing 0, average 0
+rmdir: count 0, timing 0, average 0
+mknod: count 0, timing 0, average 0
+rename: count 0, timing 0, average 0
+readdir: count 0, timing 0, average 0
+add_dentry: count 1, timing 5004, average 5004
+remove_dentry: count 0, timing 0, average 0
+setattr: count 0, timing 0, average 0
+setsize: count 0, timing 0, average 0
+
+================ I/O operations ================
+
+dax_read: count 0, timing 0, average 0
+do_cow_write: count 0, timing 0, average 0
+cow_write: count 0, timing 0, average 0
+inplace_write: count 0, timing 0, average 0
+copy_to_nvmm: count 0, timing 0, average 0
+dax_get_block: count 0, timing 0, average 0
+read_iter: count 0, timing 0, average 0
+write_iter: count 0, timing 0, average 0
+wrap_iter: count 0, timing 0, average 0
+write: count 16777216, timing 38090173039, average 2270
+
+============== Memory operations ===============
+
+memcpy_read_nvmm: count 0, timing 0, average 0
+memcpy_write_nvmm: count 16777216, timing 24384897389, average 1453
+handle_partial_block: count 16777216, timing 536917017, average 32
+
+============== Memory management ===============
+
+alloc_blocks: count 16777217, timing 2754869058, average 164
+free_blocks: count 0, timing 0, average 0
+
+================ Miscellaneous =================
+
+find_cache_page: count 0, timing 0, average 0
+fsync: count 16777215, timing 8046626735, average 479
+write_pages: count 0, timing 0, average 0
+fallocate: count 0, timing 0, average 0
+direct_IO: count 0, timing 0, average 0
+free_old_entry: count 0, timing 0, average 0
+delete_file_tree: count 0, timing 0, average 0
+delete_dir_tree: count 0, timing 0, average 0
+new_vfs_inode: count 1, timing 24799, average 24799
+new_hk_inode: count 1, timing 974, average 974
+free_inode: count 0, timing 0, average 0
+free_inode_log: count 0, timing 0, average 0
+evict_inode: count 0, timing 0, average 0
+test_perf: count 0, timing 0, average 0
+wprotect: count 0, timing 0, average 0
+
+=================== Rebuild ====================
+
+rebuild_dir: count 0, timing 0, average 0
+rebuild_file: count 1, timing 21744, average 21744
+rebuild_snapshot_table: count 0, timing 0, average 0
+
+=================== Meta ===================
+
+valid_summary_header: count 16777216, timing 4393610953, average 261
+invalid_summary_header: count 0, timing 0, average 0
+delete_summary_header: count 0, timing 0, average 0
+update_summary_header: count 0, timing 0, average 0
+delegate_data_valid: count 16777216, timing 525158794, average 31
+delegate_data_invalid: count 0, timing 0, average 0
+delegate_data_delete: count 0, timing 0, average 0
+delegate_data_update: count 0, timing 0, average 0
+process_data_info: count 16777215, timing 6149717904, average 366
+process_new_inode_info: count 1, timing 5462, average 5462
+process_unlink_inode_info: count 0, timing 0, average 0
+process_delete_inode_info: count 0, timing 0, average 0
+process_close_inode_info: count 0, timing 0, average 0
+flush_cmt: count 0, timing 0, average 0
+
+=================== LinIX ===================
+
+linix_set: count 16777217, timing 582059464, average 34
+linix_get: count 67108809, timing 2318166707, average 34
+

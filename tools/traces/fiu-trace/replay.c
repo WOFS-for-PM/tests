@@ -59,6 +59,7 @@ unsigned long max_size;
 unsigned long max_continuous_4K_blks = 1; // 4KiB as default
 int threads = 1;
 int verbose = 0;
+int enable_fsync = 0;
 int do_write = 1;
 int do_read = 0;
 
@@ -75,6 +76,7 @@ void usage()
     printf("-m [fiu|hitsz|fiu-no-content]   <trace file format, default is fiu>\n");
     printf("-r path                         <dump read content into directory, for debug purpose>\n");
     printf("-v                              <enable verbose?>\n");
+    printf("-s                              <enable fsync?>\n");
     printf("Basic Usage:   ./replay -f homes-sample.blkparse -d /mnt/pmem0/ -o rw -g null -t 1 -c 1\n");
     printf("Advance Usage: ./replay -f homes-sample.blkparse -d /mnt/pmem0/ -o rw -g null -t 1 -c 1 -r /mnt/tmp1/ -m fiu -v\n");
     printf("Simple Usage-1:  ./replay -f homes-sample.blkparse -d /mnt/pmem0/\n");
@@ -429,6 +431,14 @@ void *syscall_replay_worker(void *arg)
                 ret = close(fd);
                 check_ret(ret, 0, "close");
                 hashmap_remove(map, &info->fid, sizeof(unsigned long *));
+            }
+            break;
+        case 'S':
+            if (enable_fsync) {
+                if (hashmap_get(map, &info->fid, sizeof(unsigned long *), (uintptr_t *)&fd)) {
+                    ret = fsync(fd);
+                    check_ret(ret, 0, "fsync");
+                }
             }
             break;
         default:
@@ -822,6 +832,8 @@ unsigned long parse_trace_info(FILE *src_fp, struct trace_info **infos, int mode
                     info->rw = 'O';
                 } else if (memcmp(operation, "CLOSE", 5) == 0) {
                     info->rw = 'C';
+                } else if (memcmp(operation, "FSYNC", 5) == 0 || memcmp(operation, "FDATASYNC", 9) == 0) {
+                    info->rw = 'S';
                 } else {
                     info->rw = 'X';
                 }
@@ -847,7 +859,7 @@ int prefault(void *start, unsigned long len)
 
 int main(int argc, char **argv)
 {
-    char *optstring = "f:d:o:g:t:c:vhm:r:";
+    char *optstring = "f:d:o:g:t:c:vhsm:r:";
     int opt;
     FILE *src_fp;
     char filepath[MAX_NAME_LEN] = {0};
@@ -909,6 +921,9 @@ int main(int argc, char **argv)
             break;
         case 'v':
             verbose = 1;
+            break;
+        case 's':
+            enable_fsync = 1;
             break;
         case 'm':
             strcpy(tmp_str, optarg);

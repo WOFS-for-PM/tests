@@ -113,6 +113,15 @@ case "${fs}" in
             bash setup.sh "$CONFIGS_PATH"/hunter/config.nowprotect.json
         fi
     ;;
+    "HUNTER-J")
+        cd "$HUNTER_PATH" || exit
+        git checkout "$branch"
+        if (( measure_timing == 1 )); then
+            bash setup.sh "$CONFIGS_PATH"/hunter-j/config.mt.nowprotect.json
+        else
+            bash setup.sh "$CONFIGS_PATH"/hunter-j/config.nowprotect.json
+        fi
+    ;;
     "HUNTER-SYNC")
         cd "$HUNTER_PATH" || exit
         git checkout "$branch"
@@ -150,6 +159,26 @@ case "${fs}" in
             bash setup.sh "$CONFIGS_PATH"/killer/config.mt.nowprotect.json
         else
             bash setup.sh "$CONFIGS_PATH"/killer/config.nowprotect.json
+        fi
+    ;;
+    "KILLER-NO-PREFETCH")
+        cd "$HUNTER_PATH" || exit
+        git checkout "$branch"
+        if (( measure_timing == 1 )); then
+            # 0: disable prefetching
+            # 512: huge allocation block number
+            bash setup.sh "$CONFIGS_PATH"/killer/config.mt.nowprotect.json 0 512
+        else
+            bash setup.sh "$CONFIGS_PATH"/killer/config.nowprotect.json 0 512
+        fi
+    ;;
+    "KILLER-NAIVE")
+        cd "$HUNTER_PATH" || exit
+        git checkout "$branch"
+        if (( measure_timing == 1 )); then
+            bash setup.sh "$CONFIGS_PATH"/killer/config.mt.nowprotect.json 0 1
+        else
+            bash setup.sh "$CONFIGS_PATH"/killer/config.nowprotect.json 0 1
         fi
     ;;
     "KILLER-NOHISTORY")

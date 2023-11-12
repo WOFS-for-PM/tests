@@ -5,6 +5,7 @@ import psutil
 
 
 MNT_PATH = "/mnt/pmem0/"
+fsync = False
 output = 1      #output
 pid = 0
 
@@ -70,6 +71,9 @@ def replay(syscall):
             raise Exception("len: ", len, "ret: ", ret)
 
     elif op == "FDATASYNC" or op == "FSYNC":
+        if fsync:
+            if name in OPEN_FILE:
+                posix.fsync(OPEN_FILE[name])
         return                                 #ignore
 
     else:
@@ -85,10 +89,12 @@ def replay_file(trace_file):
             if output and i % 1_000_000 == 0:
                 print(i)
     
-#python3 replay.py /usr/local/trace/facebook /mnt/pmem0/
+#python3 replay.py /usr/local/trace/facebook/trace.syscalltrace /mnt/pmem0/
 if __name__ == '__main__':
-    trace_dir = sys.argv[1]
+    trace_path = sys.argv[1]
     MNT_PATH = sys.argv[2]
+    if len(sys.argv) > 3:
+        fsync = True
     
     if MNT_PATH[-1] != '/':
         MNT_PATH = MNT_PATH + '/'
@@ -101,11 +107,9 @@ if __name__ == '__main__':
 
     import time
     time_start = time.perf_counter()
-    print(trace_dir)
+    print(trace_path)
 
-    # for file in os.listdir(trace_dir):
-    #     replay_file(trace_dir + '/' + file)
-    replay_file(trace_dir + '/' + "trace.syscalltrace")
+    replay_file(trace_path)
 
     time_end = time.perf_counter()
     print('time: %s s' % str(time_end - time_start))

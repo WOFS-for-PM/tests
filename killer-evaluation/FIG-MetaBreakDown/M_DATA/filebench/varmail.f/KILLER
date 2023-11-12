@@ -1,146 +1,146 @@
-MediaReads 27039523840
-MediaWrites 12611772416
-[1211831.769491] hunter: cpu-0: =========== HUNTER kernel timing stats ===========
-[1211831.769492] hunter: cpu-0: 
+MediaReads 30034412032
+MediaWrites 14228443392
+[2003027.999976] hunter: cpu-10: =========== HUNTER kernel timing stats ===========
+[2003027.999977] hunter: cpu-10: 
                  ================ Initialization ================
 
-[1211831.769493] hunter: cpu-0: init: count 1, timing 111671, average 111671
-[1211831.769494] hunter: cpu-0: mount: count 1, timing 14164712, average 14164712
-[1211831.769494] hunter: cpu-0: ioremap: count 0, timing 0, average 0
-[1211831.769495] hunter: cpu-0: new_init: count 1, timing 14089263, average 14089263
-[1211831.769495] hunter: cpu-0: recovery: count 0, timing 0, average 0
-[1211831.769496] hunter: cpu-0: 
+[2003027.999978] hunter: cpu-10: init: count 1, timing 109848, average 109848
+[2003027.999978] hunter: cpu-10: mount: count 1, timing 14222075, average 14222075
+[2003027.999979] hunter: cpu-10: ioremap: count 0, timing 0, average 0
+[2003027.999979] hunter: cpu-10: new_init: count 1, timing 14147207, average 14147207
+[2003027.999980] hunter: cpu-10: recovery: count 0, timing 0, average 0
+[2003027.999980] hunter: cpu-10: 
                  ============= Directory operations =============
 
-[1211831.769496] hunter: cpu-0: create: count 1425397, timing 3147829838, average 2208
-[1211831.769497] hunter: cpu-0: lookup: count 10004, timing 5123992, average 512
-[1211831.769498] hunter: cpu-0: link: count 0, timing 0, average 0
-[1211831.769498] hunter: cpu-0: unlink: count 1417418, timing 3904331395, average 2754
-[1211831.769498] hunter: cpu-0: symlink: count 0, timing 0, average 0
-[1211831.769499] hunter: cpu-0: mkdir: count 4, timing 44112, average 11028
-[1211831.769500] hunter: cpu-0: rmdir: count 0, timing 0, average 0
-[1211831.769500] hunter: cpu-0: mknod: count 0, timing 0, average 0
-[1211831.769500] hunter: cpu-0: rename: count 0, timing 0, average 0
-[1211831.769501] hunter: cpu-0: readdir: count 0, timing 0, average 0
-[1211831.769501] hunter: cpu-0: add_dentry: count 0, timing 0, average 0
-[1211831.769502] hunter: cpu-0: remove_dentry: count 0, timing 0, average 0
-[1211831.769502] hunter: cpu-0: setattr: count 0, timing 0, average 0
-[1211831.769503] hunter: cpu-0: setsize: count 0, timing 0, average 0
-[1211831.769503] hunter: cpu-0: 
+[2003027.999981] hunter: cpu-10: create: count 1609154, timing 3400060170, average 2112
+[2003027.999982] hunter: cpu-10: lookup: count 10004, timing 4477950, average 447
+[2003027.999982] hunter: cpu-10: link: count 0, timing 0, average 0
+[2003027.999983] hunter: cpu-10: unlink: count 1601175, timing 3856023663, average 2408
+[2003027.999983] hunter: cpu-10: symlink: count 0, timing 0, average 0
+[2003027.999984] hunter: cpu-10: mkdir: count 4, timing 40691, average 10172
+[2003027.999984] hunter: cpu-10: rmdir: count 0, timing 0, average 0
+[2003027.999985] hunter: cpu-10: mknod: count 0, timing 0, average 0
+[2003027.999985] hunter: cpu-10: rename: count 0, timing 0, average 0
+[2003027.999986] hunter: cpu-10: readdir: count 0, timing 0, average 0
+[2003027.999986] hunter: cpu-10: add_dentry: count 0, timing 0, average 0
+[2003027.999987] hunter: cpu-10: remove_dentry: count 0, timing 0, average 0
+[2003027.999987] hunter: cpu-10: setattr: count 0, timing 0, average 0
+[2003027.999988] hunter: cpu-10: setsize: count 0, timing 0, average 0
+[2003027.999988] hunter: cpu-10: 
                  ================ I/O operations ================
 
-[1211831.769504] hunter: cpu-0: dax_read: count 5669337, timing 6253050906, average 1102
-[1211831.769504] hunter: cpu-0: do_cow_write: count 0, timing 0, average 0
-[1211831.769505] hunter: cpu-0: cow_write: count 0, timing 0, average 0
-[1211831.769505] hunter: cpu-0: copy_to_nvmm: count 0, timing 0, average 0
-[1211831.769506] hunter: cpu-0: dax_get_block: count 0, timing 0, average 0
-[1211831.769506] hunter: cpu-0: read_iter: count 0, timing 0, average 0
-[1211831.769507] hunter: cpu-0: write_iter: count 0, timing 0, average 0
-[1211831.769507] hunter: cpu-0: wrap_iter: count 0, timing 0, average 0
-[1211831.769507] hunter: cpu-0: write: count 2842145, timing 19338962683, average 6804
-[1211831.769508] hunter: cpu-0: create_inode_package: count 1425402, timing 334787515, average 234
-[1211831.769509] hunter: cpu-0: create_data_package: count 2088254, timing 746590794, average 357
-[1211831.769509] hunter: cpu-0: update_data_package: count 753891, timing 306743596, average 406
-[1211831.769510] hunter: cpu-0: create_unlink_package: count 1417418, timing 562089467, average 396
-[1211831.769510] hunter: cpu-0: create_attr_package: count 0, timing 0, average 0
-[1211831.769511] hunter: cpu-0: coarse_allocation: count 0, timing 0, average 0
-[1211831.769511] hunter: cpu-0: 
+[2003027.999989] hunter: cpu-10: dax_read: count 6404320, timing 6488149422, average 1013
+[2003027.999989] hunter: cpu-10: do_cow_write: count 0, timing 0, average 0
+[2003027.999990] hunter: cpu-10: cow_write: count 0, timing 0, average 0
+[2003027.999990] hunter: cpu-10: copy_to_nvmm: count 0, timing 0, average 0
+[2003027.999990] hunter: cpu-10: dax_get_block: count 0, timing 0, average 0
+[2003027.999991] hunter: cpu-10: read_iter: count 0, timing 0, average 0
+[2003027.999991] hunter: cpu-10: write_iter: count 0, timing 0, average 0
+[2003027.999992] hunter: cpu-10: wrap_iter: count 0, timing 0, average 0
+[2003027.999992] hunter: cpu-10: write: count 3209570, timing 19667098455, average 6127
+[2003027.999993] hunter: cpu-10: create_inode_package: count 1609159, timing 372133522, average 231
+[2003027.999994] hunter: cpu-10: create_data_package: count 2375427, timing 837032865, average 352
+[2003027.999994] hunter: cpu-10: update_data_package: count 834143, timing 339907519, average 407
+[2003027.999995] hunter: cpu-10: create_unlink_package: count 1601175, timing 597895165, average 373
+[2003027.999995] hunter: cpu-10: create_attr_package: count 0, timing 0, average 0
+[2003027.999995] hunter: cpu-10: coarse_allocation: count 0, timing 0, average 0
+[2003027.999996] hunter: cpu-10: 
                  ============== Memory operations ===============
 
-[1211831.769512] hunter: cpu-0: memcpy_read_nvmm: count 3495701, timing 4592490521, average 1313
-[1211831.769512] hunter: cpu-0: memcpy_write_nvmm: count 3505005, timing 6722963055, average 1918
-[1211831.769513] hunter: cpu-0: memcpy_write_back_to_nvmm: count 0, timing 0, average 0
-[1211831.769513] hunter: cpu-0: handle_partial_block: count 2088254, timing 1827095521, average 874
-[1211831.769514] hunter: cpu-0: 
+[2003027.999996] hunter: cpu-10: memcpy_read_nvmm: count 3966629, timing 4962222948, average 1250
+[2003027.999997] hunter: cpu-10: memcpy_write_nvmm: count 3975845, timing 7217496484, average 1815
+[2003027.999998] hunter: cpu-10: memcpy_write_back_to_nvmm: count 0, timing 0, average 0
+[2003027.999998] hunter: cpu-10: handle_partial_block: count 2375427, timing 2073602926, average 872
+[2003027.999999] hunter: cpu-10: 
                  ============== Memory management ===============
 
-[1211831.769514] hunter: cpu-0: alloc_blocks: count 0, timing 0, average 0
-[1211831.769515] hunter: cpu-0: new_data_blocks: count 2088254, timing 388428317, average 186
-[1211831.769516] hunter: cpu-0: free_blocks: count 0, timing 0, average 0
-[1211831.769516] hunter: cpu-0: free_data_blocks: count 0, timing 0, average 0
-[1211831.769517] hunter: cpu-0: free_log_blocks: count 0, timing 0, average 0
-[1211831.769517] hunter: cpu-0: reserve_pkg: count 5050741, timing 2968486660, average 587
-[1211831.769518] hunter: cpu-0: reserve_pkg_in_layout: count 16305162, timing 2129805214, average 130
-[1211831.769518] hunter: cpu-0: tl_alloc_meta: count 5050741, timing 729132969, average 144
-[1211831.769519] hunter: cpu-0: tl_alloc_blk: count 0, timing 0, average 0
-[1211831.769520] hunter: cpu-0: 
+[2003027.999999] hunter: cpu-10: alloc_blocks: count 0, timing 0, average 0
+[2003028.000000] hunter: cpu-10: new_data_blocks: count 2375427, timing 392148559, average 165
+[2003028.000000] hunter: cpu-10: free_blocks: count 0, timing 0, average 0
+[2003028.000000] hunter: cpu-10: free_data_blocks: count 0, timing 0, average 0
+[2003028.000001] hunter: cpu-10: free_log_blocks: count 0, timing 0, average 0
+[2003028.000001] hunter: cpu-10: reserve_pkg: count 5672692, timing 2653285430, average 467
+[2003028.000002] hunter: cpu-10: reserve_pkg_in_layout: count 13630937, timing 1912303883, average 140
+[2003028.000002] hunter: cpu-10: tl_alloc_meta: count 5672692, timing 788152453, average 138
+[2003028.000003] hunter: cpu-10: tl_alloc_blk: count 0, timing 0, average 0
+[2003028.000003] hunter: cpu-10: 
                  ================= Transaction ==================
 
-[1211831.769520] hunter: cpu-0: transaction_new_inode: count 1425402, timing 1719565652, average 1206
-[1211831.769521] hunter: cpu-0: transaction_new_data: count 2088254, timing 9306184673, average 4456
-[1211831.769521] hunter: cpu-0: transaction_new_unlink: count 1417418, timing 2191671089, average 1546
-[1211831.769522] hunter: cpu-0: transaction_new_attr: count 0, timing 0, average 0
-[1211831.769522] hunter: cpu-0: transaction_new_rename: count 0, timing 0, average 0
-[1211831.769523] hunter: cpu-0: transaction_new_link: count 0, timing 0, average 0
-[1211831.769523] hunter: cpu-0: transaction_new_symlink: count 0, timing 0, average 0
-[1211831.769524] hunter: cpu-0: write_once_commit: count 3505672, timing 919103269, average 262
-[1211831.769524] hunter: cpu-0: 
+[2003028.000004] hunter: cpu-10: transaction_new_inode: count 1609159, timing 1873793122, average 1164
+[2003028.000004] hunter: cpu-10: transaction_new_data: count 2375427, timing 8807765384, average 3707
+[2003028.000005] hunter: cpu-10: transaction_new_unlink: count 1601175, timing 2141667221, average 1337
+[2003028.000005] hunter: cpu-10: transaction_new_attr: count 0, timing 0, average 0
+[2003028.000006] hunter: cpu-10: transaction_new_rename: count 0, timing 0, average 0
+[2003028.000006] hunter: cpu-10: transaction_new_link: count 0, timing 0, average 0
+[2003028.000007] hunter: cpu-10: transaction_new_symlink: count 0, timing 0, average 0
+[2003028.000007] hunter: cpu-10: write_once_commit: count 3976602, timing 1020878256, average 256
+[2003028.000008] hunter: cpu-10: 
                  ================ Miscellaneous =================
 
-[1211831.769525] hunter: cpu-0: fsync: count 2834834, timing 1060392316, average 374
-[1211831.769525] hunter: cpu-0: write_pages: count 0, timing 0, average 0
-[1211831.769526] hunter: cpu-0: fallocate: count 0, timing 0, average 0
-[1211831.769526] hunter: cpu-0: direct_IO: count 0, timing 0, average 0
-[1211831.769527] hunter: cpu-0: free_old_entry: count 0, timing 0, average 0
-[1211831.769527] hunter: cpu-0: delete_file_tree: count 0, timing 0, average 0
-[1211831.769528] hunter: cpu-0: delete_dir_tree: count 0, timing 0, average 0
-[1211831.769529] hunter: cpu-0: new_vfs_inode: count 1425401, timing 983093079, average 689
-[1211831.769529] hunter: cpu-0: new_hk_inode: count 1425401, timing 114661715, average 80
-[1211831.769530] hunter: cpu-0: free_inode: count 1417418, timing 398897835, average 281
-[1211831.769530] hunter: cpu-0: free_inode_log: count 1417418, timing 5922514507, average 4178
-[1211831.769531] hunter: cpu-0: evict_inode: count 1425402, timing 7072520440, average 4961
-[1211831.769531] hunter: cpu-0: test_perf: count 0, timing 0, average 0
-[1211831.769532] hunter: cpu-0: wprotect: count 0, timing 0, average 0
-[1211831.769533] hunter: cpu-0: bitmap_find_free: count 5050741, timing 251757332, average 49
-[1211831.769533] hunter: cpu-0: process_reclaim_request: count 1425402, timing 99737635, average 69
-[1211831.769534] hunter: cpu-0: data_claim: count 2088254, timing 6973539514, average 3339
-[1211831.769534] hunter: cpu-0: 
+[2003028.000009] hunter: cpu-10: fsync: count 3202350, timing 1172243696, average 366
+[2003028.000009] hunter: cpu-10: write_pages: count 0, timing 0, average 0
+[2003028.000009] hunter: cpu-10: fallocate: count 0, timing 0, average 0
+[2003028.000010] hunter: cpu-10: direct_IO: count 0, timing 0, average 0
+[2003028.000011] hunter: cpu-10: free_old_entry: count 0, timing 0, average 0
+[2003028.000011] hunter: cpu-10: delete_file_tree: count 0, timing 0, average 0
+[2003028.000012] hunter: cpu-10: delete_dir_tree: count 0, timing 0, average 0
+[2003028.000012] hunter: cpu-10: new_vfs_inode: count 1609158, timing 1058813132, average 657
+[2003028.000013] hunter: cpu-10: new_hk_inode: count 1609158, timing 74324905, average 46
+[2003028.000013] hunter: cpu-10: free_inode: count 1601175, timing 200013955, average 124
+[2003028.000014] hunter: cpu-10: free_inode_log: count 1601175, timing 4677714500, average 2921
+[2003028.000014] hunter: cpu-10: evict_inode: count 1609159, timing 5644868050, average 3507
+[2003028.000015] hunter: cpu-10: test_perf: count 0, timing 0, average 0
+[2003028.000015] hunter: cpu-10: wprotect: count 0, timing 0, average 0
+[2003028.000016] hunter: cpu-10: bitmap_find_free: count 5672692, timing 283875400, average 50
+[2003028.000016] hunter: cpu-10: process_reclaim_request: count 1609159, timing 114495902, average 71
+[2003028.000017] hunter: cpu-10: data_claim: count 2375427, timing 6562331369, average 2762
+[2003028.000017] hunter: cpu-10: 
                  =============== MMap operations ================
 
-[1211831.769535] hunter: cpu-0: mmap_page_fault: count 0, timing 0, average 0
-[1211831.769535] hunter: cpu-0: mmap_pmd_fault: count 0, timing 0, average 0
-[1211831.769536] hunter: cpu-0: mmap_pfn_mkwrite: count 0, timing 0, average 0
-[1211831.769536] hunter: cpu-0: insert_vma: count 0, timing 0, average 0
-[1211831.769536] hunter: cpu-0: remove_vma: count 0, timing 0, average 0
-[1211831.769537] hunter: cpu-0: set_vma_readonly: count 0, timing 0, average 0
-[1211831.769537] hunter: cpu-0: mmap_cow: count 0, timing 0, average 0
-[1211831.769538] hunter: cpu-0: udpate_mapping: count 0, timing 0, average 0
-[1211831.769539] hunter: cpu-0: udpate_pfn: count 0, timing 0, average 0
-[1211831.769539] hunter: cpu-0: mmap_handler: count 0, timing 0, average 0
-[1211831.769540] hunter: cpu-0: 
+[2003028.000018] hunter: cpu-10: mmap_page_fault: count 0, timing 0, average 0
+[2003028.000018] hunter: cpu-10: mmap_pmd_fault: count 0, timing 0, average 0
+[2003028.000019] hunter: cpu-10: mmap_pfn_mkwrite: count 0, timing 0, average 0
+[2003028.000019] hunter: cpu-10: insert_vma: count 0, timing 0, average 0
+[2003028.000020] hunter: cpu-10: remove_vma: count 0, timing 0, average 0
+[2003028.000020] hunter: cpu-10: set_vma_readonly: count 0, timing 0, average 0
+[2003028.000021] hunter: cpu-10: mmap_cow: count 0, timing 0, average 0
+[2003028.000021] hunter: cpu-10: udpate_mapping: count 0, timing 0, average 0
+[2003028.000021] hunter: cpu-10: udpate_pfn: count 0, timing 0, average 0
+[2003028.000022] hunter: cpu-10: mmap_handler: count 0, timing 0, average 0
+[2003028.000022] hunter: cpu-10: 
                  =================== Rebuild ====================
 
-[1211831.769540] hunter: cpu-0: rebuild_dir: count 0, timing 0, average 0
-[1211831.769541] hunter: cpu-0: rebuild_file: count 1, timing 527, average 527
-[1211831.769541] hunter: cpu-0: imm_set_bitmap: count 145751, timing 73007038, average 500
-[1211831.769542] hunter: cpu-0: imm_clear_bitmap: count 111405, timing 55908138, average 501
-[1211831.769542] hunter: cpu-0: 
+[2003028.000023] hunter: cpu-10: rebuild_dir: count 0, timing 0, average 0
+[2003028.000023] hunter: cpu-10: rebuild_file: count 1, timing 424, average 424
+[2003028.000024] hunter: cpu-10: imm_set_bitmap: count 164092, timing 85064536, average 518
+[2003028.000025] hunter: cpu-10: imm_clear_bitmap: count 128972, timing 63586527, average 493
+[2003028.000025] hunter: cpu-10: 
                  =================== Meta ===================
 
-[1211831.769543] hunter: cpu-0: valid_summary_header: count 0, timing 0, average 0
-[1211831.769543] hunter: cpu-0: invalid_summary_header: count 0, timing 0, average 0
-[1211831.769544] hunter: cpu-0: request_valid_block: count 0, timing 0, average 0
-[1211831.769544] hunter: cpu-0: request_invalid_block: count 0, timing 0, average 0
-[1211831.769545] hunter: cpu-0: prepare_request: count 0, timing 0, average 0
-[1211831.769545] hunter: cpu-0: commit_newattr: count 0, timing 0, average 0
-[1211831.769546] hunter: cpu-0: 
+[2003028.000026] hunter: cpu-10: valid_summary_header: count 0, timing 0, average 0
+[2003028.000026] hunter: cpu-10: invalid_summary_header: count 0, timing 0, average 0
+[2003028.000027] hunter: cpu-10: request_valid_block: count 0, timing 0, average 0
+[2003028.000027] hunter: cpu-10: request_invalid_block: count 0, timing 0, average 0
+[2003028.000028] hunter: cpu-10: prepare_request: count 0, timing 0, average 0
+[2003028.000028] hunter: cpu-10: commit_newattr: count 0, timing 0, average 0
+[2003028.000029] hunter: cpu-10: 
                  =================== LinIX ===================
 
-[1211831.769546] hunter: cpu-0: linix_set: count 98751499, timing 3590976352, average 36
-[1211831.769547] hunter: cpu-0: linix_get: count 8414986, timing 489271543, average 58
-[1211831.769547] hunter: cpu-0: 
-[1211831.769548] hunter: =========== NOVA meta_trace stats ============
-[1211831.769548] hunter: meta_read: 0
-[1211831.769548] hunter: meta_write: 595554204
-[1211831.769549] hunter: data_read: 9025969090
-[1211831.769549] hunter: data_write: 6066578767
-[1211831.769549] hunter: meta_time: 13653080186
-[1211831.769550] hunter: meta_times: 5942121
-[1211831.769550] hunter: data_write_time: 6722963055
-[1211831.769550] hunter: data_read_time: 4592490521
-[1211831.769551] hunter: COW_time: 19338962683
-[1211831.769551] hunter: cpu-0: hk_dump_bm: bmblk 0, bm @ 0xffff9f1abc202000
-[1211831.769560] hunter: cpu-0: hk_dump_bm: bmblk 1, bm @ 0xffff9f1abc9c3000
-[1211831.771856] hunter: cpu-0: hk_dump_bm: bmblk 2, bm @ 0xffff9f1abd184000
-[1211831.771936] hunter: cpu-0: hk_dump_bm: bmblk 3, bm @ 0xffff9f1abd945000
-[1211831.773256] hunter: cpu-0: layouts dumped OK
+[2003028.000029] hunter: cpu-10: linix_set: count 67304773, timing 2351538035, average 34
+[2003028.000030] hunter: cpu-10: linix_get: count 9540431, timing 458142444, average 48
+[2003028.000030] hunter: cpu-10: 
+[2003028.000030] hunter: =========== NOVA meta_trace stats ============
+[2003028.000031] hunter: meta_read: 0
+[2003028.000031] hunter: meta_write: 673413440
+[2003028.000032] hunter: data_read: 10153674212
+[2003028.000032] hunter: data_write: 6817995471
+[2003028.000032] hunter: meta_time: 13311784309
+[2003028.000032] hunter: meta_times: 6712968
+[2003028.000033] hunter: data_write_time: 7217496484
+[2003028.000033] hunter: data_read_time: 4962222948
+[2003028.000033] hunter: COW_time: 19667098455
+[2003028.000035] hunter: cpu-10: hk_dump_bm: bmblk 0, bm @ 0xffff9f1abc202000
+[2003028.000045] hunter: cpu-10: hk_dump_bm: bmblk 1, bm @ 0xffff9f1abc9c3000
+[2003028.003033] hunter: cpu-10: hk_dump_bm: bmblk 2, bm @ 0xffff9f1abd184000
+[2003028.003123] hunter: cpu-10: hk_dump_bm: bmblk 3, bm @ 0xffff9f1abd945000
+[2003028.004366] hunter: cpu-10: layouts dumped OK
