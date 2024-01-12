@@ -11,7 +11,7 @@ table_create "$TABLE_NAME" "file_system file_bench threads iops"
 mkdir -p "$ABS_PATH"/DATA
 
 FILE_SYSTEMS=( "HUNTER" "HUNTER-J" "NOVA" "NOVA-RELAX" "PMFS" "SplitFS-FILEBENCH" "EXT4-DAX" "XFS-DAX" )
-FILE_BENCHES=( "fileserver.f" "varmail.f" )
+FILE_BENCHES=( "fileserver.f" "varmail.f" "webserver.f" "webproxy.f" )
 THREADS=( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 )
 
 for file_system in "${FILE_SYSTEMS[@]}"; do

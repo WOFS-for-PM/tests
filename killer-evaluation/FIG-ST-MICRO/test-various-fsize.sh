@@ -9,7 +9,7 @@ BOOST_DIR=$ABS_PATH/../../../splitfs/splitfs
 FILE_SYSTEMS=( "PMFS" "NOVA-RELAX" "KILLER" "SplitFS-FIO" "EXT4-DAX" "XFS-DAX" "PMM")
 FILE_SIZES=( $((1 * 1024)) $((2 * 1024)) $((4 * 1024)) $((8 * 1024)) $((12 * 1024)) $((16 * 1024)) $((20 * 1024)) $((24 * 1024)) $((28 * 1024)) $((32 * 1024)) )
 
-TABLE_NAME="$ABS_PATH/performance-comparison-table"
+TABLE_NAME="$ABS_PATH/performance-comparison-table-fsize"
 table_create "$TABLE_NAME" "ops file_system file_size bandwidth(MiB/s)"
 
 loop=1
