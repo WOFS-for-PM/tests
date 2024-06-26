@@ -1,0 +1,282 @@
+MediaReads 37616443392
+MediaWrites 20087994880
+NVP_MSG (1873611): Initializing hub_init
+NVP_MSG (1873611): _hub_init2: START
+NVP_MSG (1873611): Initializing nvp_init
+NVP_MSG (1873611): CLFLUSHOPT is supported!
+NVP_MSG (1873611): init_append_log: Initializing append log
+NVP_MSG (1873611): _nvp_init2: dr fd = 5, start addr = 0x7F9B99800000
+NVP_MSG (1873611): _nvp_init2: dr fd = 6, start addr = 0x7F9B98600000
+NVP_MSG (1873611): _nvp_init2: Tbl mmaps set
+NVP_MSG (1873611): _nvp_init2: Global locks created
+NVP_MSG (1873611): _nvp_init2: initialized environment, OPEN_MAX = 1024
+NVP_MSG (1873611): _hub_init2: END
+Filebench Version 1.5-alpha3
+0.000: Allocated 177MB of shared memory
+0.008: Web-server Version 3.1 personality successfully loaded
+0.008: Populating and pre-allocating filesets
+0.008: logfiles populated: 1 files, avg. dir. width = 20, avg. dir. depth = 0.0, 0 leafdirs, 0.016MB total size
+0.008: Removing logfiles tree (if exists)
+NVP_MSG (1873614): Initializing hub_init
+NVP_MSG (1873614): _hub_init2: START
+NVP_MSG (1873614): Initializing nvp_init
+NVP_MSG (1873614): CLFLUSHOPT is supported!
+NVP_MSG (1873614): init_append_log: Initializing append log
+NVP_MSG (1873614): _nvp_init2: dr fd = 13, start addr = 0x7F0B99A00000
+NVP_MSG (1873614): _nvp_init2: dr fd = 14, start addr = 0x7F0B98800000
+NVP_MSG (1873614): _nvp_init2: Tbl mmaps set
+NVP_MSG (1873614): _nvp_init2: Global locks created
+NVP_MSG (1873614): _nvp_init2: initialized environment, OPEN_MAX = 1024
+NVP_MSG (1873614): _hub_init2: END
+NVP_MSG (1873614): _hub_EXECVE: START
+NVP_MSG (1873614): Initializing hub_init
+NVP_MSG (1873614): _hub_init2: START
+NVP_MSG (1873614): Initializing nvp_init
+NVP_MSG (1873614): CLFLUSHOPT is supported!
+NVP_MSG (1873614): init_append_log: Initializing append log
+NVP_MSG (1873614): _nvp_init2: dr fd = 17, start addr = 0x7F01D8200000
+NVP_MSG (1873614): _nvp_init2: dr fd = 18, start addr = 0x7F01D7000000
+NVP_MSG (1873614): _nvp_init2: Tbl mmaps set
+NVP_MSG (1873614): _nvp_init2: Global locks created
+NVP_MSG (1873614): _nvp_init2: initialized environment, OPEN_MAX = 1024
+NVP_MSG (1873614): _hub_SHM_COPY: START
+NVP_MSG (1873614): _hub_init2: END
+NVP_MSG (1873614): exit handler
+NVP_MSG (1873614): Exit: print stats
+NVP_MSG (1873614): ====================== NVP IO stats: ======================
+NVP_MSG (1873614): open 0, close 0, async close 0
+NVP_MSG (1873614): mmap 2, unlink 0, stat 0
+NVP_MSG (1873614): dr mmap 2, dr mmap critical path 0
+NVP_MSG (1873614): fsync 0, appendfsync: count 0 size 0 average 0
+NVP_MSG (1873614): READ: count 0, size 0, average 0
+NVP_MSG (1873614): WRITE: count 0, size 0, average 0
+NVP_MSG (1873614): memcpy READ: count 0, size 0, average 0
+NVP_MSG (1873614): anon READ: count 0, size 0, average 0
+NVP_MSG (1873614): memcpy WRITE: count 0, size 0, average 0
+NVP_MSG (1873614): anon WRITE: count 0, size 0, average 0
+NVP_MSG (1873614): posix READ: count 0, size 0, average 0
+NVP_MSG (1873614): posix WRITE: count 0, size 0, average 0
+NVP_MSG (1873614): write extends 0, total 0
+NVP_MSG (1873614): MFENCE: count 0
+NVP_MSG (1873614): CLFLUSHOPT: count 0
+NVP_MSG (1873614): NON_TEMPORAL_WRITES: count 0, size 0, average 0
+NVP_MSG (1873614): TEMPORAL WRITES: count 0, size 0, average 0
+NVP_MSG (1873614): TOTAL SYSCALLS (open + close + read + write + fsync): count 0
+NVP_MSG (1873614): op_log_entry: timing = 19 us
+NVP_MSG (1873614): calling cleanup
+NVP_MSG (1873614): nvp_cleanup: Done Cleaning up
+0.404: Pre-allocating directories in logfiles tree
+0.404: Pre-allocating files in logfiles tree
+0.405: bigfileset populated: 1000 files, avg. dir. width = 20, avg. dir. depth = 2.3, 0 leafdirs, 15.625MB total size
+0.405: Removing bigfileset tree (if exists)
+NVP_MSG (1873618): Initializing hub_init
+NVP_MSG (1873618): _hub_init2: START
+NVP_MSG (1873618): Initializing nvp_init
+NVP_MSG (1873618): CLFLUSHOPT is supported!
+NVP_MSG (1873618): init_append_log: Initializing append log
+NVP_MSG (1873618): _nvp_init2: dr fd = 13, start addr = 0x7F5EF5200000
+NVP_MSG (1873618): _nvp_init2: dr fd = 14, start addr = 0x7F5EF4000000
+NVP_MSG (1873618): _nvp_init2: Tbl mmaps set
+NVP_MSG (1873618): _nvp_init2: Global locks created
+NVP_MSG (1873618): _nvp_init2: initialized environment, OPEN_MAX = 1024
+NVP_MSG (1873618): _hub_init2: END
+NVP_MSG (1873618): _hub_EXECVE: START
+NVP_MSG (1873618): Initializing hub_init
+NVP_MSG (1873618): _hub_init2: START
+NVP_MSG (1873618): Initializing nvp_init
+NVP_MSG (1873618): CLFLUSHOPT is supported!
+NVP_MSG (1873618): init_append_log: Initializing append log
+NVP_MSG (1873618): _nvp_init2: dr fd = 17, start addr = 0x7FD776A00000
+NVP_MSG (1873618): _nvp_init2: dr fd = 18, start addr = 0x7FD775800000
+NVP_MSG (1873618): _nvp_init2: Tbl mmaps set
+NVP_MSG (1873618): _nvp_init2: Global locks created
+NVP_MSG (1873618): _nvp_init2: initialized environment, OPEN_MAX = 1024
+NVP_MSG (1873618): _hub_SHM_COPY: START
+NVP_MSG (1873618): _hub_init2: END
+NVP_MSG (1873618): exit handler
+NVP_MSG (1873618): Exit: print stats
+NVP_MSG (1873618): ====================== NVP IO stats: ======================
+NVP_MSG (1873618): open 0, close 0, async close 0
+NVP_MSG (1873618): mmap 2, unlink 0, stat 0
+NVP_MSG (1873618): dr mmap 2, dr mmap critical path 0
+NVP_MSG (1873618): fsync 0, appendfsync: count 0 size 0 average 0
+NVP_MSG (1873618): READ: count 0, size 0, average 0
+NVP_MSG (1873618): WRITE: count 0, size 0, average 0
+NVP_MSG (1873618): memcpy READ: count 0, size 0, average 0
+NVP_MSG (1873618): anon READ: count 0, size 0, average 0
+NVP_MSG (1873618): memcpy WRITE: count 0, size 0, average 0
+NVP_MSG (1873618): anon WRITE: count 0, size 0, average 0
+NVP_MSG (1873618): posix READ: count 0, size 0, average 0
+NVP_MSG (1873618): posix WRITE: count 0, size 0, average 0
+NVP_MSG (1873618): write extends 0, total 0
+NVP_MSG (1873618): MFENCE: count 0
+NVP_MSG (1873618): CLFLUSHOPT: count 0
+NVP_MSG (1873618): NON_TEMPORAL_WRITES: count 0, size 0, average 0
+NVP_MSG (1873618): TEMPORAL WRITES: count 0, size 0, average 0
+NVP_MSG (1873618): TOTAL SYSCALLS (open + close + read + write + fsync): count 0
+NVP_MSG (1873618): op_log_entry: timing = 19 us
+NVP_MSG (1873618): calling cleanup
+NVP_MSG (1873618): nvp_cleanup: Done Cleaning up
+0.803: Pre-allocating directories in bigfileset tree
+0.804: Pre-allocating files in bigfileset tree
+0.838: Waiting for pre-allocation to finish (in case of a parallel pre-allocation)
+0.838: Population and pre-allocation of filesets completed
+0.838: Starting 1 filereader instances
+NVP_MSG (1873644): 
+Child process created
+
+NVP_MSG (1873644): Initializing hub_init
+NVP_MSG (1873644): _hub_init2: START
+NVP_MSG (1873644): Initializing nvp_init
+NVP_MSG (1873644): CLFLUSHOPT is supported!
+NVP_MSG (1873644): init_append_log: Initializing append log
+NVP_MSG (1873644): _nvp_init2: dr fd = 13, start addr = 0x7F9547A00000
+NVP_MSG (1873644): _nvp_init2: dr fd = 14, start addr = 0x7F9546800000
+NVP_MSG (1873644): _nvp_init2: Tbl mmaps set
+NVP_MSG (1873644): _nvp_init2: Global locks created
+NVP_MSG (1873644): _nvp_init2: initialized environment, OPEN_MAX = 1024
+NVP_MSG (1873644): _hub_init2: END
+2.035: Running...
+62.044: Run took 60 seconds...
+62.044: Per-Operation Breakdown
+appendlog            312220ops     5203ops/s  40.6mb/s    0.007ms/op [0.001ms - 1.889ms]
+closefile10          312219ops     5203ops/s   0.0mb/s    0.002ms/op [0.001ms - 1.288ms]
+readfile10           312219ops     5203ops/s  81.3mb/s    0.008ms/op [0.002ms - 2.312ms]
+openfile10           312219ops     5203ops/s   0.0mb/s    0.008ms/op [0.005ms - 1.623ms]
+closefile9           312219ops     5203ops/s   0.0mb/s    0.002ms/op [0.001ms - 1.385ms]
+readfile9            312219ops     5203ops/s  81.3mb/s    0.008ms/op [0.002ms - 1.731ms]
+openfile9            312219ops     5203ops/s   0.0mb/s    0.008ms/op [0.005ms - 1.458ms]
+closefile8           312219ops     5203ops/s   0.0mb/s    0.002ms/op [0.001ms - 2.058ms]
+readfile8            312219ops     5203ops/s  81.3mb/s    0.008ms/op [0.002ms - 1.534ms]
+openfile8            312219ops     5203ops/s   0.0mb/s    0.008ms/op [0.005ms - 2.241ms]
+closefile7           312219ops     5203ops/s   0.0mb/s    0.002ms/op [0.001ms - 1.590ms]
+readfile7            312219ops     5203ops/s  81.3mb/s    0.008ms/op [0.002ms - 1.799ms]
+openfile7            312219ops     5203ops/s   0.0mb/s    0.008ms/op [0.005ms - 1.771ms]
+closefile6           312219ops     5203ops/s   0.0mb/s    0.002ms/op [0.001ms - 1.811ms]
+readfile6            312219ops     5203ops/s  81.3mb/s    0.008ms/op [0.002ms - 2.011ms]
+openfile6            312219ops     5203ops/s   0.0mb/s    0.008ms/op [0.005ms - 27.392ms]
+closefile5           312219ops     5203ops/s   0.0mb/s    0.002ms/op [0.001ms - 1.172ms]
+readfile5            312220ops     5203ops/s  81.3mb/s    0.008ms/op [0.002ms - 1.399ms]
+openfile5            312220ops     5203ops/s   0.0mb/s    0.008ms/op [0.005ms - 1.609ms]
+closefile4           312220ops     5203ops/s   0.0mb/s    0.002ms/op [0.001ms - 1.257ms]
+readfile4            312220ops     5203ops/s  81.3mb/s    0.008ms/op [0.002ms - 1.882ms]
+openfile4            312220ops     5203ops/s   0.0mb/s    0.008ms/op [0.005ms - 23.939ms]
+closefile3           312220ops     5203ops/s   0.0mb/s    0.002ms/op [0.001ms - 1.192ms]
+readfile3            312220ops     5203ops/s  81.3mb/s    0.008ms/op [0.002ms - 1.698ms]
+openfile3            312220ops     5203ops/s   0.0mb/s    0.007ms/op [0.005ms - 1.924ms]
+closefile2           312220ops     5203ops/s   0.0mb/s    0.002ms/op [0.001ms - 1.492ms]
+readfile2            312220ops     5203ops/s  81.3mb/s    0.008ms/op [0.002ms - 1.695ms]
+openfile2            312220ops     5203ops/s   0.0mb/s    0.008ms/op [0.005ms - 2.284ms]
+closefile1           312220ops     5203ops/s   0.0mb/s    0.002ms/op [0.001ms - 1.756ms]
+readfile1            312220ops     5203ops/s  81.3mb/s    0.008ms/op [0.002ms - 1.548ms]
+openfile1            312220ops     5203ops/s   0.0mb/s    0.008ms/op [0.005ms - 1.455ms]
+62.044: IO Summary: 9678804 ops 161290.107 ops/s 52029/5203 rd/wr 853.6mb/s 0.006ms/op
+62.044: Shutting down processes
+NVP_MSG (1873644): SIGUSR1: print stats
+NVP_MSG (1873644): ====================== NVP IO stats: ======================
+NVP_MSG (1873644): open 3122196, close 3122194, async close 0
+NVP_MSG (1873644): mmap 306, unlink 0, stat 0
+NVP_MSG (1873644): dr mmap 306, dr mmap critical path 0
+NVP_MSG (1873644): fsync 0, appendfsync: count 152 size 0 average 0
+NVP_MSG (1873644): READ: count 6244390, size 51154042880, average 8192
+NVP_MSG (1873644): WRITE: count 312198, size 2555025556, average 8183
+NVP_MSG (1873644): memcpy READ: count 0, size 0, average 0
+NVP_MSG (1873644): anon READ: count 0, size 0, average 0
+NVP_MSG (1873644): memcpy WRITE: count 312198, size 2555025556, average 8183
+NVP_MSG (1873644): anon WRITE: count 312198, size 2555025556, average 8183
+NVP_MSG (1873644): posix READ: count 3122195, size 51154042880, average 16384
+NVP_MSG (1873644): posix WRITE: count 0, size 0, average 0
+NVP_MSG (1873644): write extends 312198, total 312198
+NVP_MSG (1873644): MFENCE: count 0
+NVP_MSG (1873644): CLFLUSHOPT: count 0
+NVP_MSG (1873644): NON_TEMPORAL_WRITES: count 312198, size 2555025556, average 8183
+NVP_MSG (1873644): TEMPORAL WRITES: count 0, size 0, average 0
+NVP_MSG (1873644): TOTAL SYSCALLS (open + close + read + write + fsync): count 9366585
+NVP_MSG (1873644): _nvp_SIGUSR1_handler: BG THREAD CALLED 0 TIMES
+NVP_MSG (1873644): open: timing = 16203539 us
+NVP_MSG (1873644): close: timing = 6844379 us
+NVP_MSG (1873644): read: timing = 23694983 us
+NVP_MSG (1873644): write: timing = 2118127 us
+NVP_MSG (1873644): seek: timing = 1195172 us
+NVP_MSG (1873644): dr_mem_queue: timing = 2 us
+NVP_MSG (1873644): appends: timing = 2033856 us
+NVP_MSG (1873644): clear_dr: timing = 861 us
+NVP_MSG (1873644): swap_extents: timing = 8156 us
+NVP_MSG (1873644): get_mmap: timing = 92756 us
+NVP_MSG (1873644): get_dr_mmap: timing = 6314 us
+NVP_MSG (1873644): copy_appendwrite: timing = 1232120 us
+NVP_MSG (1873644): read_tbl_mmap: timing = 158601 us
+NVP_MSG (1873644): insert_tbl_mmap: timing = 71 us
+NVP_MSG (1873644): append_log_entry: timing = 41895 us
+NVP_MSG (1873644): exit handler
+NVP_MSG (1873644): Exit: print stats
+NVP_MSG (1873644): ====================== NVP IO stats: ======================
+NVP_MSG (1873644): open 3122196, close 3122194, async close 0
+NVP_MSG (1873644): mmap 306, unlink 0, stat 0
+NVP_MSG (1873644): dr mmap 306, dr mmap critical path 0
+NVP_MSG (1873644): fsync 0, appendfsync: count 152 size 0 average 0
+NVP_MSG (1873644): READ: count 6244390, size 51154042880, average 8192
+NVP_MSG (1873644): WRITE: count 312198, size 2555025556, average 8183
+NVP_MSG (1873644): memcpy READ: count 0, size 0, average 0
+NVP_MSG (1873644): anon READ: count 0, size 0, average 0
+NVP_MSG (1873644): memcpy WRITE: count 312198, size 2555025556, average 8183
+NVP_MSG (1873644): anon WRITE: count 312198, size 2555025556, average 8183
+NVP_MSG (1873644): posix READ: count 3122195, size 51154042880, average 16384
+NVP_MSG (1873644): posix WRITE: count 0, size 0, average 0
+NVP_MSG (1873644): write extends 312198, total 312198
+NVP_MSG (1873644): MFENCE: count 0
+NVP_MSG (1873644): CLFLUSHOPT: count 0
+NVP_MSG (1873644): NON_TEMPORAL_WRITES: count 312198, size 2555025556, average 8183
+NVP_MSG (1873644): TEMPORAL WRITES: count 0, size 0, average 0
+NVP_MSG (1873644): TOTAL SYSCALLS (open + close + read + write + fsync): count 9366585
+NVP_MSG (1873644): open: timing = 16203539 us
+NVP_MSG (1873644): close: timing = 6844379 us
+NVP_MSG (1873644): read: timing = 23694983 us
+NVP_MSG (1873644): write: timing = 2118127 us
+NVP_MSG (1873644): seek: timing = 1195172 us
+NVP_MSG (1873644): dr_mem_queue: timing = 2 us
+NVP_MSG (1873644): appends: timing = 2033856 us
+NVP_MSG (1873644): clear_dr: timing = 861 us
+NVP_MSG (1873644): swap_extents: timing = 8156 us
+NVP_MSG (1873644): get_mmap: timing = 92756 us
+NVP_MSG (1873644): get_dr_mmap: timing = 6314 us
+NVP_MSG (1873644): copy_appendwrite: timing = 1232120 us
+NVP_MSG (1873644): read_tbl_mmap: timing = 158601 us
+NVP_MSG (1873644): insert_tbl_mmap: timing = 71 us
+NVP_MSG (1873644): append_log_entry: timing = 41895 us
+NVP_MSG (1873644): calling cleanup
+NVP_MSG (1873644): nvp_cleanup: Done Cleaning up
+NVP_MSG (1873611): exit handler
+NVP_MSG (1873611): Exit: print stats
+NVP_MSG (1873611): ====================== NVP IO stats: ======================
+NVP_MSG (1873611): open 1001, close 1001, async close 0
+NVP_MSG (1873611): mmap 2, unlink 0, stat 0
+NVP_MSG (1873611): dr mmap 2, dr mmap critical path 0
+NVP_MSG (1873611): fsync 0, appendfsync: count 1001 size 0 average 0
+NVP_MSG (1873611): READ: count 0, size 0, average 0
+NVP_MSG (1873611): WRITE: count 1001, size 16400384, average 16384
+NVP_MSG (1873611): memcpy READ: count 0, size 0, average 0
+NVP_MSG (1873611): anon READ: count 0, size 0, average 0
+NVP_MSG (1873611): memcpy WRITE: count 1001, size 16400384, average 16384
+NVP_MSG (1873611): anon WRITE: count 1001, size 16400384, average 16384
+NVP_MSG (1873611): posix READ: count 0, size 0, average 0
+NVP_MSG (1873611): posix WRITE: count 0, size 0, average 0
+NVP_MSG (1873611): write extends 1001, total 1001
+NVP_MSG (1873611): MFENCE: count 0
+NVP_MSG (1873611): CLFLUSHOPT: count 0
+NVP_MSG (1873611): NON_TEMPORAL_WRITES: count 1001, size 16400384, average 16384
+NVP_MSG (1873611): TEMPORAL WRITES: count 0, size 0, average 0
+NVP_MSG (1873611): TOTAL SYSCALLS (open + close + read + write + fsync): count 2002
+NVP_MSG (1873611): open: timing = 12235 us
+NVP_MSG (1873611): close: timing = 10150 us
+NVP_MSG (1873611): write: timing = 7976 us
+NVP_MSG (1873611): dr_mem_queue: timing = 121 us
+NVP_MSG (1873611): appends: timing = 7653 us
+NVP_MSG (1873611): swap_extents: timing = 7483 us
+NVP_MSG (1873611): get_dr_mmap: timing = 161 us
+NVP_MSG (1873611): copy_appendwrite: timing = 6336 us
+NVP_MSG (1873611): insert_tbl_mmap: timing = 132 us
+NVP_MSG (1873611): append_log_entry: timing = 133 us
+NVP_MSG (1873611): op_log_entry: timing = 3599 us
+NVP_MSG (1873611): calling cleanup
+NVP_MSG (1873611): nvp_cleanup: Done Cleaning up

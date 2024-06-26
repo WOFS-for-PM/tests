@@ -16,7 +16,15 @@ SOUPFS_PATH="$ABS_PATH"/../../eulerfs
 CONFIGS_PATH="$ABS_PATH"/configs
 
 function compile_splitfs() {
+    local measure_timing=$1
     make clean
+    
+    if ((measure_timing == 1)); then
+        export LEDGER_INSTRU=1    
+        # export LEDGER_DEBUG=1
+        # export LIBNVP_DEBUG=1
+    fi
+
     make -e -j"$(nproc)"
 
     sudo umount /mnt/pmem0
@@ -208,7 +216,7 @@ case "${fs}" in
     export LEDGER_DATAJ=0
     export LEDGER_POSIX=1
     export LEDGER_FIO=1
-    compile_splitfs
+    compile_splitfs "$measure_timing"
     ;;
 "SplitFS-FIO-STRICT")
     cd "$SPLITFS_PATH" || exit
@@ -220,16 +228,16 @@ case "${fs}" in
 "SplitFS-FILEBENCH")
     cd "$SPLITFS_PATH" || exit
     export LEDGER_DATAJ=0
-    export LEDGER_POSIX=1
+    export LEDGER_POSIX=0
     export LEDGER_FILEBENCH=1
-    compile_splitfs
+    compile_splitfs "$measure_timing"
     ;;
 "SplitFS-FILEBENCH-STRICT")
     cd "$SPLITFS_PATH" || exit
     export LEDGER_DATAJ=1
     export LEDGER_POSIX=0
     export LEDGER_FILEBENCH=1
-    compile_splitfs
+    compile_splitfs "$measure_timing"
     ;;
 "SplitFS-YCSB")
     cd "$SPLITFS_PATH" || exit

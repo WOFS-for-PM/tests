@@ -128,6 +128,21 @@ function pmfs_attr_time () {
     rm /tmp/awk_pmfs_attr_time
 }
 
+function splitfs_attr_time() {
+    ATTR=$1
+    TARGET_MESG=$2
+    WL=$3
+
+    if [[ "${WL}" == *"FILEBENCH"* ]]; then
+        line=$(grep -n "Run took 60 seconds" "$TARGET_MESG" | cut -d: -f1)
+        awk -v line="$line" 'NR > line' "$TARGET_MESG" | grep "$ATTR: timing = " | awk '{print $6}' | head -n 1
+    else
+        # select the first
+        cat "$TARGET_MESG" | grep "$ATTR: timing = " | awk '{print $6}' | head -n 1
+    fi
+    
+}
+
 function nova_attr_average () {
     ATTR=$1
     TARGET_DMESG=$2
