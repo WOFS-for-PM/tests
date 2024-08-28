@@ -1,0 +1,8 @@
+ops file_system regulate file_size bandwidth(MiB/s)
+seq-write KILLER-MEM 0 32768 2214
+seq-write KILLER-MEM 16384 32768 1842
+rnd-write KILLER-MEM 0 32768 1399
+rnd-write KILLER-MEM 2097152 32768 1459
+rnd-write KILLER-MEM 4194304 32768 1501
+rnd-write KILLER-MEM 6291456 32768 1550
+rnd-write KILLER-MEM 8388608 32768 1614

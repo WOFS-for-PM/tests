@@ -96,6 +96,7 @@ class Runner(object):
             "btrfs",
             "f2fs",
             "nova",
+            "nova-relax",
             "killer",
             "splitfs",
             "strata",
@@ -286,6 +287,7 @@ class Runner(object):
             "jfs": self.mount_anyfs,
             "reiserfs": self.mount_anyfs,
             "nova": self.mount_nova,
+            "nova-relax": self.mount_nova,
             "killer": self.mount_killer,
             "splitfs": self.mount_splitfs,
             "strata": self.mount_strata,
@@ -304,7 +306,7 @@ class Runner(object):
             "ext4":
             f"-b {self.EXT_BLOCK_SIZE} -E stride={self.EXT_STRIDE_SIZE} -F",
             "ext4-no-jnl": "-F",
-            "xfs": "-f",
+            "xfs": "-m reflink=0 -f",
             "btrfs": "-f",
             "jfs": "-q",
             "reiserfs": "-q",
@@ -658,8 +660,12 @@ class Runner(object):
         (rc, dev_path) = self.init_media(media)
         if not rc:
             return False
-        p = self.exec_cmd(
-            ' '.join([BENCHMARK_DIR + "/setup.sh NOVA main"]), self.dev_null)
+        if fs == "nova":
+            p = self.exec_cmd(
+                ' '.join([BENCHMARK_DIR + "/setup.sh NOVA main"]), self.dev_null)
+        elif fs == "nova-relax":
+            p = self.exec_cmd(
+                ' '.join([BENCHMARK_DIR + "/setup.sh NOVA-RELAX main"]), self.dev_null)
         if p.returncode != 0:
             return False
         p = self.exec_cmd("sudo chmod 777 " + mnt_path,
@@ -738,6 +744,8 @@ class Runner(object):
             if p.returncode != 0:
                 return False
         if fs.startswith("ext"):
+            cmd = ' '.join(["sudo mount -o dax -t", self.get_fs(fs), dev_path, mnt_path])
+        if fs.startswith("xfs"):
             cmd = ' '.join(["sudo mount -o dax -t", self.get_fs(fs), dev_path, mnt_path])
         elif fs == "splitfs":
             cmd = ' '.join(["sudo mount -o dax -t", self.get_fs(fs), dev_path, mnt_path])

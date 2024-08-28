@@ -4,8 +4,8 @@ ABS_PATH=$(where_is_script "$0")
 TOOLS_PATH=$ABS_PATH/../../tools
 BOOST_DIR=$ABS_PATH/../../../splitfs/splitfs
 
-FILE_SYSTEMS=( "NOVA" "PMFS" "KILLER" "SplitFS-FIO" )
-FILE_SYSTEM_REMAPS=( "nova" "pmfs" "killer" "splitfs")
+FILE_SYSTEMS=( "NOVA" "PMFS" "KILLER" "SplitFS-FIO" "NOVA-RELAX")
+FILE_SYSTEM_REMAPS=( "nova" "pmfs" "killer" "splitfs" "nova-relax")
 TABLE_NAME="$ABS_PATH/performance-comparison-table"
 table_create "$TABLE_NAME" "file_system workload tput(works/sec)"
 WORKLOADS=( "^DWTL$" "^MRPL$" "^MWCL$" "^MWUL$" "^MWRL$"  )

@@ -14,6 +14,7 @@ SPLITFS_PATH="$ABS_PATH"/../../splitfs/splitfs
 EXT4RELINK_PATH="$ABS_PATH"/../../ext4relink
 SOUPFS_PATH="$ABS_PATH"/../../eulerfs
 CONFIGS_PATH="$ABS_PATH"/configs
+WINEFS_PATH="$ABS_PATH"/../../winefs
 
 function compile_splitfs() {
     local measure_timing=$1
@@ -84,6 +85,11 @@ case "${fs}" in
     ;;
 "PMFS")
     cd "$PMFS_PATH" || exit
+    git checkout "$branch"
+    bash setup.sh /dev/pmem0 /mnt/pmem0 -j32 "$measure_timing"
+    ;;
+"WINEFS")
+    cd "$WINEFS_PATH" || exit
     git checkout "$branch"
     bash setup.sh /dev/pmem0 /mnt/pmem0 -j32 "$measure_timing"
     ;;
@@ -170,6 +176,20 @@ case "${fs}" in
         bash setup.sh "$CONFIGS_PATH"/killer/config.mt.nowprotect.json
     else
         bash setup.sh "$CONFIGS_PATH"/killer/config.nowprotect.json
+    fi
+    ;;
+"KILLER-MEM")
+    cd "$HUNTER_PATH" || exit
+    if [ ! "$4" ]; then
+        max_mem_obj=0
+    else
+        max_mem_obj=$4
+    fi
+    git checkout "$branch"
+    if ((measure_timing == 1)); then
+        bash setup.sh "$CONFIGS_PATH"/killer/config.mt.nowprotect.json "$max_mem_obj"
+    else
+        bash setup.sh "$CONFIGS_PATH"/killer/config.nowprotect.json "$max_mem_obj"
     fi
     ;;
 "KILLER-NO-PREFETCH")

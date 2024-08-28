@@ -75,6 +75,15 @@ case "${fs}" in
             bash setup.sh "$CONFIGS_PATH"/killer/config.noinit.json
         fi
     ;;
+    "PMFS")
+        cd "$PMFS_PATH" || exit
+        git checkout "$branch"
+        if (( measure_timing == 1 )); then
+            bash setup.sh "$CONFIGS_PATH"/pmfs/config.mt.noinit.json
+        else
+            bash setup.sh "$CONFIGS_PATH"/pmfs/config.noinit.json
+        fi
+    ;;
     *)
         echo "Unknown file system: $fs"
         exit 1

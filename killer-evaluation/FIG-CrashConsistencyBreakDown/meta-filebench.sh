@@ -35,53 +35,53 @@ PMEM_ID=$(get_pmem_id_by_name "pmem0")
 
 for file_system in "${FILE_SYSTEMS[@]}"; do
     for workload in "${WORKLOADS[@]}"; do
-        # if [[ "${file_system}" == "NOVA" ]]; then
-        #     bash "$tools_path"/setup.sh "$file_system" "meta-trace" "1"
-        # elif [[ "${file_system}" == "PMFS" ]]; then
-        #     bash "$tools_path"/setup.sh "$file_system" "meta-trace" "1"
-        # elif [[ "${file_system}" =~ "KILLER" ]]; then
-        #     bash "$tools_path"/setup.sh "$file_system" "meta-trace" "1"
-        # elif [[ "${file_system}" =~ "SplitFS-FILEBENCH" ]]; then
-        #     bash "$tools_path"/setup.sh "$file_system" "null" "1"
-        # else
-        #     echo file_system_type: $file_system
-        #     continue
-        # fi
+        if [[ "${file_system}" == "NOVA" ]]; then
+            bash "$tools_path"/setup.sh "$file_system" "meta-trace" "1"
+        elif [[ "${file_system}" == "PMFS" ]]; then
+            bash "$tools_path"/setup.sh "$file_system" "meta-trace" "1"
+        elif [[ "${file_system}" =~ "KILLER" ]]; then
+            bash "$tools_path"/setup.sh "$file_system" "meta-trace" "1"
+        elif [[ "${file_system}" =~ "SplitFS-FILEBENCH" ]]; then
+            bash "$tools_path"/setup.sh "$file_system" "null" "1"
+        else
+            echo file_system_type: $file_system
+            continue
+        fi
 
-        # mkdir -p "$ABS_PATH"/DATA/"$workload"
-        # cp -f "$FSCRIPT_PRE_FIX"/"$workload" "$ABS_PATH"/DATA/"$workload"/"$THREAD" 
-        # sed_cmd='s/set $nthreads=.*$/set $nthreads='$THREAD'/g' 
-        # sed -i "$sed_cmd" "$ABS_PATH"/DATA/"$workload"/"$THREAD"
-        # sed_cmd='s/run .*$/run 60/g' 
-        # sed -i "$sed_cmd" "$ABS_PATH"/DATA/"$workload"/"$THREAD"
+        mkdir -p "$ABS_PATH"/DATA/"$workload"
+        cp -f "$FSCRIPT_PRE_FIX"/"$workload" "$ABS_PATH"/DATA/"$workload"/"$THREAD" 
+        sed_cmd='s/set $nthreads=.*$/set $nthreads='$THREAD'/g' 
+        sed -i "$sed_cmd" "$ABS_PATH"/DATA/"$workload"/"$THREAD"
+        sed_cmd='s/run .*$/run 60/g' 
+        sed -i "$sed_cmd" "$ABS_PATH"/DATA/"$workload"/"$THREAD"
 
-        # measure_start ${PMEM_ID}
+        measure_start ${PMEM_ID}
 
-        # if [[ "${file_system}" == "SplitFS-FILEBENCH" ]]; then
-        #     bash "$tools_path"/setup.sh "$file_system" "null" "1"
-        #     export LD_LIBRARY_PATH="$BOOST_DIR"
-        #     export NVP_TREE_FILE="$BOOST_DIR"/bin/nvp_nvp.tree
-        #     LD_PRELOAD=$BOOST_DIR/libnvp.so $filebench -f "$ABS_PATH"/DATA/"$workload"/"$THREAD" > /tmp/splitfs_filebench_output 2>&1
-        # else
-        #     IOps=$(sudo $filebench -f "$ABS_PATH"/DATA/"$workload"/"$THREAD" | grep "IO Summary" | awk -F'[[:space:]]' '{print $6}')
-        # fi
+        if [[ "${file_system}" == "SplitFS-FILEBENCH" ]]; then
+            bash "$tools_path"/setup.sh "$file_system" "null" "1"
+            export LD_LIBRARY_PATH="$BOOST_DIR"
+            export NVP_TREE_FILE="$BOOST_DIR"/bin/nvp_nvp.tree
+            LD_PRELOAD=$BOOST_DIR/libnvp.so $filebench -f "$ABS_PATH"/DATA/"$workload"/"$THREAD" > /tmp/splitfs_filebench_output 2>&1
+        else
+            IOps=$(sudo $filebench -f "$ABS_PATH"/DATA/"$workload"/"$THREAD" | grep "IO Summary" | awk -F'[[:space:]]' '{print $6}')
+        fi
 
-        # mkdir -p "$ABS_PATH"/M_DATA/filebench/${workload}
-        # measure_end ${PMEM_ID} > "$ABS_PATH"/M_DATA/filebench/${workload}/${file_system}
+        mkdir -p "$ABS_PATH"/M_DATA/filebench/${workload}
+        measure_end ${PMEM_ID} > "$ABS_PATH"/M_DATA/filebench/${workload}/${file_system}
 
-        # dmesg -c
+        dmesg -c
 
-        # sudo umount /mnt/pmem0
+        sudo umount /mnt/pmem0
 
-        # echo sleep for 1 sec
-        # sleep 1
+        echo sleep for 1 sec
+        sleep 1
 
-        # if [[ "${file_system}" == "SplitFS-FILEBENCH" ]]; then
-        #     cat /tmp/splitfs_filebench_output >> "$ABS_PATH"/M_DATA/filebench/${workload}/${file_system}
-        # else
-        #     sudo dmesg >> "$ABS_PATH"/M_DATA/filebench/${workload}/${file_system}        
-        #     sed -i 's/\[\s*\([0-9]\)/[\1/g' "$ABS_PATH"/M_DATA/filebench/${workload}/${file_system} 
-        # fi
+        if [[ "${file_system}" == "SplitFS-FILEBENCH" ]]; then
+            cat /tmp/splitfs_filebench_output >> "$ABS_PATH"/M_DATA/filebench/${workload}/${file_system}
+        else
+            sudo dmesg >> "$ABS_PATH"/M_DATA/filebench/${workload}/${file_system}        
+            sed -i 's/\[\s*\([0-9]\)/[\1/g' "$ABS_PATH"/M_DATA/filebench/${workload}/${file_system} 
+        fi
 
         if [[ "${file_system}" == "NOVA" ]]; then
             IO_time=$(extract_nova_IO_time_from_output "$ABS_PATH"/M_DATA/filebench/${workload}/${file_system})

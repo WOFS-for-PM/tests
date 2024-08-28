@@ -33,48 +33,48 @@ PMEM_ID=$(get_pmem_id_by_name "pmem0")
 
 for file_system in "${FILE_SYSTEMS[@]}"; do
     for workload in "${WORKLOADS[@]}"; do
-        # if [[ "${file_system}" == "NOVA" ]]; then
-        #     bash "$TOOLS_PATH"/setup.sh "$file_system" "meta-trace" "1"
-        # elif [[ "${file_system}" == "PMFS" ]]; then
-        #     bash "$TOOLS_PATH"/setup.sh "$file_system" "meta-trace" "1"
-        # elif [[ "${file_system}" =~ "KILLER" ]]; then
-        #     bash "$TOOLS_PATH"/setup.sh "$file_system" "meta-trace" "1"
-        # elif [[ "${file_system}" =~ "SplitFS-FIO" ]]; then
-        #     bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "1"
-        # else
-        #     echo  file_system_type: $file_system
-        #     continue
-        # fi
+        if [[ "${file_system}" == "NOVA" ]]; then
+            bash "$TOOLS_PATH"/setup.sh "$file_system" "meta-trace" "1"
+        elif [[ "${file_system}" == "PMFS" ]]; then
+            bash "$TOOLS_PATH"/setup.sh "$file_system" "meta-trace" "1"
+        elif [[ "${file_system}" =~ "KILLER" ]]; then
+            bash "$TOOLS_PATH"/setup.sh "$file_system" "meta-trace" "1"
+        elif [[ "${file_system}" =~ "SplitFS-FIO" ]]; then
+            bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "1"
+        else
+            echo  file_system_type: $file_system
+            continue
+        fi
 
-        # measure_start ${PMEM_ID}
+        measure_start ${PMEM_ID}
 
-        # if [[ "${file_system}" =~ "SplitFS-FIO" ]]; then
-        #     export LD_LIBRARY_PATH="$BOOST_DIR"
-        #     export NVP_TREE_FILE="$BOOST_DIR"/bin/nvp_nvp.tree
-        #     LD_PRELOAD=$BOOST_DIR/libnvp.so fio -filename="/mnt/pmem0/test" -fallocate=none -direct=0 -iodepth 1 -rw=$workload -ioengine=sync -bs="4K" -size="$FILE_SIZE" -name=test > /tmp/splitfs_fio_output 2>&1
-        # else
-        #     BW=$(sudo fio -filename=/mnt/pmem0/test -fallocate=none -direct=0 -iodepth 1 -rw=$workload \
-        #     -ioengine=sync -bs="4k" -thread -numjobs=1 -size=$FILE_SIZE -name=test \
-        #     | grep WRITE: | awk '{print $2}' | sed 's/bw=//g')
-        # fi
+        if [[ "${file_system}" =~ "SplitFS-FIO" ]]; then
+            export LD_LIBRARY_PATH="$BOOST_DIR"
+            export NVP_TREE_FILE="$BOOST_DIR"/bin/nvp_nvp.tree
+            LD_PRELOAD=$BOOST_DIR/libnvp.so fio -filename="/mnt/pmem0/test" -fallocate=none -direct=0 -iodepth 1 -rw=$workload -ioengine=sync -bs="4K" -size="$FILE_SIZE" -name=test > /tmp/splitfs_fio_output 2>&1
+        else
+            BW=$(sudo fio -filename=/mnt/pmem0/test -fallocate=none -direct=0 -iodepth 1 -rw=$workload \
+            -ioengine=sync -bs="4k" -thread -numjobs=1 -size=$FILE_SIZE -name=test \
+            | grep WRITE: | awk '{print $2}' | sed 's/bw=//g')
+        fi
 
-        # mkdir -p "$ABS_PATH"/M_DATA/fio/${workload}
+        mkdir -p "$ABS_PATH"/M_DATA/fio/${workload}
 
-        # measure_end ${PMEM_ID} > "$ABS_PATH"/M_DATA/fio/${workload}/${file_system}
+        measure_end ${PMEM_ID} > "$ABS_PATH"/M_DATA/fio/${workload}/${file_system}
 
-        # dmesg -c
+        dmesg -c
 
-        # sudo umount /mnt/pmem0
+        sudo umount /mnt/pmem0
 
-        # echo sleep for 1 sec
-        # sleep 1
+        echo sleep for 1 sec
+        sleep 1
 
-        # if [[ "${file_system}" =~ "SplitFS-FIO" ]]; then
-        #     cat /tmp/splitfs_fio_output >> "$ABS_PATH"/M_DATA/fio/${workload}/${file_system}
-        # else
-        #     sudo dmesg >> "$ABS_PATH"/M_DATA/fio/${workload}/${file_system}
-        #     sed -i 's/\[\s*\([0-9]\)/[\1/g' "$ABS_PATH"/M_DATA/fio/${workload}/${file_system} 
-        # fi
+        if [[ "${file_system}" =~ "SplitFS-FIO" ]]; then
+            cat /tmp/splitfs_fio_output >> "$ABS_PATH"/M_DATA/fio/${workload}/${file_system}
+        else
+            sudo dmesg >> "$ABS_PATH"/M_DATA/fio/${workload}/${file_system}
+            sed -i 's/\[\s*\([0-9]\)/[\1/g' "$ABS_PATH"/M_DATA/fio/${workload}/${file_system} 
+        fi
 
         if [[ "${file_system}" == "NOVA" ]]; then
             IO_time=$(extract_nova_IO_time_from_output "$ABS_PATH"/M_DATA/fio/${workload}/${file_system})
