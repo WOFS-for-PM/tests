@@ -159,7 +159,7 @@ u64 gen_one_crash_seq(std::vector<hk_cmd> cmds, std::vector<hk_cmd> &reordered_c
     return crash_point;
 }
 
-int create_image(std::vector<hk_cmd> cmds, u64 end, std::ifstream &trace, std::fstream &image)
+int create_image(std::vector<hk_cmd> cmds, u64 end, std::ifstream &trace, std::ofstream &image)
 {
     u64 i = 0;
 
@@ -266,8 +266,8 @@ int main(int argc, char *argv[])
     int seed = program.get<int>("-s");
 
     std::ifstream trace_file(trace_file_path, std::ios::binary);
-    std::fstream latest_file(latest_file_path, std::ios::binary);
-    std::fstream crash_file(crash_file_path, std::ios::binary);
+    std::ofstream latest_file(latest_file_path, std::ios::binary);
+    std::ofstream crash_file(crash_file_path, std::ios::binary);
 
     std::vector<hk_cmd> cmds;
 

@@ -18,7 +18,13 @@ if [ "$1" ]; then
     loop=$1
 fi
 
+TABLE_NAME="$ABS_PATH/performance-comparison-table"
+table_create "$TABLE_NAME" "workload cp latest-consistent"
+
 mkdir -p /mnt/ramdisk
+
+umount /mnt/ramdisk/
+
 mount -t tmpfs -o size="$PM_SIZE"m tmpfs /mnt/ramdisk
 mkdir -p /mnt/pmem0
 mkdir -p /mnt/pmem1
@@ -48,7 +54,7 @@ do
                 echo 0 > /proc/fs/HUNTER/pmem0/Enable_trace
                 umount /mnt/pmem0
                 
-                cp /tmp/killer-trace "$ABS_PATH"/killer-trace
+                cp -f /tmp/killer-trace "$ABS_PATH"/killer-trace
 
                 # prepare /dev/pmem0 and /dev/pmem1 for latest image and crash image
                 bash "$TOOLS_PATH"/cc/clear_pmem.sh $PM_SIZE
@@ -59,7 +65,15 @@ do
                 ./gen_cp -t killer-trace -l /dev/pmem0 -c /dev/pmem1 -s "$crash_point"
 
                 # check consistency
-                bash "$TOOLS_PATH"/cc/check_cc.sh
+                ret=$(bash "$TOOLS_PATH"/cc/check_cc.sh)
+                # if "Consistency check passed" in $ret
+                if [[ $ret == *"Consistency check passed"* ]]; then
+                    echo "Consistency check passed"
+                    table_add_row "$TABLE_NAME" "$workload $crash_point passed"
+                else
+                    echo "Consistency check failed"
+                    table_add_row "$TABLE_NAME" "$workload $crash_point failed"
+                fi
             done    
         done
 
