@@ -18,8 +18,8 @@ else
 fi
 
 # mount killer
-"$TOOLS_PATH"/mount.sh "KILLER-TRACE" "killer-trace" "/dev/pmem0" "/mnt/pmem0"
-"$TOOLS_PATH"/mount.sh "KILLER-TRACE" "killer-trace" "/dev/pmem1" "/mnt/pmem1"
+"$TOOLS_PATH"/mount.sh "KILLER-TRACE" "killer-trace" 0 "/dev/pmem0" "/mnt/pmem0"
+"$TOOLS_PATH"/mount.sh "KILLER-TRACE" "killer-trace" 0 "/dev/pmem1" "/mnt/pmem1"
 
 #echo "Unmount pmem1"
 #umount /mnt/pmem1

@@ -8,7 +8,7 @@ TOOLS_PATH=$ABS_PATH/../../tools
 
 PM_SIZE=256 # in MB
 
-FILE_SYSTEMS=( "KILLER-TRACE" )
+FILE_SYSTEMS=( "KILLER" )
 
 WORKLOADS=( "$ABS_PATH/workloads/append.sh" "$ABS_PATH/workloads/create_delete.sh" "$ABS_PATH/workloads/rename_root_to_sub.sh" )
 NUM_CRASHPOINTS=1
