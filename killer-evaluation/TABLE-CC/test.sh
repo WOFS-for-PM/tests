@@ -30,13 +30,13 @@ do
             for crash_point in $(seq 1 $NUM_CRASHPOINTS); do
                 echo "Running $file_system with $workload workload and $crash_point crash point"
                 # clear pmems
-                "$TOOLS_PATH"/cc/clear_pmem.sh $PM_SIZE
+                bash "$TOOLS_PATH"/cc/clear_pmem.sh $PM_SIZE
 
                 # mount killer
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "killer" "0"
                 
                 # take snapshot of /dev/pmem0
-                "$TOOLS_PATH"/cc/take_snapshot.sh /dev/pmem0 $PM_SIZE
+                bash "$TOOLS_PATH"/cc/take_snapshot.sh /dev/pmem0 $PM_SIZE
 
                 # start tracing I/Os
                 echo 1 > /proc/fs/HUNTER/pmem0/Enable_trace
@@ -51,15 +51,15 @@ do
                 cp /tmp/killer-trace "$ABS_PATH"/killer-trace
 
                 # prepare /dev/pmem0 and /dev/pmem1 for latest image and crash image
-                "$TOOLS_PATH"/cc/clear_pmem.sh $PM_SIZE
+                bash "$TOOLS_PATH"/cc/clear_pmem.sh $PM_SIZE
 
-                "$TOOLS_PATH"/cc/apply_snapshot.sh /dev/pmem0 $PM_SIZE
-                "$TOOLS_PATH"/cc/apply_snapshot.sh /dev/pmem1 $PM_SIZE
+                bash "$TOOLS_PATH"/cc/apply_snapshot.sh /dev/pmem0 $PM_SIZE
+                bash "$TOOLS_PATH"/cc/apply_snapshot.sh /dev/pmem1 $PM_SIZE
 
                 ./gen_cp -t killer-trace -l /dev/pmem0 -c /dev/pmem1 -s "$crash_point"
 
                 # check consistency
-                "$TOOLS_PATH"/cc/check_cc.sh
+                bash "$TOOLS_PATH"/cc/check_cc.sh
             done    
         done
 
