@@ -18,6 +18,11 @@ if [ "$1" ]; then
     loop=$1
 fi
 
+mkdir -p /mnt/ramdisk
+mount -t tmpfs -o size="$PM_SIZE"m tmpfs /mnt/ramdisk
+mkdir -p /mnt/pmem0
+mkdir -p /mnt/pmem1
+
 for ((i=1; i <= loop; i++))
 do
     for file_system in "${FILE_SYSTEMS[@]}"; do
@@ -60,3 +65,5 @@ do
 
     done
 done
+
+umount /mnt/ramdisk
