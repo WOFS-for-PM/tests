@@ -51,6 +51,12 @@ else
     dev=$4
 fi
 
+if [ ! "$5" ]; then
+    MNT_PATH=/mnt/pmem0
+else
+    MNT_PATH=$5
+fi
+
 
 # setup
 case "${fs}" in
@@ -85,9 +91,9 @@ case "${fs}" in
         cd "$HUNTER_PATH" || exit
         git checkout "$branch"
         if (( measure_timing == 1 )); then
-            bash setup-dev.sh "$CONFIGS_PATH"/killer-trace/config.mt.noinit.json "$dev"
+            bash setup-dev.sh "$CONFIGS_PATH"/killer/config.mt.noinit.json "$dev" "$MNT_PATH"
         else
-            bash setup-dev.sh "$CONFIGS_PATH"/killer-trace/config.noinit.json "$dev"
+            bash setup-dev.sh "$CONFIGS_PATH"/killer/config.noinit.json "$dev" "$MNT_PATH"
         fi
     ;;
     "PMFS")

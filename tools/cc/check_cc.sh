@@ -4,16 +4,22 @@
 ABS_PATH=$(cd "$( dirname "$0" )" && pwd)
 TOOLS_PATH="$ABS_PATH"/..
 
-if ! cmp /dev/pmem0 /dev/pmem1; then
-    echo "Consistency check passed."
+# Compare the contents of /dev/pmem0 and /dev/pmem1
+diff -qr /dev/pmem0 /dev/pmem1
+error=$?
+
+if [ $error -eq 0 ]; then
+    echo "Consistency check passed"
     exit 0
 else
-    echo "Test with a live mount"
+    echo "Check with a live mount"
+    # Continue with the rest of the script
+    # ...
 fi
 
 # mount killer
-"$TOOLS_PATH"/mount.sh "KILLER-TRACE" "killer-trace" "/dev/pmem0"
-"$TOOLS_PATH"/mount.sh "KILLER-TRACE" "killer-trace" "/dev/pmem1"
+"$TOOLS_PATH"/mount.sh "KILLER-TRACE" "killer-trace" "/dev/pmem0" "/mnt/pmem0"
+"$TOOLS_PATH"/mount.sh "KILLER-TRACE" "killer-trace" "/dev/pmem1" "/mnt/pmem1"
 
 #echo "Unmount pmem1"
 #umount /mnt/pmem1
