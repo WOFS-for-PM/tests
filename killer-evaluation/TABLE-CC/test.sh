@@ -43,13 +43,15 @@ do
                 echo 0 > /proc/fs/HUNTER/pmem0/Enable_trace
                 umount /mnt/pmem0
                 
+                cp /tmp/killer-trace "$ABS_PATH"/killer-trace
+
                 # prepare /dev/pmem0 and /dev/pmem1 for latest image and crash image
                 "$TOOLS_PATH"/cc/clear_pmem.sh $PM_SIZE
 
                 "$TOOLS_PATH"/cc/apply_snapshot.sh /dev/pmem0 $PM_SIZE
                 "$TOOLS_PATH"/cc/apply_snapshot.sh /dev/pmem1 $PM_SIZE
 
-                ./gen_cp -t killer -l /dev/pmem0 -c /dev/pmem1 -s "$crash_point"
+                ./gen_cp -t killer-trace -l /dev/pmem0 -c /dev/pmem1 -s "$crash_point"
 
                 # check consistency
                 "$TOOLS_PATH"/cc/check_cc.sh
