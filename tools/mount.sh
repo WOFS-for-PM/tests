@@ -45,6 +45,12 @@ else
     measure_timing=$3
 fi
 
+if [ ! "$4" ]; then
+    dev=/dev/pmem0
+else
+    dev=$4
+fi
+
 
 # setup
 case "${fs}" in
@@ -73,6 +79,15 @@ case "${fs}" in
             bash setup.sh "$CONFIGS_PATH"/killer/config.mt.noinit.json
         else
             bash setup.sh "$CONFIGS_PATH"/killer/config.noinit.json
+        fi
+    ;;
+    "KILLER-TRACE")
+        cd "$HUNTER_PATH" || exit
+        git checkout "$branch"
+        if (( measure_timing == 1 )); then
+            bash setup-dev.sh "$CONFIGS_PATH"/killer-trace/config.mt.noinit.json "$dev"
+        else
+            bash setup-dev.sh "$CONFIGS_PATH"/killer-trace/config.noinit.json "$dev"
         fi
     ;;
     "PMFS")
