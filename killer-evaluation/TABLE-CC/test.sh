@@ -8,7 +8,7 @@ TOOLS_PATH=$ABS_PATH/../../tools
 
 PM_SIZE=256 # in MB
 
-FILE_SYSTEMS=( "KILLER" )
+FILE_SYSTEMS=( "KILLER-TRACE" )
 
 WORKLOADS=( "$ABS_PATH/workloads/append.sh" "$ABS_PATH/workloads/create_delete.sh" "$ABS_PATH/workloads/rename_root_to_sub.sh" )
 NUM_CRASHPOINTS=1
@@ -33,7 +33,7 @@ do
                 bash "$TOOLS_PATH"/cc/clear_pmem.sh $PM_SIZE
 
                 # mount killer
-                bash "$TOOLS_PATH"/setup.sh "$file_system" "killer" "0"
+                bash "$TOOLS_PATH"/setup.sh "$file_system" "killer-trace" "0"
                 
                 # take snapshot of /dev/pmem0
                 bash "$TOOLS_PATH"/cc/take_snapshot.sh /dev/pmem0 $PM_SIZE

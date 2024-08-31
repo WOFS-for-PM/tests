@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
-if [ "$#" -ne 1 ]; then
-	echo "Usage : ./command <size in MB>"
+if [ "$#" -ne 2 ]; then
+	echo "Usage : ./command <device> <size in MB>"
 	exit 1
 fi
 
