@@ -74,6 +74,11 @@ if (DELTAFS)
     list (APPEND geriatrix-drivers src/deltafs_driver.c)
 endif ()
 
+list (APPEND geriatrix-drivers src/killer_driver.cpp)
+
+# add_compile_options(-fsanitize=address)
+# add_link_options(-fsanitize=address)
+
 add_executable (geriatrix ${geriatrix-drivers} src/geriatrix.cpp)
 target_link_libraries (geriatrix ${geriatrix-depends})
 

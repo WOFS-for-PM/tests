@@ -23,13 +23,14 @@
 struct backend_driver {
     int (*bd_open)(const char *path, int flags, ...);
     int (*bd_close)(int fd);
-    ssize_t (*bd_write)(int fd, const void *buf, size_t nbytes);
     int (*bd_access)(const char *path, int mode);
     int (*bd_unlink)(const char *path);
     int (*bd_mkdir)(const char *path, mode_t mode);
     int (*bd_fallocate)(int fd, off_t offset, off_t len);
     int (*bd_stat)(const char *path, struct stat *st);
     int (*bd_chmod)(const char *path, mode_t mode);
+    void (*bd_end)(void);
+    void (*bd_init)(void);
 };
 
 #endif /* BACKEND_ */

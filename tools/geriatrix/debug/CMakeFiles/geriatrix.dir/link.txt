@@ -1,0 +1,1 @@
+/usr/bin/c++ -g -rdynamic CMakeFiles/geriatrix.dir/src/killer_driver.cpp.o CMakeFiles/geriatrix.dir/src/geriatrix.cpp.o -o geriatrix  -pthread 
