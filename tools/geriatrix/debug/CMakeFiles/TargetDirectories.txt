@@ -1,7 +1,0 @@
-/home/deadpool/HUNTER-REPO/tests/tools/geriatrix/debug/CMakeFiles/install/strip.dir
-/home/deadpool/HUNTER-REPO/tests/tools/geriatrix/debug/CMakeFiles/edit_cache.dir
-/home/deadpool/HUNTER-REPO/tests/tools/geriatrix/debug/CMakeFiles/geriatrix.dir
-/home/deadpool/HUNTER-REPO/tests/tools/geriatrix/debug/CMakeFiles/install.dir
-/home/deadpool/HUNTER-REPO/tests/tools/geriatrix/debug/CMakeFiles/rebuild_cache.dir
-/home/deadpool/HUNTER-REPO/tests/tools/geriatrix/debug/CMakeFiles/list_install_components.dir
-/home/deadpool/HUNTER-REPO/tests/tools/geriatrix/debug/CMakeFiles/install/local.dir
