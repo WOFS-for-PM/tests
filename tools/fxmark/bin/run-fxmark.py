@@ -15,11 +15,13 @@ import optparse
 import psutil
 import strata
 import splitfs
+import madfs
 
 CUR_DIR = os.path.abspath(os.path.dirname(__file__))
 FXMARK_DIR = os.path.dirname(CUR_DIR)
 BENCHMARK_DIR = os.path.dirname(FXMARK_DIR)
 BOOST_DIR = os.path.abspath(os.path.join(BENCHMARK_DIR, "../../splitfs/splitfs"))
+MADFS_DIR = os.path.abspath(os.path.join(BENCHMARK_DIR, "../../MadFS/build-release"))
 SRC_DIR = os.path.dirname(BENCHMARK_DIR)
 ROOT_DIR = os.path.dirname(SRC_DIR)
 
@@ -99,6 +101,7 @@ class Runner(object):
             "nova-relax",
             "killer",
             "splitfs",
+            "madfs",
             "strata",
             "pmfs",
             "ext2",
@@ -113,7 +116,8 @@ class Runner(object):
             "ext2-no-jnl": "ext2",
             "ext3-no-jnl": "ext3",
             "ext4-no-jnl": "ext4",
-            "splitfs": "ext4"
+            "splitfs": "ext4",
+            "madfs": "ext4",
         }
         self.pmem_dm_stripe_num = self.FILTER[6]
         self.PMEM_DM_STRIPE_CHUNK_SIZE = 4096
@@ -171,6 +175,7 @@ class Runner(object):
             "MWCM",
             "MWUM",
             "MWUL",
+            "MWUL_small",
             "DWTL",
 
             # filebench
@@ -290,6 +295,7 @@ class Runner(object):
             "nova-relax": self.mount_nova,
             "killer": self.mount_killer,
             "splitfs": self.mount_splitfs,
+            "madfs": self.mount_anyfs,
             "strata": self.mount_strata,
             "pmfs": self.mount_pmfs,
             "winefs" : self.mount_winefs,
@@ -311,6 +317,8 @@ class Runner(object):
             "jfs": "-q",
             "reiserfs": "-q",
             "splitfs": 
+            f"-b {self.EXT_BLOCK_SIZE} -E stride={self.EXT_STRIDE_SIZE} -F",
+            "madfs":
             f"-b {self.EXT_BLOCK_SIZE} -E stride={self.EXT_STRIDE_SIZE} -F",
         }
 
@@ -749,6 +757,8 @@ class Runner(object):
             cmd = ' '.join(["sudo mount -o dax -t", self.get_fs(fs), dev_path, mnt_path])
         elif fs == "splitfs":
             cmd = ' '.join(["sudo mount -o dax -t", self.get_fs(fs), dev_path, mnt_path])
+        elif fs == "madfs":
+            cmd = ' '.join(["sudo mount -o dax -t", self.get_fs(fs), dev_path, mnt_path])
         else:
             cmd = ' '.join(["sudo mount -t", self.get_fs(fs), dev_path, mnt_path])
         p = self.exec_cmd(cmd, self.dev_null)
@@ -913,15 +923,17 @@ class Runner(object):
                                 "sufs_alloc_pin_cpu=%s" % 0])
         elif fs == "strata":
             if bench == "fxmark":
-                    fs_env = ("LD_PRELOAD=%s" % 
+                fs_env = ("LD_PRELOAD=%s" % 
                               (os.path.normpath(os.path.join(CUR_DIR, strata.lib))))
         elif fs == "splitfs":
             if bench == "fxmark":
-                    fs_env = (splitfs.ledge_str + " " +  
+                fs_env = (splitfs.ledge_str + " " +  
                         ("NVP_TREE_FILE=%s " % (os.path.normpath(os.path.join(BOOST_DIR, "bin", splitfs.tree))) + 
                         ("LD_LIBRARY_PATH=%s " % os.path.normpath(BOOST_DIR)) + 
                         ("LD_PRELOAD=%s "  %  os.path.normpath(os.path.join(BOOST_DIR, splitfs.lib))))) 
-
+        elif fs == "madfs":
+            if bench == "fxmark":
+                fs_env = "LD_PRELOAD=%s "  %  os.path.normpath(os.path.join(MADFS_DIR, madfs.lib))
         env = env + ' ' + fs_env
         return env
 
@@ -1069,7 +1081,7 @@ class Runner(object):
         if self.redirect:
             for l in p.stdout.readlines():
                 # special handling for strata in fxmark
-                if bin is self.fxmark_path and (fs == "strata" or fs == "splitfs"):
+                if bin is self.fxmark_path and (fs == "strata" or fs == "splitfs" or fs == "madfs"):
                     if l.decode("utf-8").strip().startswith("#"):
                         self.log(l.decode("utf-8").strip())
                     else:
@@ -1090,6 +1102,8 @@ class Runner(object):
 
     def setup_root_and_bin(self, fs):
         if fs == "splitfs":
+            self.test_root = "/mnt/pmem0"
+        elif fs == "madfs":
             self.test_root = "/mnt/pmem0"
         elif fs == "strata":
             self.test_root = "/mlfs/"

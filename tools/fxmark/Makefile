@@ -28,7 +28,7 @@ TC      = $(SRC)/MWCM.c $(SRC)/MWCL.c \
 		  $(SRC)/DRBM_bg.c $(SRC)/MRPM_bg.c \
 		  $(SRC)/MWUM.c $(SRC)/MWUL.c \
 		  $(SRC)/DWTL.c $(SRC)/MRPH.c \
-		  $(SRC)/MRPL.c
+		  $(SRC)/MWUL_small.c $(SRC)/MRPL.c
 DEPS	= $(wildcard $(SRC)/*.h) $(LIBS) $(TC)
 BINS	= $(BIN)/fxmark $(BIN)/create-file $(BIN)/fxmark-sufs $(BIN)/create-file-sufs
 CPUPOLS = $(SRC)/cpuinfo $(SRC)/cpupol.h $(BIN)/cpupol.py
