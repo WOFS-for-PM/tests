@@ -4,8 +4,8 @@ ABS_PATH=$(where_is_script "$0")
 TOOLS_PATH=$ABS_PATH/../../tools
 BOOST_DIR=$ABS_PATH/../../../splitfs/splitfs
 
-FILE_SYSTEMS=( "NOVA" "PMFS" "KILLER" "SplitFS-FIO" "NOVA-RELAX")
-FILE_SYSTEM_REMAPS=( "nova" "pmfs" "killer" "splitfs" "nova-relax")
+FILE_SYSTEMS=( "NOVA" "PMFS" "KILLER" "SplitFS-FIO" "NOVA-RELAX" "MadFS")
+FILE_SYSTEM_REMAPS=( "nova" "pmfs" "killer" "splitfs" "nova-relax" "madfs")
 TABLE_NAME="$ABS_PATH/performance-comparison-table"
 table_create "$TABLE_NAME" "file_system workload tput(works/sec)"
 WORKLOADS=( "^DWTL$" "^MRPL$" "^MWCL$" "^MWUL$" "^MWRL$"  )
@@ -26,6 +26,11 @@ do
             fs_name="^$file_system_remap$"
             workload_name="${WORKLOAD_NAMES[$WORKLOAD_IDX]}"
             cd "$TOOLS_PATH"/fxmark/bin/ || exit
+            
+            if [[ "${fs_name}" == "madfs" ]]; then
+                export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH
+            fi
+            
             python3 run-fxmark.py --media="pmem-local" --fs="$fs_name" --workload="$work_load" --ncore="^1$" --iotype='bufferedio' --dthread='0' --dsocket='0' --rcore='False' --delegate='False' --confirm='True' --directory_name=/tmp --log_name="$file_system_remap.$work_load.log" --duration=10
             cd - || exit
 
