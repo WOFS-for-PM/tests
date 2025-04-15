@@ -6,19 +6,25 @@ TOOLS_PATH=$ABS_PATH/../../tools
 
 # run within emulated pmem
 
-PM_SIZE=256 # in MB
+PM_SIZE=4 # in MB
 
-FILE_SYSTEMS=( "KILLER-TRACE" )
+FILE_SYSTEMS=( "KILLER" )
 
 WORKLOADS=( "$ABS_PATH/workloads/append.sh" "$ABS_PATH/workloads/create_delete.sh" "$ABS_PATH/workloads/rename_root_to_sub.sh" )
-NUM_CRASHPOINTS=1
+NUM_CRASHPOINTS=1000
 
 loop=1
 if [ "$1" ]; then
     loop=$1
 fi
 
+TABLE_NAME="$ABS_PATH/performance-comparison-table"
+table_create "$TABLE_NAME" "workload cp latest-consistent"
+
 mkdir -p /mnt/ramdisk
+
+umount /mnt/ramdisk/
+
 mount -t tmpfs -o size="$PM_SIZE"m tmpfs /mnt/ramdisk
 mkdir -p /mnt/pmem0
 mkdir -p /mnt/pmem1
@@ -48,7 +54,7 @@ do
                 echo 0 > /proc/fs/HUNTER/pmem0/Enable_trace
                 umount /mnt/pmem0
                 
-                cp /tmp/killer-trace "$ABS_PATH"/killer-trace
+                cp -f /tmp/killer-trace "$ABS_PATH"/killer-trace
 
                 # prepare /dev/pmem0 and /dev/pmem1 for latest image and crash image
                 bash "$TOOLS_PATH"/cc/clear_pmem.sh $PM_SIZE
@@ -56,10 +62,24 @@ do
                 bash "$TOOLS_PATH"/cc/apply_snapshot.sh /dev/pmem0 $PM_SIZE
                 bash "$TOOLS_PATH"/cc/apply_snapshot.sh /dev/pmem1 $PM_SIZE
 
-                ./gen_cp -t killer-trace -l /dev/pmem0 -c /dev/pmem1 -s "$crash_point"
+                OUTPUT=$(./gen_cp -t killer-trace -l /dev/pmem0 -c /dev/pmem1 -s "$crash_point")
 
-                # check consistency
-                bash "$TOOLS_PATH"/cc/check_cc.sh
+                if [[ "${OUTPUT}" == *"No need to do further check"* ]]; then
+                    echo "Early consistency check passed"
+                    table_add_row "$TABLE_NAME" "$workload $crash_point early-passed"
+                else
+                    # check consistency
+                    ret=$(bash "$TOOLS_PATH"/cc/check_cc.sh)
+                    # if "Consistency check passed" in $ret
+                    if [[ $ret == *"Consistency check passed"* ]]; then
+                        echo "Consistency check passed"
+                        table_add_row "$TABLE_NAME" "$workload $crash_point passed"
+                    else
+                        echo "Consistency check failed"
+                        table_add_row "$TABLE_NAME" "$workload $crash_point failed"
+                    fi
+                fi
+
             done    
         done
 

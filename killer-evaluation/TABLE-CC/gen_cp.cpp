@@ -159,7 +159,7 @@ u64 gen_one_crash_seq(std::vector<hk_cmd> cmds, std::vector<hk_cmd> &reordered_c
     return crash_point;
 }
 
-int create_image(std::vector<hk_cmd> cmds, u64 end, std::ifstream &trace, std::fstream &image)
+int create_image(std::vector<hk_cmd> cmds, u64 end, std::ifstream &trace, std::ofstream &image)
 {
     u64 i = 0;
 
@@ -190,12 +190,41 @@ int create_image(std::vector<hk_cmd> cmds, u64 end, std::ifstream &trace, std::f
     return 0;
 }
 
+static bool check_write_state_change(hk_cmd cmd, std::ifstream &trace_file)
+{
+    if (cmd.type == HK_CMD_MOVNTI || cmd.type == HK_CMD_CLWB)
+    {
+        char *buf = new char[cmd.size];
+
+        trace_file.clear();
+        trace_file.seekg(cmd.f_pos);
+        trace_file.read(buf, cmd.size);
+
+        for (u64 i = 0; i < cmd.size; i++)
+        {
+            if (buf[i] != 0)
+            {
+                delete[] buf;
+                return true;
+            }
+        }
+
+        delete[] buf;
+        return false;
+    } else {
+        return false;
+    }
+}
+
 void interpret_cmds(const char *title, std::vector<hk_cmd> cmds, std::ifstream &trace_file)
 {
+    u64 i = 0;
     std::cout << "[" << title << "]" << std::endl;
+    std::cout << "#. CMD ADDR SIZE F_POS" << std::endl;
 
     for (auto cmd : cmds)
-    {
+    {   
+        std::cout << std::dec << "[" << i++ << "] ";
         std::cout << ToString(static_cast<enum hk_cmd_type>(cmd.type)) << ", ";
         std::cout << std::hex << "0x" << cmd.addr << ", ";
         std::cout << std::dec << cmd.size << ", ";
@@ -266,8 +295,8 @@ int main(int argc, char *argv[])
     int seed = program.get<int>("-s");
 
     std::ifstream trace_file(trace_file_path, std::ios::binary);
-    std::fstream latest_file(latest_file_path, std::ios::binary);
-    std::fstream crash_file(crash_file_path, std::ios::binary);
+    std::ofstream latest_file(latest_file_path, std::ios::binary);
+    std::ofstream crash_file(crash_file_path, std::ios::binary);
 
     std::vector<hk_cmd> cmds;
 
@@ -291,27 +320,44 @@ int main(int argc, char *argv[])
         memset(&trace, 0, sizeof(hk_trace));
     }
 
+    // interpret_cmds("Basic Trace", cmds, trace_file);
+
     std::vector<hk_cmd> reordered_cmds;
     u64 crash_point = gen_one_crash_seq(cmds, reordered_cmds, seed);
     std::cout << "Crash point: " << crash_point << std::endl;
+    
+    // interpret_cmds("Reordered Trace", reordered_cmds, trace_file);
 
+    bool state_changed = check_write_state_change(reordered_cmds[crash_point], trace_file);
+    
     // select the latest checkpoint before the crash point
     s64 ckpt_point = -1;
-    for (s64 i = crash_point; i >= 0; i--)
-    {
-        if (cmds[i].type == HK_CMD_CKPT)
+
+    if (state_changed) {
+        for (s64 i = crash_point; i >= 0; i--)
         {
-            ckpt_point = i;
-            break;
+            if (cmds[i].type == HK_CMD_CKPT)
+            {
+                ckpt_point = i;
+                break;
+            }
         }
+    } else {
+        ckpt_point = crash_point;
     }
     
+    std::cout << "Check point: " << ckpt_point << std::endl;
+
     // create crash image
     create_image(reordered_cmds, crash_point, trace_file, crash_file);
     // create latest image
     create_image(reordered_cmds, ckpt_point, trace_file, latest_file);
 
     std::cout << "Image Created." << std::endl;
+
+    if (ckpt_point == (s64)crash_point) {
+        std::cout << "No need to do further check." << std::endl;
+    }
 
     reordered_cmds.clear();
 
