@@ -55,12 +55,14 @@ static int posix_fallocate(int fd, off_t offset, off_t len) {
 
 /* posix driver (the default) */
 static struct backend_driver posix_backend_driver = {
-    open, close, write, access, unlink, mkdir, posix_fallocate, stat, chmod,
+    open, close, access, unlink, mkdir, posix_fallocate, stat, chmod, NULL
 };
 
 #ifdef DELTAFS     /* optional backend for cmu's deltafs */
 extern struct backend_driver deltafs_backend_driver;
 #endif
+
+extern struct backend_driver killer_backend_driver;
 
 /* g_backend is the backend we are using (default=posix) */
 static struct backend_driver *g_backend = &posix_backend_driver;
@@ -87,6 +89,7 @@ static int mkdir_path(const char *path, mode_t mode) {
     if (*slash == '\0') done = 1;  /* hit last directory? */
 
     *slash = '\0';
+    
     rv = g_backend->bd_mkdir(pcopy, done ? mode : parentmode);
     if (rv < 0) {
       olderrno = errno;
@@ -1021,6 +1024,9 @@ void handler(int signo){
   dumpDirBuckets(d.out_file);
   dumpStats(&a, &s, &d);
   destroy();
+  // wait for all threads to finish
+  if (g_backend->bd_end)
+    g_backend->bd_end();
   exit(0);
 }
 
@@ -1069,10 +1075,16 @@ int main(int argc, char *argv[]) {
       fprintf(stderr, "error: DELTAFS not enabled in this binary\n");
       exit(1);
 #endif
+  } else if (strcmp(mybackend, "killer") == 0) {
+      g_backend = &killer_backend_driver;
+      std::cout << "Using killer backend" << std::endl;
   }
 
   assert(total_disk_capacity > 0);
   srand(seed);
+  
+  if (g_backend->bd_init)
+    g_backend->bd_init();
 
   init(&a, &s, &d); // initialize the data structures for aging
   if(confidence > 0.0) {
@@ -1096,6 +1108,7 @@ int main(int argc, char *argv[]) {
         &a, &s, &d, runs);
   } while(query_before_quitting && resumeAgingQuery(total_disk_capacity,
         runtime));
+
   handler(0);
   return 0;
 }

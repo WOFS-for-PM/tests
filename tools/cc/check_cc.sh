@@ -45,4 +45,4 @@ else
 fi
 
 echo "Unmount devices"
-# umount /mnt/pmem0
+umount /mnt/pmem0
