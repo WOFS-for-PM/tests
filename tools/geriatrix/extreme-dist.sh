@@ -1,0 +1,1 @@
+./build/geriatrix -n $((1024*1024)) -u 0.8 -r 0 -m /mnt/test-geriatrix -a ./profiles/extreme/age_distribution.txt -s ./profiles/extreme/size_distribution.txt -d ./profiles/extreme/dir_distribution.txt -x /tmp/age.out -y /tmp/size.out -z /tmp/dir.out -t 1 -i 1000 -f 0 -p 0 -c 0 -q 0 -w 100 -b killer

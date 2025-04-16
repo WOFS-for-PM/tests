@@ -9,4 +9,4 @@ fi
 
 partition_size=$((16 * 1024 * 1024 * 1024))
 
-./build/geriatrix -n $((1*1024*1024*1024)) -u 0.8 -r 42 -m /mnt/test-geriatrix -a ./profiles/agrawal/age_distribution.txt -s ./profiles/agrawal/size_distribution.txt -d ./profiles/agrawal/dir_distribution.txt -x /tmp/age.out -y /tmp/size.out -z /tmp/dir.out -t 1 -i 1000 -f 0 -p 0 -c 0 -q 0 -w 10 -b killer
+./build/geriatrix -n $((16*1024*1024*1024)) -u 0.8 -r 42 -m /mnt/test-geriatrix -a ./profiles/agrawal/age_distribution.txt -s ./profiles/agrawal/size_distribution.txt -d ./profiles/agrawal/dir_distribution.txt -x /tmp/age.out -y /tmp/size.out -z /tmp/dir.out -t 1 -i 1000 -f 0 -p 0 -c 0 -q 0 -w 10 -b killer

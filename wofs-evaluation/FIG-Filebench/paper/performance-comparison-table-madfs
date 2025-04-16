@@ -1,0 +1,5 @@
+file_system file_bench threads iops create delete close read write IO
+MadFS fileserver.f 1 5574.866 0.042 0.195 0.008 0.067 0.068 0.135
+MadFS varmail.f 1 7133.099 0.051 0.192 0.006 0.014 0.005 0.019
+MadFS webserver.f 1 63640.720 0.034 0 0.005 0.008 0.013 0.021
+MadFS webproxy.f 1 9550.265 1.491 0.195 0.007 0.009 0.009 0.018

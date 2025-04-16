@@ -99,6 +99,7 @@ static void dump_inode_table(void)
 
 static tl_allocator allocator;
 
+// #define NUM_BLOCKS (256 * 1024L * 1024L * 1024L / 4096)
 #define NUM_BLOCKS (256 * 1024L * 1024L * 1024L / 4096)
 
 static void init_allocator(void)
@@ -348,12 +349,13 @@ static void free_pkg(pkg_type type, u_int64_t start_blk, int offset)
     }
 }
 
-static void bench_end(void)
+static void bench_end(ssize_t total_disk_capacity)
 {
     FUNC_TRACE;
-    u_int64_t data_locality[5] = {0};
+    u_int64_t data_locality[513] = {0};
     u_int64_t meta_locality[5] = {0};
-
+    u_int64_t total_blocks = total_disk_capacity / 4096;
+    printf("total_blocks: %lu\n", total_blocks);
     // output allocator info
     std::cout << "free_ranges: " << std::endl;
 
@@ -362,15 +364,19 @@ static void bench_end(void)
         std::cout << "start_blk: " << range->start_blk << ", end_blk: " << range->end_blk << std::endl;
         u_int64_t num_blocks = range->end_blk - range->start_blk;
 
-        // NOTE: drop if this is the last range, continue
+        // NOTE: regulate the last ranges
         if (range == allocator.free_ranges.back())
         {
-            break;
+            if (range->end_blk > total_blocks && range->start_blk < total_blocks) {
+                num_blocks = total_blocks - range->start_blk;
+            } else {
+                continue;
+            }
         }
 
-        if (num_blocks >= 4)
+        if (num_blocks >= 512)
         {
-            data_locality[4] += num_blocks;
+            data_locality[512] += num_blocks;
         }
         else
         {
@@ -449,12 +455,16 @@ static void bench_end(void)
     // output data_locality
     std::cout << "data_locality: " << std::endl;
     u_int64_t total_data_blocks = 0;
-    for (int i = 1; i < 5; i++)
+    for (int i = 1; i < 512; i++)
     {
         total_data_blocks += data_locality[i];
     }
-    for (int i = 1; i < 5; i++)
+    for (int i = 1; i < 512; i++)
     {
+        if (data_locality[i] == 0)
+        {
+            continue;
+        }
         std::cout << "data_locality[" << i << "]: " << float(data_locality[i]) / total_data_blocks << std::endl;
     }
 

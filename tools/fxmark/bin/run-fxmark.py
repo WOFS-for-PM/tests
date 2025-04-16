@@ -687,7 +687,7 @@ class Runner(object):
         if not rc:
             return False
         p = self.exec_cmd(
-            ' '.join([BENCHMARK_DIR + "/setup.sh KILLER dev"]), self.dev_null)
+            ' '.join([BENCHMARK_DIR + "/setup.sh KILLER osdi25"]), self.dev_null)
         if p.returncode != 0:
             return False
         p = self.exec_cmd("sudo chmod 777 " + mnt_path,

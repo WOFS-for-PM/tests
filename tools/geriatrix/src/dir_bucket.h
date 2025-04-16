@@ -155,9 +155,11 @@ struct DirBucket {
         static_cast<int>(this->count)};
       auto rand = dist(gen);
       auto f = this->start;
-      for(auto i=1; i<rand; i++) {
+      auto i = 0;
+      for(i=1; i<rand; i++) {
         f = f->dir_next;
       }
+      // printf("File to delete at %d: %s\n", i, f->path.c_str());
       return f;
     }
 

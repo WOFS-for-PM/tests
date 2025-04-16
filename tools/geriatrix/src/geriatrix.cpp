@@ -1026,7 +1026,7 @@ void handler(int signo){
   destroy();
   // wait for all threads to finish
   if (g_backend->bd_end)
-    g_backend->bd_end();
+    g_backend->bd_end(total_disk_capacity);
   exit(0);
 }
 
@@ -1102,6 +1102,9 @@ int main(int argc, char *argv[]) {
   sigemptyset(&sigIntHandler.sa_mask);
   sigIntHandler.sa_flags = 0;
   sigaction(SIGINT, &sigIntHandler, NULL);
+  
+  // print age buckets
+  
 
   do {
     performStableAging(total_disk_capacity * runs, idle_injections,

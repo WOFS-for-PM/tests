@@ -15,6 +15,7 @@ EXT4RELINK_PATH="$ABS_PATH"/../../ext4relink
 SOUPFS_PATH="$ABS_PATH"/../../eulerfs
 CONFIGS_PATH="$ABS_PATH"/configs
 WINEFS_PATH="$ABS_PATH"/../../winefs
+MADFS_PATH="$ABS_PATH"/../../MadFS
 
 function compile_splitfs() {
     local measure_timing=$1
@@ -92,6 +93,13 @@ case "${fs}" in
     cd "$WINEFS_PATH" || exit
     git checkout "$branch"
     bash setup.sh /dev/pmem0 /mnt/pmem0 -j32 "$measure_timing"
+    ;;
+"MadFS")
+    cd "$MADFS_PATH" || exit
+    make BUILD_TARGETS="madfs"
+    sudo umount /mnt/pmem0
+    sudo mkfs.ext4 -F -b 4096 /dev/pmem0
+    sudo mount -o dax /dev/pmem0 /mnt/pmem0
     ;;
 # Different configurations of HUNTER.
 "HUNTER-NOHISTORY")

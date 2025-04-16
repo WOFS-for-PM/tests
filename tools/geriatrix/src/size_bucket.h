@@ -48,7 +48,6 @@ class SizeBucket {
 
     void addFile(File *f, uint64_t live_file_count) {
       count++;
-
       auto d = (db->find(f->depth))->second;
       db->erase(f->depth);
       d.count++;

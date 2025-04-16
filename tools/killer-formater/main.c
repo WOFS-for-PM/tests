@@ -12,6 +12,10 @@ static char *disk_name = "pmem0";
 module_param(disk_name, charp, S_IRUGO | S_IWUSR);
 MODULE_PARM_DESC(disk_name, "The name of raw pmem block device (e.g., pmem0)");
 
+int only_zero = 0;
+module_param(only_zero, int, 0444); 
+MODULE_PARM_DESC(only_zero, "Only zero out the pmem block device");
+
 typedef struct timespec timing_t;
 
 void *virt_addr = NULL;
@@ -163,13 +167,15 @@ void *killer_formater(void *args)
     for (cur_blk = work.start_blk; cur_blk < work.start_blk + work.blks; cur_blk++) {
         addr = (u64)virt_addr + (u64)cur_blk * PAGE_SIZE;
         
-        bhint_hdr = (struct killer_bhint_hdr *)param->formater_buf;
-        bhint_hdr->hint = KILLER_HINT_EMPTY_BLK;
-        bhint_hdr->hcrc32 = 0;
-        bhint_hdr->bcrc32 = 0;
-        bhint_hdr->bcrc32 = killer_crc32c(~0, param->formater_buf, PAGE_SIZE);
-        bhint_hdr->hcrc32 = killer_crc32c(~0, (u8 *)bhint_hdr, sizeof(struct killer_bhint_hdr));
-        
+        if (!only_zero) {
+            bhint_hdr = (struct killer_bhint_hdr *)param->formater_buf;
+            bhint_hdr->hint = KILLER_HINT_EMPTY_BLK;
+            bhint_hdr->hcrc32 = 0;
+            bhint_hdr->bcrc32 = 0;
+            bhint_hdr->bcrc32 = killer_crc32c(~0, param->formater_buf, PAGE_SIZE);
+            bhint_hdr->hcrc32 = killer_crc32c(~0, (u8 *)bhint_hdr, sizeof(struct killer_bhint_hdr));
+        }
+
         __copy_from_user_inatomic_nocache((void *)addr, param->formater_buf, PAGE_SIZE);
         /* be nice */
         schedule();

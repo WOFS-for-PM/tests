@@ -29,7 +29,7 @@ struct backend_driver {
     int (*bd_fallocate)(int fd, off_t offset, off_t len);
     int (*bd_stat)(const char *path, struct stat *st);
     int (*bd_chmod)(const char *path, mode_t mode);
-    void (*bd_end)(void);
+    void (*bd_end)(ssize_t total_disk_capacitys);
     void (*bd_init)(void);
 };
 

@@ -1,0 +1,6 @@
+1
+4096 100
+
+Format:
+<number of observations>
+<size in bytes> <weight in integers>
