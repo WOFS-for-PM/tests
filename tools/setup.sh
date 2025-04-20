@@ -16,13 +16,14 @@ SOUPFS_PATH="$ABS_PATH"/../../eulerfs
 CONFIGS_PATH="$ABS_PATH"/configs
 WINEFS_PATH="$ABS_PATH"/../../winefs
 MADFS_PATH="$ABS_PATH"/../../MadFS
+F2FS_PATH="$ABS_PATH"/../../f2fs
 
 function compile_splitfs() {
     local measure_timing=$1
     make clean
-    
+
     if ((measure_timing == 1)); then
-        export LEDGER_INSTRU=1    
+        export LEDGER_INSTRU=1
         # export LEDGER_DEBUG=1
         # export LIBNVP_DEBUG=1
     fi
@@ -296,7 +297,22 @@ case "${fs}" in
     ;;
 "SoupFS")
     cd "$SOUPFS_PATH" || exit
-    bash setup.sh 
+    bash setup.sh
+    ;;
+"F2FS")
+    cd "$F2FS_PATH" || exit
+    git checkout "$branch"
+    bash setup.sh
+    ;;
+"EXT4")
+    sudo umount /mnt/nvme0n1p1
+    sudo mkfs.ext4 -F -b 4096 /dev/nvme0n1p1
+    sudo mount -t ext4 /dev/nvme0n1p1 /mnt/nvme0n1p1
+    ;;
+"XFS")
+    sudo umount /mnt/nvme0n1p1
+    sudo mkfs -t xfs -m reflink=0 -f /dev/nvme0n1p1
+    sudo mount -t xfs /dev/nvme0n1p1 /mnt/nvme0n1p1
     ;;
 *)
     echo "Unknown file system: $fs"
