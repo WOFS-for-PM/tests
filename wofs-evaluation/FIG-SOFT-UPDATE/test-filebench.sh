@@ -6,7 +6,7 @@ TOOLS_PATH=$ABS_PATH/../../tools
 FSCRIPT_PRE_FIX=$ABS_PATH/../../tools/fbscripts
 BOOST_DIR=$ABS_PATH/../../../splitfs/splitfs
 
-TABLE_NAME="$ABS_PATH/performance-comparison-table"
+TABLE_NAME="$ABS_PATH/performance-comparison-table-filebench"
 table_create "$TABLE_NAME" "file_system file_bench threads iops"
 mkdir -p "$ABS_PATH"/DATA
 
@@ -28,7 +28,7 @@ for file_system in "${FILE_SYSTEMS[@]}"; do
                 # must switch to squirrelfs kernel, so we report our previously measured bandwidth here
                 echo "SquirrelFS"
             elif [[ "${file_system}" == "HUNTER-J-SYNC" ]]; then
-                bash "$TOOLS_PATH"/setup.sh "HUNTER-J" "osdi25-hunter-dac" "0"
+                bash "$TOOLS_PATH"/setup.sh "HUNTER" "osdi25-hunter-dac" "0"
             elif [[ "${file_system}" == "HUNTER-J" ]]; then
                 bash "$TOOLS_PATH"/setup.sh "HUNTER-J" "osdi25-hunter-async" "0"
             else
@@ -39,7 +39,7 @@ for file_system in "${FILE_SYSTEMS[@]}"; do
                 if [[ "${fbench}" == "fileserver.f" ]]; then
                     iops=34934.632
                 else
-                    iops=179121.033
+                    iops=269789.577
                 fi    
             else 
                 sudo /usr/local/filebench/filebench -f "$ABS_PATH"/DATA/"$fbench"/"$thread" | tee "$ABS_PATH"/DATA/"$fbench"/"$file_system"-"$thread"

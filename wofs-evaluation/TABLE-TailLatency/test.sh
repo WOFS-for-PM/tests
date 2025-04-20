@@ -4,9 +4,10 @@ ABS_PATH=$(where_is_script "$0")
 TOOLS_PATH=$ABS_PATH/../../tools
 BOOST_DIR=$ABS_PATH/../../../splitfs/splitfs
 MADFS_DIR=$ABS_PATH/../../../MadFS
+SplitFS_DIR=$ABS_PATH/../../../splitfs
 
-FILE_SYSTEMS=( "NOVA" "NOVA-RELAX" "PMFS" "KILLER" "SplitFS-FIO" "EXT4-DAX" "XFS-DAX" "MadFS" )
-FILE_SIZES=( $((1 * 1024)) $((32 * 1024)) )
+FILE_SYSTEMS=( "NOVA" "PMFS" "KILLER" "SplitFS-FIO" "MadFS" )
+FILE_SIZES=( $((32 * 1024)) )
 
 TABLE_NAME="$ABS_PATH/performance-comparison-table"
 table_create "$TABLE_NAME" "file_system file_size tail50 tail60 tail70 tail80 tail90 tail95 tail99 tail995 tail999 tail9995 tail9999"
@@ -26,10 +27,14 @@ do
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25" "0"
                 OUTPUT=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test 4K "$fsize" 1)
             elif [[ "${file_system}" == "SplitFS-FIO" ]]; then
+                cd "$SplitFS_DIR" || exit
+                git checkout 51adbb7e0ea28903b5df6b4c9ecc9fa0743ea26a
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
                 export LD_LIBRARY_PATH="$BOOST_DIR"
                 export NVP_TREE_FILE="$BOOST_DIR"/bin/nvp_nvp.tree
                 OUTPUT=$(LD_PRELOAD=$BOOST_DIR/libnvp.so fio -filename="/mnt/pmem0/test" -fallocate=none -direct=0 -iodepth 1 -rw=write -ioengine=sync -bs="4K" -size="$fsize"M -name=test)
+                git checkout timing
+                cd - || exit
             elif [[ "${file_system}" == "MadFS" ]]; then
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
                 export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH

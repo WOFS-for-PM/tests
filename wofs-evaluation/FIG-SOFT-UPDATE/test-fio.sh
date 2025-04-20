@@ -30,7 +30,7 @@ do
                 BW=633
             elif [[ "${file_system}" == "HUNTER-J-SYNC" ]]; then
                 bash "$TOOLS_PATH"/setup.sh "HUNTER-J" "osdi25-hunter-sync" "0"
-                BW=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
+                BW=$(bash "$TOOLS_PATH"/fio-fsync.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
             elif [[ "${file_system}" == "HUNTER-J" ]]; then
                 bash "$TOOLS_PATH"/setup.sh "HUNTER-J" "osdi25-hunter-async" "0"
                 BW=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)

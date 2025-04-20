@@ -4,8 +4,8 @@ ABS_PATH=$(where_is_script "$0")
 TOOLS_PATH=$ABS_PATH/../../tools
 BOOST_DIR=$ABS_PATH/../../../splitfs/splitfs
 
-FILE_SYSTEMS=( "NOVA" "PMFS" "KILLER" "SplitFS-FIO" "NOVA-RELAX" "MadFS")
-FILE_SYSTEM_REMAPS=( "nova" "pmfs" "killer" "splitfs" "nova-relax" "madfs")
+FILE_SYSTEMS=( "NOVA" "NOVA-RELAX" "PMFS" "KILLER" "SplitFS-FIO" "MadFS")
+FILE_SYSTEM_REMAPS=( "nova" "nova-relax" "pmfs" "killer" "splitfs" "madfs")
 TABLE_NAME="$ABS_PATH/performance-comparison-table"
 table_create "$TABLE_NAME" "file_system workload tput(works/sec)"
 WORKLOADS=( "^DWTL$" "^MRPL$" "^MWCL$" "^MWUL$" "^MWRL$"  )
@@ -25,9 +25,23 @@ do
         for work_load in "${WORKLOADS[@]}"; do
             fs_name="^$file_system_remap$"
             workload_name="${WORKLOAD_NAMES[$WORKLOAD_IDX]}"
+
+            if [[ "${file_system}" == "MadFS" ]]; then
+                if [[ "${workload_name}" == "DWTL" ]]; then
+                    table_add_row "$TABLE_NAME" "$file_system $workload_name 0"
+                    WORKLOAD_IDX=$((WORKLOAD_IDX+1))
+                    continue
+                elif [[ "${workload_name}" == "MWUL" ]]; then
+                    table_add_row "$TABLE_NAME" "$file_system $workload_name 0"  
+                    WORKLOAD_IDX=$((WORKLOAD_IDX+1))
+                    continue
+                fi
+            fi
+
             cd "$TOOLS_PATH"/fxmark/bin/ || exit
             
-            if [[ "${fs_name}" == "madfs" ]]; then
+            if [[ "${file_system}" == "MadFS" ]]; then
+                rm -rf /dev/shm/*
                 export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH
             fi
             

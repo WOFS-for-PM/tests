@@ -28,8 +28,8 @@ for ((i = 1; i <= loop; i++)); do
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25" "0"
                     BW=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test "$bsize" "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                 elif [[ "${file_system}" == "KILLER-AVX" ]]; then
-                    bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25-avx" "0"
-                    BW=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
+                    bash "$TOOLS_PATH"/setup.sh "KILLER" "osdi25-avx" "0"
+                    BW=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test "$bsize" "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                 elif [[ "${file_system}" =~ "SplitFS-FIO" ]]; then
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
                     export LD_LIBRARY_PATH="$BOOST_DIR"
@@ -51,7 +51,7 @@ for ((i = 1; i <= loop; i++)); do
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25" "0"
                     BW=$(bash "$TOOLS_PATH"/fio-rand.sh /mnt/pmem0/test "$bsize" "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                 elif [[ "${file_system}" == "KILLER-AVX" ]]; then
-                    bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25-avx" "0"
+                    bash "$TOOLS_PATH"/setup.sh "KILLER" "osdi25-avx" "0"
                     BW=$(bash "$TOOLS_PATH"/fio-rand.sh /mnt/pmem0/test "$bsize" "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                 elif [[ "${file_system}" =~ "SplitFS-FIO" ]]; then
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
@@ -74,7 +74,7 @@ for ((i = 1; i <= loop; i++)); do
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25" "0"
                     BW=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test "$bsize" "$fsize" 1 "read" | grep READ: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                 elif [[ "${file_system}" == "KILLER-AVX" ]]; then
-                    bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25-avx" "0"
+                    bash "$TOOLS_PATH"/setup.sh "KILLER" "osdi25-avx" "0"
                     BW=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test "$bsize" "$fsize" 1 "read" | grep READ: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                 elif [[ "${file_system}" =~ "SplitFS-FIO" ]]; then
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
@@ -97,7 +97,7 @@ for ((i = 1; i <= loop; i++)); do
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25" "0"
                     BW=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test "$bsize" "$fsize" 1 "randread" | grep READ: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                 elif [[ "${file_system}" == "KILLER-AVX" ]]; then
-                    bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25-avx" "0"
+                    bash "$TOOLS_PATH"/setup.sh "KILLER" "osdi25-avx" "0"
                     BW=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test "$bsize" "$fsize" 1 "randread" | grep READ: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                 elif [[ "${file_system}" =~ "SplitFS-FIO" ]]; then
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"

@@ -7,7 +7,7 @@ FSCRIPT_PRE_FIX=$ABS_PATH/../../tools/fbscripts
 BOOST_DIR=$ABS_PATH/../../../splitfs/splitfs
 
 TABLE_NAME="$ABS_PATH/performance-comparison-table"
-table_create "$TABLE_NAME" "file_system file_bench threads memory(bytes) iops"
+table_create "$TABLE_NAME" "file_system file_bench threads memory(bytes) ptl_memory(bytes) idx_ptl_memory(bytes) iops"
 mkdir -p "$ABS_PATH"/DATA
 
 FILE_SYSTEMS=( "KILLER" "NOVA" )
@@ -45,11 +45,19 @@ for file_system in "${FILE_SYSTEMS[@]}"; do
             
             sleep 5
 
-            memory=$(cat "$ABS_PATH"/DATA/"$fbench"/"$file_system"-"$thread"-timing | grep "mem_usage" | awk '{print $2}')
+            if [[ "${file_system}" == "KILLER" ]]; then
+                ptl_memory=$(cat "$ABS_PATH"/DATA/"$fbench"/"$file_system"-"$thread"-timing | grep "PTL mem_usage" | awk '{print $3}')
+                idx_memory=$(cat "$ABS_PATH"/DATA/"$fbench"/"$file_system"-"$thread"-timing | grep "IDX mem_usage" | awk '{print $3}')
+                memory=$((ptl_memory + idx_memory))
+            else
+                memory=$(cat "$ABS_PATH"/DATA/"$fbench"/"$file_system"-"$thread"-timing | grep "mem_usage" | awk '{print $2}')
+                ptl_memory=0
+                idx_memory=0
+            fi
 
             iops=$(filebench_attr_iops "$ABS_PATH"/DATA/"$fbench"/"$file_system"-"$thread")
             
-            table_add_row "$TABLE_NAME" "$file_system $fbench $thread $memory $iops"
+            table_add_row "$TABLE_NAME" "$file_system $fbench $thread $memory $ptl_memory $idx_memory $iops"
         done
     done
 done

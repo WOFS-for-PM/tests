@@ -20,6 +20,11 @@ do
     if [ -f "plot.ipynb" ]; then
         ipython -c "%run plot.ipynb"
     fi
+
+    if [ -f "plot-breakdown.ipynb" ]; then
+        bash breakdown.sh
+        ipython -c "%run plot-breakdown.ipynb"
+    fi
     
     cd - || exit
   fi

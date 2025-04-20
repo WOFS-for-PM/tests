@@ -6,7 +6,7 @@ TOOLS_PATH=$ABS_PATH/../../tools
 BOOST_DIR=$ABS_PATH/../../../splitfs/splitfs
 MADFS_DIR=$ABS_PATH/../../../MadFS
 
-FILE_SYSTEMS=( "NOVA" "PMFS" "NOVA-RELAX" "KILLER" "SplitFS-FIO" "EXT4-DAX" "XFS-DAX"  "MadFS" )
+FILE_SYSTEMS=( "NOVA" "PMFS" "NOVA-RELAX" "KILLER" "SplitFS-FIO" "EXT4-DAX" "XFS-DAX" "KILLER-NO-MT-OPT" "MadFS" )
 FILE_SIZES=( $((1 * 1024)) )
 NUM_JOBS=( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
 TABLE_NAME="$ABS_PATH/performance-comparison-table"
@@ -31,7 +31,10 @@ do
                 if [[ "${file_system}" == "PMM" ]]; then
                     BW=2259.2
                 elif [[ "${file_system}" == "KILLER" ]]; then
-                    bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25" "0"
+                    bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25-fio-regulate" "0"
+                    BW=$(bash "$TOOLS_PATH"/fio.sh "$fpath" 4K "$fsize" "$job" | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
+                elif [[ "${file_system}" == "KILLER-NO-MT-OPT" ]]; then
+                    bash "$TOOLS_PATH"/setup.sh "KILLER" "osdi25" "0"
                     BW=$(bash "$TOOLS_PATH"/fio.sh "$fpath" 4K "$fsize" "$job" | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                 elif [[ "${file_system}" == "SplitFS-FIO" ]]; then
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
@@ -59,7 +62,10 @@ do
                 if [[ "${file_system}" == "PMM" ]]; then
                     BW=2259.2
                 elif [[ "${file_system}" == "KILLER" ]]; then
-                    bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25" "0"
+                    bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25-fio-regulate" "0"
+                    BW=$(bash "$TOOLS_PATH"/fio-rand.sh $fpath 4K "$fsize" "$job" | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
+                elif [[ "${file_system}" == "KILLER-NO-MT-OPT" ]]; then
+                    bash "$TOOLS_PATH"/setup.sh "KILLER" "osdi25" "0"
                     BW=$(bash "$TOOLS_PATH"/fio-rand.sh $fpath 4K "$fsize" "$job" | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                 elif [[ "${file_system}" == "SplitFS-FIO" ]]; then
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
@@ -87,7 +93,10 @@ do
                 if [[ "${file_system}" == "PMM" ]]; then
                     BW=2259.2
                 elif [[ "${file_system}" == "KILLER" ]]; then
-                    bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25" "0"
+                    bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25-fio-regulate" "0"
+                    BW=$(bash "$TOOLS_PATH"/fio.sh "$fpath" 4K "$fsize" "$job" "read" | grep READ: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
+                elif [[ "${file_system}" == "KILLER-NO-MT-OPT" ]]; then
+                    bash "$TOOLS_PATH"/setup.sh "KILLER" "osdi25" "0"
                     BW=$(bash "$TOOLS_PATH"/fio.sh "$fpath" 4K "$fsize" "$job" "read" | grep READ: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                 elif [[ "${file_system}" == "SplitFS-FIO" ]]; then
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
@@ -115,7 +124,10 @@ do
                 if [[ "${file_system}" == "PMM" ]]; then
                     BW=2483.2
                 elif [[ "${file_system}" == "KILLER" ]]; then
-                    bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25" "0"
+                    bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25-fio-regulate" "0"
+                    BW=$(bash "$TOOLS_PATH"/fio.sh "$fpath" 4K "$fsize" "$job" "randread" | grep READ: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
+                elif [[ "${file_system}" == "KILLER-NO-MT-OPT" ]]; then
+                    bash "$TOOLS_PATH"/setup.sh "KILLER" "osdi25" "0"
                     BW=$(bash "$TOOLS_PATH"/fio.sh "$fpath" 4K "$fsize" "$job" "randread" | grep READ: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                 elif [[ "${file_system}" == "SplitFS-FIO" ]]; then
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"

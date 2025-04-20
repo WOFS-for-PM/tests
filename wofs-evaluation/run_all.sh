@@ -27,6 +27,11 @@ do
       continue
     fi
 
+    if ( echo "$filename" | grep -q "TABLE-CC" ); then 
+      echo "Manually check $filename in the VM"
+      continue
+    fi
+
     cd "$filename" || exit
 
     bash test.sh "$loop" > $OUTNAME
@@ -34,6 +39,12 @@ do
     # Aggregate Results
     if [ -f "agg.sh" ]; then
         bash agg.sh "$loop"
+    fi
+
+    if [ -f "table.py" ]; then
+        python3 table.py > latex-table
+        # replace KILLER with WOLVES
+        sed -i 's/KILLER/WOLVES/g' latex-table
     fi
 
     cd - || exit

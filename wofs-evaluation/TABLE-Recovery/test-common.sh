@@ -3,7 +3,7 @@ source "../common.sh"
 ABS_PATH=$(where_is_script "$0")
 TOOLS_PATH=$ABS_PATH/../../tools
 
-FILE_SYSTEMS=( "KILLER" "NOVA" "KILLER-FAIL" "NOVA-FAIL" "KILLER-DR" "KILLER-DR-OPT" )
+FILE_SYSTEMS=( "KILLER-FAIL" "NOVA-FAIL" "KILLER-DR" "KILLER-DR-OPT" )
 WORKLOADS=( "fio" "fileserver" "webserver" )
 TABLE_NAME="$ABS_PATH/performance-comparison-table"
 table_create "$TABLE_NAME" "file_system workload umount recovery"

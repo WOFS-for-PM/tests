@@ -1,0 +1,118 @@
+MediaReads 114915145216
+MediaWrites 76725056768
+NVP_MSG (52302): Initializing hub_init
+NVP_MSG (52302): _hub_init2: START
+NVP_MSG (52302): Initializing nvp_init
+NVP_MSG (52302): CLFLUSHOPT is supported!
+NVP_MSG (52302): init_append_log: Initializing append log
+NVP_MSG (52302): _nvp_init2: dr fd = 4, start addr = 0x7F606CA00000
+NVP_MSG (52302): _nvp_init2: dr fd = 5, start addr = 0x7F605C800000
+NVP_MSG (52302): _nvp_init2: Tbl mmaps set
+NVP_MSG (52302): _nvp_init2: Global locks created
+NVP_MSG (52302): _nvp_init2: initialized environment, OPEN_MAX = 1024
+NVP_MSG (52302): _hub_init2: END
+NVP_MSG (52302): Initializing hub_init
+NVP_MSG (52302): Can't add fileop hub: one with the same name already exists at index 0
+NVP_MSG (52302): _hub_init2: START
+NVP_MSG (52302): Can't add fileop posix: one with the same name already exists at index 1
+NVP_MSG (52302): _hub_init2: END
+test: (g=0): rw=read, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=sync, iodepth=1
+fio-3.19
+Starting 1 process
+test: Laying out IO file (1 file / 32768MiB)
+NVP_MSG (52302): Increase height from 0 to 1
+NVP_MSG (52337): 
+Child process created
+
+NVP_MSG (52337): Child Exit
+NVP_MSG (52337): open: timing = 94 us
+NVP_MSG (52337): close: timing = 159 us
+NVP_MSG (52337): read: timing = 18368495 us
+NVP_MSG (52337): write: timing = 30602759 us
+NVP_MSG (52337): fsync: timing = 1 us
+NVP_MSG (52337): unlink: timing = 3 us
+NVP_MSG (52337): file_mmap: timing = 19006368 us
+NVP_MSG (52337): get_mmap: timing = 20033188 us
+NVP_MSG (52337): copy_overread: timing = 15558731 us
+NVP_MSG (52337): copy_overwrite: timing = 6049873 us
+NVP_MSG (52337): read_tbl_mmap: timing = 699794 us
+NVP_MSG (52337): clear_mmap_tbl: timing = 0 us
+NVP_MSG (52337): ====================== NVP IO stats: ======================
+NVP_MSG (52337): open 2, close 2, async close 0
+NVP_MSG (52337): mmap 2050, unlink 1, stat 1
+NVP_MSG (52337): dr mmap 2, dr mmap critical path 0
+NVP_MSG (52337): fsync 1, appendfsync: count 0 size 0 average 0
+NVP_MSG (52337): READ: count 8388608, size 34359738368, average 4096
+NVP_MSG (52337): WRITE: count 8388608, size 34359738368, average 4096
+NVP_MSG (52337): memcpy READ: count 8388608, size 34359738368, average 4096
+NVP_MSG (52337): anon READ: count 0, size 0, average 0
+NVP_MSG (52337): memcpy WRITE: count 8388608, size 68719476736, average 8192
+NVP_MSG (52337): anon WRITE: count 0, size 0, average 0
+NVP_MSG (52337): posix READ: count 0, size 0, average 0
+NVP_MSG (52337): posix WRITE: count 0, size 0, average 0
+NVP_MSG (52337): write extends 0, total 8388608
+NVP_MSG (52337): MFENCE: count 8388608
+NVP_MSG (52337): CLFLUSHOPT: count 0
+NVP_MSG (52337): NON_TEMPORAL_WRITES: count 8388608, size 34359738368, average 4096
+NVP_MSG (52337): TEMPORAL WRITES: count 0, size 0, average 0
+NVP_MSG (52337): TOTAL SYSCALLS (open + close + read + write + fsync): count 4
+
+test: (groupid=0, jobs=1): err= 0: pid=52337: Sat Apr 19 23:27:45 2025
+  read: IOPS=410k, BW=1602MiB/s (1680MB/s)(32.0GiB/20458msec)
+    clat (nsec): min=1834, max=215230, avg=2269.02, stdev=563.00
+     lat (nsec): min=1853, max=215581, avg=2289.65, stdev=564.69
+    clat percentiles (nsec):
+     |  1.00th=[ 2064],  5.00th=[ 2096], 10.00th=[ 2128], 20.00th=[ 2160],
+     | 30.00th=[ 2160], 40.00th=[ 2160], 50.00th=[ 2192], 60.00th=[ 2224],
+     | 70.00th=[ 2224], 80.00th=[ 2288], 90.00th=[ 2352], 95.00th=[ 2448],
+     | 99.00th=[ 4384], 99.50th=[ 5280], 99.90th=[ 9152], 99.95th=[13120],
+     | 99.99th=[18304]
+   bw (  MiB/s): min= 1594, max= 1611, per=100.00%, avg=1603.91, stdev= 2.71, samples=40
+   iops        : min=408184, max=412442, avg=410600.00, stdev=693.97, samples=40
+  lat (usec)   : 2=0.21%, 4=98.34%, 10=1.36%, 20=0.09%, 50=0.01%
+  lat (usec)   : 250=0.01%
+  cpu          : usr=99.58%, sys=0.41%, ctx=23, majf=0, minf=16476
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=8388608,0,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=1
+
+Run status group 0 (all jobs):
+   READ: bw=1602MiB/s (1680MB/s), 1602MiB/s-1602MiB/s (1680MB/s-1680MB/s), io=32.0GiB (34.4GB), run=20458-20458msec
+
+Disk stats (read/write):
+  pmem0: ios=0/0, merge=0/0, ticks=0/0, in_queue=0, util=0.00%
+NVP_MSG (52302): exit handler
+NVP_MSG (52302): Exit: print stats
+NVP_MSG (52302): ====================== NVP IO stats: ======================
+NVP_MSG (52302): open 1, close 1, async close 0
+NVP_MSG (52302): mmap 2050, unlink 1, stat 1
+NVP_MSG (52302): dr mmap 2, dr mmap critical path 0
+NVP_MSG (52302): fsync 1, appendfsync: count 0 size 0 average 0
+NVP_MSG (52302): READ: count 0, size 0, average 0
+NVP_MSG (52302): WRITE: count 8388608, size 34359738368, average 4096
+NVP_MSG (52302): memcpy READ: count 0, size 0, average 0
+NVP_MSG (52302): anon READ: count 0, size 0, average 0
+NVP_MSG (52302): memcpy WRITE: count 8388608, size 68719476736, average 8192
+NVP_MSG (52302): anon WRITE: count 0, size 0, average 0
+NVP_MSG (52302): posix READ: count 0, size 0, average 0
+NVP_MSG (52302): posix WRITE: count 0, size 0, average 0
+NVP_MSG (52302): write extends 0, total 8388608
+NVP_MSG (52302): MFENCE: count 8388608
+NVP_MSG (52302): CLFLUSHOPT: count 0
+NVP_MSG (52302): NON_TEMPORAL_WRITES: count 8388608, size 34359738368, average 4096
+NVP_MSG (52302): TEMPORAL WRITES: count 0, size 0, average 0
+NVP_MSG (52302): TOTAL SYSCALLS (open + close + read + write + fsync): count 2
+NVP_MSG (52302): open: timing = 55 us
+NVP_MSG (52302): close: timing = 129 us
+NVP_MSG (52302): write: timing = 30602759 us
+NVP_MSG (52302): fsync: timing = 1 us
+NVP_MSG (52302): unlink: timing = 3 us
+NVP_MSG (52302): file_mmap: timing = 19006368 us
+NVP_MSG (52302): get_mmap: timing = 19494734 us
+NVP_MSG (52302): copy_overwrite: timing = 6049873 us
+NVP_MSG (52302): read_tbl_mmap: timing = 347796 us
+NVP_MSG (52302): clear_mmap_tbl: timing = 0 us
+NVP_MSG (52302): calling cleanup
+NVP_MSG (52302): nvp_cleanup: Done Cleaning up

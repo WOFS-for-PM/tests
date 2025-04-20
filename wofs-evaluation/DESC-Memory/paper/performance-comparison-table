@@ -1,5 +1,5 @@
-file_system file_bench threads memory(bytes) iops
-KILLER fileserver.f 1 41452448 67471.018
-KILLER varmail.f 1 15694616 274049.511
-NOVA fileserver.f 1 8411248 36109.122
-NOVA varmail.f 1 7292160 209597.284
+file_system file_bench threads memory(bytes) ptl_memory(bytes) idx_ptl_memory(bytes) iops
+KILLER fileserver.f 1 9358592 3984800 5373792 66420.322
+KILLER varmail.f 1 11349200 6699136 4650064 250461.191
+NOVA fileserver.f 1 10986160 0 0 36015.420
+NOVA varmail.f 1 8713904 0 0 205881.682

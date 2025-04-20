@@ -5,5 +5,5 @@ if [ "$1" ]; then
     loop=$1
 fi
 
-bash test-small.sh "$loop"
-bash test-large.sh "$loop"
+bash test-various-bsize.sh "$loop"
+bash test-various-fsize.sh "$loop"
