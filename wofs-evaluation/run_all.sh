@@ -36,6 +36,10 @@ do
 
     bash test.sh "$loop" > $OUTNAME
 
+    if [ -f "test-madfs.sh" ]; then
+        bash test-madfs.sh "$loop" >> $OUTNAME
+    fi
+    
     # Aggregate Results
     if [ -f "agg.sh" ]; then
         bash agg.sh "$loop"

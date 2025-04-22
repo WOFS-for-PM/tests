@@ -28,7 +28,7 @@ do
                 OUTPUT=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test 4K "$fsize" 1)
             elif [[ "${file_system}" == "SplitFS-FIO" ]]; then
                 cd "$SplitFS_DIR" || exit
-                git checkout 51adbb7e0ea28903b5df6b4c9ecc9fa0743ea26a
+                git checkout no-prefault
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
                 export LD_LIBRARY_PATH="$BOOST_DIR"
                 export NVP_TREE_FILE="$BOOST_DIR"/bin/nvp_nvp.tree
