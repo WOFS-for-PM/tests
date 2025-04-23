@@ -4,6 +4,7 @@ source "../common.sh"
 ABS_PATH=$(where_is_script "$0")
 TOOLS_PATH=$ABS_PATH/../../tools
 BOOST_DIR=$ABS_PATH/../../../splitfs/splitfs
+SplitFS_DIR=$ABS_PATH/../../../splitfs
 
 FILE_SYSTEMS=( "NOVA" "PMFS" "SplitFS-FIO" "KILLER" "KILLER-NO-PREFETCH" "KILLER-NAIVE" )
 FILE_SIZES=( $((32 * 1024)) )
@@ -26,10 +27,13 @@ do
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25-meta-trace" "0"
                 BW=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
             elif [[ "${file_system}" =~ "SplitFS-FIO" ]]; then
+                cd "$SplitFS_DIR" || exit
+                git checkout no-prefault
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
                 export LD_LIBRARY_PATH="$BOOST_DIR"
                 export NVP_TREE_FILE="$BOOST_DIR"/bin/nvp_nvp.tree
                 BW=$(LD_PRELOAD=$BOOST_DIR/libnvp.so fio -filename="/mnt/pmem0/test" -fallocate=none -direct=0 -iodepth 1 -rw=write -ioengine=sync -bs="4K" -size="$fsize"M -name=test | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
+                cd - || exit
             else
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "main" "0"
                 BW=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
@@ -42,10 +46,13 @@ do
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25-meta-trace" "0"
                 BW=$(bash "$TOOLS_PATH"/fio-rand.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
             elif [[ "${file_system}" =~ "SplitFS-FIO" ]]; then
+                cd "$SplitFS_DIR" || exit
+                git checkout no-prefault
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
                 export LD_LIBRARY_PATH="$BOOST_DIR"
                 export NVP_TREE_FILE="$BOOST_DIR"/bin/nvp_nvp.tree
                 BW=$(LD_PRELOAD=$BOOST_DIR/libnvp.so fio -filename="/mnt/pmem0/test" -fallocate=none -direct=0 -iodepth 1 -rw=randwrite -ioengine=sync -bs="4K" -size="$fsize"M -name=test | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
+                cd - || exit
             else
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "main" "0"
                 BW=$(bash "$TOOLS_PATH"/fio-rand.sh /mnt/pmem0/test 4K "$fsize" 1 | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
@@ -58,10 +65,13 @@ do
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25-meta-trace" "0"
                 BW=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test 4K "$fsize" 1 "read" | grep READ: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
             elif [[ "${file_system}" =~ "SplitFS-FIO" ]]; then
+                cd "$SplitFS_DIR" || exit
+                git checkout no-prefault
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
                 export LD_LIBRARY_PATH="$BOOST_DIR"
                 export NVP_TREE_FILE="$BOOST_DIR"/bin/nvp_nvp.tree
                 BW=$(LD_PRELOAD=$BOOST_DIR/libnvp.so fio -filename="/mnt/pmem0/test" -fallocate=none -direct=0 -iodepth 1 -rw=read -ioengine=sync -bs="4K" -size="$fsize"M -name=test | grep READ: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
+                cd - || exit
             else
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "main" "0"
                 BW=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test 4K "$fsize" 1 "read" | grep READ: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
@@ -74,10 +84,13 @@ do
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25-meta-trace" "0"
                 BW=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test 4K "$fsize" 1 "randread" | grep READ: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
             elif [[ "${file_system}" =~ "SplitFS-FIO" ]]; then
+                cd "$SplitFS_DIR" || exit
+                git checkout no-prefault
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
                 export LD_LIBRARY_PATH="$BOOST_DIR"
                 export NVP_TREE_FILE="$BOOST_DIR"/bin/nvp_nvp.tree
                 BW=$(LD_PRELOAD=$BOOST_DIR/libnvp.so fio -filename="/mnt/pmem0/test" -fallocate=none -direct=0 -iodepth 1 -rw=randread -ioengine=sync -bs="4K" -size="$fsize"M -name=test | grep READ: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
+                cd - || exit
             else
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "main" "0"
                 BW=$(bash "$TOOLS_PATH"/fio.sh /mnt/pmem0/test 4K "$fsize" 1 "randread" | grep READ: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)

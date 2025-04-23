@@ -7,6 +7,7 @@ source "./extractor.sh"
 ABS_PATH=$(where_is_script "$0")
 TOOLS_PATH=$ABS_PATH/../../tools
 BOOST_DIR=$ABS_PATH/../../../splitfs/splitfs
+SplitFS_DIR=$ABS_PATH/../../../splitfs
 
 FILE_SYSTEMS=("NOVA" "PMFS" "KILLER" "SplitFS-FIO" )
 WORKLOADS=("write" "read" "randwrite")
@@ -39,7 +40,10 @@ for file_system in "${FILE_SYSTEMS[@]}"; do
         elif [[ "${file_system}" =~ "KILLER" ]]; then
             bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25-meta-trace" "1"
         elif [[ "${file_system}" =~ "SplitFS-FIO" ]]; then
+            cd "$SplitFS_DIR" || exit
+            git checkout timing
             bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "1"
+            cd - || exit
         else
             echo  file_system_type: $file_system
             continue

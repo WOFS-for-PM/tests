@@ -83,7 +83,7 @@ for job in "${NUM_JOBS[@]}"; do
             echo " 28.394 15.666 6.479 4.891 3.931 28.456 54.464 8.240" >>$result
             # NOTE: The above workaround is not needed for the other benchmarks
             continue
-            
+            git checkout no-prefault
             sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
         elif [[ "${file_system}" == "KILLER" ]]; then
             sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25" "0"
@@ -98,6 +98,7 @@ for job in "${NUM_JOBS[@]}"; do
         run_workload rund_1M_1M $file_system $job
 
         if [[ "${file_system}" =~ "SplitFS" ]]; then
+            git checkout no-prefault
             sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
         elif [[ "${file_system}" == "KILLER" ]]; then
             sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25" "0"

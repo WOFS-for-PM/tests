@@ -7,12 +7,13 @@ result="$ABS_PATH/performance-comparison-table-splitfs"
 
 ycsb_dir="/usr/local/YCSB"
 pmem_dir="/mnt/pmem0"
-leveldb_dir="/usr/local/leveldb"
+leveldb_dir="/usr/local/leveldb-splitfs"
 leveldb_build_dir=$leveldb_dir/build
 database_dir=$pmem_dir/leveldbtest
 workload_dir=$leveldb_dir/workloads
 src_dir=$ABS_PATH/../../../splitfs
 boost_dir=$src_dir/splitfs
+SplitFS_DIR=$ABS_PATH/../../../splitfs
 
 FILE_SYSTEMS=( "SplitFS-YCSB" )
 NUM_JOBS=( 1 )
@@ -79,7 +80,10 @@ for job in "${NUM_JOBS[@]}"; do
         echo -n $file_system >>$result
         echo -n " $job" >>$result
         if [[ "${file_system}" =~ "SplitFS" ]]; then
+            cd "$SplitFS_DIR" || exit
+            git checkout no-prefault
             sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
+            cd - || exit
         elif [[ "${file_system}" == "KILLER" ]]; then
             sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25" "0"
         else
@@ -93,7 +97,10 @@ for job in "${NUM_JOBS[@]}"; do
         run_workload rund_1M_1M $file_system $job
 
         if [[ "${file_system}" =~ "SplitFS" ]]; then
+            cd "$SplitFS_DIR" || exit
+            git checkout no-prefault
             sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
+            cd - || exit
         elif [[ "${file_system}" == "KILLER" ]]; then
             sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25" "0"
         else

@@ -5,7 +5,7 @@ ABS_PATH=$(where_is_script "$0")
 TOOLS_PATH=$ABS_PATH/../../tools
 FSCRIPT_PRE_FIX=$ABS_PATH/../../tools/fbscripts
 BOOST_DIR=$ABS_PATH/../../../splitfs/splitfs
-
+SplitFS_DIR=$ABS_PATH/../../../splitfs
 THREAD_START_FROM=$1
 
 if [[ -z "$THREAD_START_FROM" ]]; then
@@ -35,10 +35,13 @@ for file_system in "${FILE_SYSTEMS[@]}"; do
             sed -i "$sed_cmd" "$ABS_PATH"/DATA/"$fbench"/"$thread"
             
             if [[ "${file_system}" == "SplitFS-FILEBENCH" ]]; then
+                cd "$SplitFS_DIR" || exit
+                git checkout no-prefault
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
                 export LD_LIBRARY_PATH="$BOOST_DIR"
                 export NVP_TREE_FILE="$BOOST_DIR"/bin/nvp_nvp.tree
                 LD_PRELOAD=$BOOST_DIR/libnvp.so /usr/local/filebench/filebench -f "$ABS_PATH"/DATA/"$fbench"/"$thread" | tee "$ABS_PATH"/DATA/"$fbench"/"$file_system"-"$thread"
+                cd - || exit
             else
                 if [[ "${file_system}" == "KILLER" ]]; then
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25" "0"

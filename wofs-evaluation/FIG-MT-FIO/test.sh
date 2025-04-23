@@ -5,6 +5,7 @@ ABS_PATH=$(where_is_script "$0")
 TOOLS_PATH=$ABS_PATH/../../tools
 BOOST_DIR=$ABS_PATH/../../../splitfs/splitfs
 MADFS_DIR=$ABS_PATH/../../../MadFS
+SplitFS_DIR=$ABS_PATH/../../../splitfs
 
 FILE_SYSTEMS=( "NOVA" "PMFS" "NOVA-RELAX" "KILLER" "SplitFS-FIO" "EXT4-DAX" "XFS-DAX" "KILLER-NO-MT-OPT" "MadFS" )
 FILE_SIZES=( $((1 * 1024)) )
@@ -37,6 +38,8 @@ do
                     bash "$TOOLS_PATH"/setup.sh "KILLER" "osdi25" "0"
                     BW=$(bash "$TOOLS_PATH"/fio.sh "$fpath" 4K "$fsize" "$job" | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                 elif [[ "${file_system}" == "SplitFS-FIO" ]]; then
+                    cd "$SplitFS_DIR" || exit
+                    git checkout no-prefault
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
                     export LD_LIBRARY_PATH="$BOOST_DIR"
                     export NVP_TREE_FILE="$BOOST_DIR"/bin/nvp_nvp.tree
@@ -45,6 +48,7 @@ do
                     else
                         BW=$(LD_PRELOAD=$BOOST_DIR/libnvp.so fio -directory=/mnt/pmem0 -fallocate=none -direct=0 -iodepth 1 -thread -numjobs="$job" -rw=write -ioengine=sync -bs="4K" -size="$fsize"M -name=test | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                     fi
+                    cd - || exit
                 elif [[ "${file_system}" == "MadFS" ]]; then
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
                     export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH
@@ -68,6 +72,8 @@ do
                     bash "$TOOLS_PATH"/setup.sh "KILLER" "osdi25" "0"
                     BW=$(bash "$TOOLS_PATH"/fio-rand.sh $fpath 4K "$fsize" "$job" | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                 elif [[ "${file_system}" == "SplitFS-FIO" ]]; then
+                    cd "$SplitFS_DIR" || exit
+                    git checkout no-prefault
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
                     export LD_LIBRARY_PATH="$BOOST_DIR"
                     export NVP_TREE_FILE="$BOOST_DIR"/bin/nvp_nvp.tree
@@ -76,6 +82,7 @@ do
                     else
                         BW=$(LD_PRELOAD=$BOOST_DIR/libnvp.so fio -directory=/mnt/pmem0 -fallocate=none -direct=0 -iodepth 1 -thread -numjobs="$job" -rw=randwrite -ioengine=sync -bs="4K" -size="$fsize"M -name=test | grep WRITE: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                     fi
+                    cd - || exit
                 elif [[ "${file_system}" == "MadFS" ]]; then
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
                     export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH
@@ -99,6 +106,8 @@ do
                     bash "$TOOLS_PATH"/setup.sh "KILLER" "osdi25" "0"
                     BW=$(bash "$TOOLS_PATH"/fio.sh "$fpath" 4K "$fsize" "$job" "read" | grep READ: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                 elif [[ "${file_system}" == "SplitFS-FIO" ]]; then
+                    cd "$SplitFS_DIR" || exit
+                    git checkout no-prefault
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
                     export LD_LIBRARY_PATH="$BOOST_DIR"
                     export NVP_TREE_FILE="$BOOST_DIR"/bin/nvp_nvp.tree
@@ -107,6 +116,7 @@ do
                     else
                         BW=$(LD_PRELOAD=$BOOST_DIR/libnvp.so fio -directory=/mnt/pmem0 -fallocate=none -direct=0 -iodepth 1 -thread -numjobs="$job" -rw=read -ioengine=sync -bs="4K" -size="$fsize"M -name=test | grep READ: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                     fi
+                    cd - || exit
                 elif [[ "${file_system}" == "MadFS" ]]; then
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
                     export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH
@@ -130,6 +140,8 @@ do
                     bash "$TOOLS_PATH"/setup.sh "KILLER" "osdi25" "0"
                     BW=$(bash "$TOOLS_PATH"/fio.sh "$fpath" 4K "$fsize" "$job" "randread" | grep READ: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                 elif [[ "${file_system}" == "SplitFS-FIO" ]]; then
+                    cd "$SplitFS_DIR" || exit
+                    git checkout no-prefault
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
                     export LD_LIBRARY_PATH="$BOOST_DIR"
                     export NVP_TREE_FILE="$BOOST_DIR"/bin/nvp_nvp.tree
@@ -138,6 +150,7 @@ do
                     else
                         BW=$(LD_PRELOAD=$BOOST_DIR/libnvp.so fio -directory=/mnt/pmem0 -fallocate=none -direct=0 -iodepth 1 -thread -numjobs="$job" -rw=randread -ioengine=sync -bs="4K" -size="$fsize"M -name=test | grep READ: | awk '{print $2}' | sed 's/bw=//g' | "$TOOLS_PATH"/converter/to_MiB_s)
                     fi
+                    cd - || exit
                 elif [[ "${file_system}" == "MadFS" ]]; then
                     bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
                     export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH

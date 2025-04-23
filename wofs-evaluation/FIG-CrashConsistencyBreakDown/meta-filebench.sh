@@ -10,6 +10,7 @@ BOOST_DIR=$ABS_PATH/../../../splitfs/splitfs
 filebench=/usr/local/filebench/filebench
 workload_dir=$tools_path/fbscripts/
 FSCRIPT_PRE_FIX=$ABS_PATH/../../tools/fbscripts
+SplitFS_DIR=$ABS_PATH/../../../splitfs
 
 TABLE_NAME_NOVA="$ABS_PATH/performance-comparison-table-NOVA"
 
@@ -38,7 +39,10 @@ for file_system in "${FILE_SYSTEMS[@]}"; do
         elif [[ "${file_system}" =~ "KILLER" ]]; then
             bash "$tools_path"/setup.sh "$file_system" "osdi25-meta-trace" "1"
         elif [[ "${file_system}" =~ "SplitFS-FILEBENCH" ]]; then
+            cd "$SplitFS_DIR" || exit
+            git checkout timing
             bash "$tools_path"/setup.sh "$file_system" "null" "1"
+            cd - || exit
         else
             echo file_system_type: $file_system
             continue

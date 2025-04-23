@@ -33,7 +33,6 @@ do
                 export LD_LIBRARY_PATH="$BOOST_DIR"
                 export NVP_TREE_FILE="$BOOST_DIR"/bin/nvp_nvp.tree
                 OUTPUT=$(LD_PRELOAD=$BOOST_DIR/libnvp.so fio -filename="/mnt/pmem0/test" -fallocate=none -direct=0 -iodepth 1 -rw=write -ioengine=sync -bs="4K" -size="$fsize"M -name=test)
-                git checkout timing
                 cd - || exit
             elif [[ "${file_system}" == "MadFS" ]]; then
                 bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
