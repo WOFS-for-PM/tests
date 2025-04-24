@@ -88,10 +88,16 @@ def agg_table(table:str, grp:int):
                 if content[row].get("std-"+col) is not None and is_number(content[row]["std-"+col]):
                     if str.isdigit(str(content[row]["std-"+col])):
                         content[row]["std-"+col] = int(content[row]["std-"+col])
-                        content[row]["std-"+col] = math.sqrt(content[row]["std-"+col] // (grp - 1))
+                        if grp - 1 == 0:
+                            content[row]["std-"+col] = 0
+                        else:
+                            content[row]["std-"+col] = math.sqrt(content[row]["std-"+col] // (grp - 1))
                     else:
                         content[row]["std-"+col] = float(content[row]["std-"+col])
-                        content[row]["std-"+col] = math.sqrt(content[row]["std-"+col] / (grp - 1))
+                        if grp - 1 == 0:
+                            content[row]["std-"+col] = 0
+                        else:
+                            content[row]["std-"+col] = math.sqrt(content[row]["std-"+col] / (grp - 1))
 
     with open(table + "_agg", 'w') as o_f:
         writer = csv.writer(o_f, delimiter=' ')
