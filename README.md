@@ -34,8 +34,8 @@ Our artifacts involve three platforms: (1) a server with Optane DCPMM that condu
 
 **Organization of repositories.** WOFS project is composed of various repositories, which are all available. We now briefly introduce the usage of each repository as follows:
 
-- WOFS source code for Optane DCPMM: https://github.com/WOFS-for-PM/WOFS.git
-- WOFS source code for MS-SSD: https://github.com/WOFS-for-PM/WOFS-MS-SSD.git
+- Wolves source code for Optane DCPMM: https://github.com/WOFS-for-PM/WOFS.git
+- Wolves source code for MS-SSD: https://github.com/WOFS-for-PM/WOFS-MS-SSD.git
 - PMFS@EuroSys'12 source code: https://github.com/WOFS-for-PM/PMFS.git
 - NOVA@FAST'16 source code: https://github.com/WOFS-for-PM/NOVA.git
 - SplitFS@SOSP'19 source code: https://github.com/WOFS-for-PM/SplitFS.git
