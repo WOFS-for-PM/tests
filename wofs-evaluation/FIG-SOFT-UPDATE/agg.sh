@@ -5,13 +5,13 @@ if [ "$1" ]; then
     loop=$1
 fi
 
-table_name="performance-comparison-table-bsize"
+table_name="performance-comparison-table-fio"
 
 python3 ../aggregate.py "$table_name" "$loop"
 mv "$table_name" "$table_name"-orig
 mv "$table_name"_agg "$table_name"
 
-table_name="performance-comparison-table-fsize"
+table_name="performance-comparison-table-filebench"
 
 python3 ../aggregate.py "$table_name" "$loop"
 mv "$table_name" "$table_name"-orig

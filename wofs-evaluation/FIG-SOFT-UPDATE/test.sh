@@ -6,4 +6,4 @@ if [ "$1" ]; then
 fi
 
 bash test-fio.sh "$loop"
-bash test-filebench.sh
+bash test-filebench.sh "$loop"

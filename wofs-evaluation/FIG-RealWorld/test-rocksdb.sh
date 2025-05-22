@@ -68,23 +68,30 @@ run_benchmark() {
 }
 
 echo "file_system num_job fill_seq(MB/s) fillrandom(MB/s) appendrandom(MB/s) updaterandom(MB/s)" >$result
+loop=1
+if [ "$1" ]; then
+    loop=$1
+fi
 
-for job in "${NUM_JOBS[@]}"; do
-    for file_system in "${FILE_SYSTEMS[@]}"; do
-        echo -n $file_system >>$result
-        echo -n " $job" >>$result
-        echo "Running with $job threads"
-        for workload in "${WORKLOADS[@]}"; do
-            if [[ "${file_system}" =~ "SplitFS" ]]; then
-                sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
-            elif [[ "${file_system}" == "KILLER" ]]; then
-                sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25" "0"
-            else
-                sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "main" "0"
-            fi
-            run_benchmark $file_system $job $workload
+for ((i=1; i <= loop; i++))
+do
+    for job in "${NUM_JOBS[@]}"; do
+        for file_system in "${FILE_SYSTEMS[@]}"; do
+            echo -n $file_system >>$result
+            echo -n " $job" >>$result
+            echo "Running with $job threads"
+            for workload in "${WORKLOADS[@]}"; do
+                if [[ "${file_system}" =~ "SplitFS" ]]; then
+                    sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
+                elif [[ "${file_system}" == "KILLER" ]]; then
+                    sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25" "0"
+                else
+                    sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "main" "0"
+                fi
+                run_benchmark $file_system $job $workload
+            done
+
+            echo "" >>$result
         done
-
-        echo "" >>$result
     done
 done

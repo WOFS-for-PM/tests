@@ -74,45 +74,53 @@ run_workload() {
 
 echo "file_system num_job loada(micros/op) runa(micros/op) runb(micros/op) runc(micros/op) rund(micros/op) loade(micros/op) rune(micros/op) runf(micros/op)" >$result
 
-for job in "${NUM_JOBS[@]}"; do
+loop=1
+if [ "$1" ]; then
+    loop=$1
+fi
 
-    for file_system in "${FILE_SYSTEMS[@]}"; do
-        echo -n $file_system >>$result
-        echo -n " $job" >>$result
-        if [[ "${file_system}" =~ "SplitFS" ]]; then
-            cd "$SplitFS_DIR" || exit
-            git checkout no-prefault
-            sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
-            cd - || exit
-        elif [[ "${file_system}" == "KILLER" ]]; then
-            sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25" "0"
-        else
-            sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "main" "0"
-        fi
-        echo "Running with $job threads"
-        load_workload loada_1M $file_system $job
-        run_workload runa_1M_1M $file_system $job
-        run_workload runb_1M_1M $file_system $job
-        run_workload runc_1M_1M $file_system $job
-        run_workload rund_1M_1M $file_system $job
+for ((i=1; i <= loop; i++))
+do
+    for job in "${NUM_JOBS[@]}"; do
 
-        if [[ "${file_system}" =~ "SplitFS" ]]; then
-            cd "$SplitFS_DIR" || exit
-            git checkout no-prefault
-            sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
-            cd - || exit
-        elif [[ "${file_system}" == "KILLER" ]]; then
-            sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25" "0"
-        else
-            sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "main" "0"
-        fi
-        load_workload loade_1M $file_system $job
-        run_workload rune_1M_1M $file_system $job
-        run_workload runf_1M_1M $file_system $job
-        echo "" >>$result
+        for file_system in "${FILE_SYSTEMS[@]}"; do
+            echo -n $file_system >>$result
+            echo -n " $job" >>$result
+            if [[ "${file_system}" =~ "SplitFS" ]]; then
+                cd "$SplitFS_DIR" || exit
+                git checkout no-prefault
+                sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
+                cd - || exit
+            elif [[ "${file_system}" == "KILLER" ]]; then
+                sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25" "0"
+            else
+                sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "main" "0"
+            fi
+            echo "Running with $job threads"
+            load_workload loada_1M $file_system $job
+            run_workload runa_1M_1M $file_system $job
+            run_workload runb_1M_1M $file_system $job
+            run_workload runc_1M_1M $file_system $job
+            run_workload rund_1M_1M $file_system $job
+
+            if [[ "${file_system}" =~ "SplitFS" ]]; then
+                cd "$SplitFS_DIR" || exit
+                git checkout no-prefault
+                sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "null" "0"
+                cd - || exit
+            elif [[ "${file_system}" == "KILLER" ]]; then
+                sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "osdi25" "0"
+            else
+                sudo bash "$TOOLS_PATH"/setup.sh "$file_system" "main" "0"
+            fi
+            load_workload loade_1M $file_system $job
+            run_workload rune_1M_1M $file_system $job
+            run_workload runf_1M_1M $file_system $job
+            echo "" >>$result
+        done
+
+        # load_workload loade_5M $file_system
+        # run_workload rune_5M_1M $file_system
+        # echo "" >>$result
     done
-
-    # load_workload loade_5M $file_system
-    # run_workload rune_5M_1M $file_system
-    # echo "" >>$result
 done

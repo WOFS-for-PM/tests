@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 
-bash test-ycsb.sh
-bash test-rocksdb.sh
+loop=1
+if [ "$1" ]; then
+    loop=$1
+fi
+
+bash test-ycsb.sh "$loop"
+bash test-rocksdb.sh "$loop"
